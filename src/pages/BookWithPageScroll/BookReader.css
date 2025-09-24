@@ -1,0 +1,37 @@
+.book {
+  position: fixed;
+  top: 42%;
+  left: 0;
+  right: 0;
+  scale: 2.5;
+  margin: auto;
+  width: 22.2rem;
+  height: 15rem;
+  perspective: 70rem;
+}
+.cover {
+  background-color: rgb(105, 20, 20);
+  transform: rotateY(0deg);
+  left: 0;
+  width: 11.1rem;
+  height: 15rem;
+  position: absolute;
+  border-radius: 5px 0 0 5px;
+}
+.cover.back {
+  transform-origin: 100% 0;
+  transform: rotateY(180deg);
+}
+.page {
+  z-index: 9999;
+  top: 0.25rem;
+  left: 0.25rem;
+  background-color: #e9e6c4;
+  width: 10.85rem;
+  height: 14.5rem;
+  position: absolute;
+  border-radius: 5px 0 0 5px;
+  transform-origin: 100% 0;
+  box-shadow: inset 3px 0px 20px rgba(0, 0, 0, 0.2),
+    0px 0px 15px rgba(0, 0, 0, 0.1);
+}

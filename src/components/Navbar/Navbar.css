@@ -1,0 +1,90 @@
+.menu-container {
+  width: 960px;
+  margin: 0 auto;
+  background: #0000009a;
+  backdrop-filter: blur(10px);
+  border-radius: 28px;
+  position: fixed;
+  z-index: 1000;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 60px;
+}
+.menu-container label {
+  position: relative;
+  z-index: 3;
+  width: 20%;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  color: #ccc;
+  float: left;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  transition-delay: 0.2s;
+}
+.menu-container input[type=radio] {
+  display: none;
+}
+.menu-container input[type=radio]:checked + label {
+  color: #FFFF00;
+}
+.menu-container input[type=radio]:checked ~ div {
+  width: auto;
+}
+.menu-container input[type=radio]#f:checked ~ .menu-border {
+  left: 0;
+  right: 80%;
+}
+.menu-container input[type=radio]#s:checked ~ .menu-border {
+  left: 60%;
+  right: 20%;
+}
+.menu-container input[type=radio]#t:checked ~ .menu-border {
+  left: 40%;
+  right: 40%;
+}
+.menu-container input[type=radio]#fo:checked ~ .menu-border {
+  left: 20%;
+  right: 60%;
+}
+.menu-container input[type=radio]#fi:checked ~ .menu-border {
+  left: 80%;
+  right: 0;
+}
+.menu-border {
+  position: absolute;
+  z-index: 2;
+  height: 40px;
+  background-color: #555;
+  border: 2px solid #da251d;
+  background-image: linear-gradient(to left top, #000000, #39121b, #6f1426, #a51728, #da251d);
+  background-size: 200% 200%;
+	animation: gradient 10s ease infinite;
+  bottom: 10px;
+  left: 0;
+  width: 20%;
+  max-width: 150px;
+  transform: translateX(20px);
+  border-radius: 24px;
+  transition: left 0.4s ease-out, right 0.4s ease;
+  transition-delay: 0.2s, 0.2s;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.app:has(.book-container) .menu-container {
+  top: 91%;
+  bottom: 20px;
+}
