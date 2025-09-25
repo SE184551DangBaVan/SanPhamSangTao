@@ -1,19 +1,41 @@
 import { useState } from 'react'
+import { Routes, Route } from "react-router-dom";
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import BookReader from './pages/BookWithPageScroll/BookReader'
 import BookMain from './pages/BookReadSelectionMain/BookMain'
 import HomePage from './pages/HomePage/HomePage'
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
 
   return (
     <div className='app'>
-      <Navbar />
-      <HomePage />
+      <ScrollToTop />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar selectVal={"f"}/>
+              <HomePage />
+            </>
+          }
+        />
+      </Routes>
 
-      {/*<BookMain />
-      <BookReader /> */}
+      <Routes>
+        <Route
+          path="/doc-sach"
+          element={
+            <>
+              <Navbar selectVal={"s"}/>
+              <BookMain />
+              <BookReader />
+            </>
+          }
+        />
+      </Routes>
     </div>
   )
 }

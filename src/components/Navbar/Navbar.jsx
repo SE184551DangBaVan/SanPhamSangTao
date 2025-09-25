@@ -3,8 +3,8 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
-export default function Navbar() {
-  const [selected, setSelected] = useState("f");
+export default function Navbar({selectVal}) {
+  const [selected, setSelected] = useState(selectVal);
   const { scrollY } = useScroll();
   const [scrollAtTop, setScrollAtTop] = useState(0);
 
@@ -24,6 +24,9 @@ export default function Navbar() {
 
       if (scrollAtTop > 450 && scrollAtTop < 780)
         setSelected("fo");
+
+      if (scrollAtTop > 3500 && scrollAtTop < 4500)
+        setSelected("s");
     };
       
     window.addEventListener("scroll", handleScroll);
@@ -57,7 +60,7 @@ export default function Navbar() {
         id="fo"
         name="a"
         checked={selected === "fo"}
-        onChange={() => { handleSelect("fo"); handleScrollTo(600); }}
+        onChange={() => { handleSelect("fo"); handleScrollTo(700); }}
       />
       <label htmlFor="fo">Bối Cảnh Lịch Sử</label>
 
@@ -75,9 +78,9 @@ export default function Navbar() {
         id="s"
         name="a"
         checked={selected === "s"}
-        onChange={() => handleSelect("s")}
+        onChange={() => {handleSelect("s"); handleScrollTo(3900); }}
       />
-      <label htmlFor="s">Tài Liệu</label>
+      <label htmlFor="s">Sách</label>
 
       <input
         type="radio"

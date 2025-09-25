@@ -15,12 +15,9 @@ export default function DynamicBackground({ pageScroll }) {
           </div>
         </div>
       </div>
-      <div class="parallax_container">
-        <div class="parallax_layer_1 basic_setting" style={{ transform: `translateY(${pageScroll*0.2}px) translateZ(-1px) rotateZ(3deg)` }}></div>
-        <div class="parallax_layer_2 basic_setting" style={{ transform: `translateY(${pageScroll*1.8}px) translateZ(-10px) rotateZ(-2deg)` }}></div>
-        <div class="parallax_layer_3 basic_setting" style={{ transform: `translateY(${pageScroll*2}px) translateZ(-30px) rotateZ(7deg)` }}></div>
-        <div class="parallax_layer_4 basic_setting"  style={{ transform: `translateY(${pageScroll*0.9}px) translateZ(-5px) rotateZ(15deg)` }}></div>
-        <button class="parallax_layer_5 basic_setting" style={{ transform: `translateY(${pageScroll/4}px) rotateZ(-15deg)` }}></button>
+      <div class="parallax_container" >
+        <div className="parallax-background" style={{transform: `translateY(${pageScroll*0.4}px) translateZ(-1px) scale(1.2)`}}></div>
+        <div className="parallax-foreground" style={{transform: `translateY(${pageScroll*0.8}px) translateZ(-1px) scale(1.2)`}}></div>
       </div>
     </div>
   )

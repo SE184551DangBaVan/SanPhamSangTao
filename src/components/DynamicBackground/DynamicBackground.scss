@@ -3,103 +3,62 @@
   top: 0;
   width: 100%;
   height: 200vh;
-  background-color: #222222;
+  background-color: #000000;
+  perspective: 1px;
+  transform-style: preserve-3d;
   transition: all 0.4s ease;
 }
 
 .parallax_container {
-  z-index: -1;
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  perspective: 10px;
-  background-image: linear-gradient(to bottom, #500707, #4d1424, #422234, #362c38, #333333);
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
 
-  .basic_setting {
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 200%;
-    position: absolute;
-    top: 0px;
+.parallax-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-position: bottom;
+  background-size: 90% 100%;
+  background-repeat: no-repeat;
+  background-image: url('../../assets/Ayuntamiento\,_Ciudad_Ho_Chi_Minh\,_Vietnam\,_2013-08-14\,_DD_01.jpg');
+  filter: blur(1px);
+}
 
-    box-shadow: inset 0px 0px 300px black;
-
-    filter: brightness(100%);
-    transition: filter 0.5s ease;
-
-    &:hover {
-      filter: brightness(130%);
-    }
-  }
-
-  .parallax_layer_1 {
-    background-image: url("../../assets/BTATN21214BacHo6.jpg");
-  }
-
-  .parallax_layer_2 {
-    top: -20%;
-    left: 43%;
-    background-position: right;
-    background-image: url("../../assets/BTATN21214BacHo1.jpg");
-  }
-
-  .parallax_layer_3 {
-    top: 10%;
-    left: 20%;
-    background-image: url("../../assets/BTATN21214BacHo5.jpg");
-  }
-
-  .parallax_layer_4 {
-    top: 50%;
-    left: -30%;
-    width: 70vw;
-    height: 70vh;
-    background-size: 100% auto;
-    background-image: url("../../assets/BTATN21214BacHo4.jpg");
-  }
-
-  .parallax_layer_5 {
-    outline: 0;
-    border: 0;
-
-    top: 20%;
-    left: 5%;
-    height: 30vh;
-    width: 30vw;
-    background-size: cover;
-    background-image: url("../../assets/ConfrenceImage.jpg");
-
-    transition: all 0.3s ease;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:focus {
-      cursor: pointer;
-      rotate: 20deg;
-    }
-  }
+.parallax-foreground {
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 180px;
+  left: -400px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../../assets/12295353-Ho-Chí-Minh-monument-in-Ho-Chi-Minh-City-Vietnam.png');
 }
 
 .light {
   position: absolute;
   z-index: 100;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 0px;
   height: 0px;
   margin: 0;
+  scale: 0.8;
+  transform: translateY(-600px);
   background: #fff;
   border-radius: 9999px;
   box-shadow:
     0px 0px 30px 10px rgba(230, 230, 200, 1),
     0px 0px 10px 5px rgba(255, 255, 255, 1);
   animation:
-    flaremove 10s alternate infinite ease-in-out,
-    lightbright 10s alternate infinite linear;
+    flaremove 5s alternate forwards ease-in-out,
+    lightbright 5s alternate forwards linear;
 }
 
 .flare {
