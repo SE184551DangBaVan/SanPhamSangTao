@@ -60,7 +60,7 @@ export default function Navbar({selectVal}) {
         id="fo"
         name="a"
         checked={selected === "fo"}
-        onChange={() => { handleSelect("fo"); handleScrollTo(700); }}
+        onChange={() => { handleSelect("fo"); handleScrollTo(800); }}
       />
       <label htmlFor="fo">Bối Cảnh Lịch Sử</label>
 

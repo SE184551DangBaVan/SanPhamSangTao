@@ -15,7 +15,7 @@ export default function DynamicBackground({ pageScroll }) {
           </div>
         </div>
       </div>
-      <div class="parallax_container" >
+      <div className="parallax_container" >
         <div className="parallax-background" style={{transform: `translateY(${pageScroll*0.4}px) translateZ(-1px) scale(1.2)`}}></div>
         <div className="parallax-foreground" style={{transform: `translateY(${pageScroll*0.8}px) translateZ(-1px) scale(1.2)`}}></div>
       </div>

@@ -24,17 +24,18 @@ export default function HomePage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollHomePageOffset>600 && scrollHomePageOffset<1000) {
+      if (!shown && scrollHomePageOffset>600 && scrollHomePageOffset<1600) {
         setShow(true);
         setShown(true);
       }
-      else if (shown && scrollHomePageOffset<=600 && !retract) {
+      else if (shown && scrollHomePageOffset<=700 && !retract) {
         setRetract(true);
       }
-      else if (shown && scrollHomePageOffset<=500 || shown && scrollHomePageOffset===0){
+      else if (shown && scrollHomePageOffset<=600 || shown && scrollHomePageOffset===0){
         setShow(false);
       }
-      else if (!show && retract) {
+      else if (!show && retract && shown) {
+        setShow(true);
         setShown(false);
         setRetract(false);
       }
@@ -59,7 +60,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div id="hero" className={`hero-paragraph ${retract ? 'hidden':''}`} style={{position: `${show ? 'fixed' : 'absolute'}`, 
+          <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} style={{position: `${show ? 'fixed' : 'absolute'}`, 
                                                   transform:  `translateY(${show ? '0px' : '200px'})`}}>
             <div className={`hr-pg-left ${show ? 'show' : ''}`}>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
@@ -76,14 +77,14 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="historical-figure-block" style={{position: `${show ? 'fixed' : 'relative'}`, opacity: `${show ? '1' : '0'}`,  top: `${show ? '0' : '100%'}`}}>
-        <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 800
+      <div className="historical-figure-block" style={{ opacity: `${show ? '1' : '0'}`}}>
+        <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 1000
                                                     ? `url('${maskOne}')`
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
-        <div className="historical-figure2" style={{maskImage: scrollHomePageOffset > 1200
+        <div className="historical-figure2" style={{maskImage: scrollHomePageOffset > 1500
                                                     ? `url('${maskTwo}')`
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
-        <div className="historical-figure3" style={{maskImage: scrollHomePageOffset > 1600
+        <div className="historical-figure3" style={{maskImage: scrollHomePageOffset > 2000
                                                     ? `url('${maskThree}')`
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
       </div>
