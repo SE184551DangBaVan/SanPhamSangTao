@@ -91,7 +91,8 @@ const HCMFlipBook = () => {
             content={page.content}
             image={page.image}
             pageNumber={index + 1}
-            showBindingShadow={index % 2 === 1} // Only show on odd-indexed pages (right-hand pages)
+            showBindingShadow={index > 0}
+            isLeftPage={index % 2 === 1}
           />
         ))}
       </HTMLFlipBook>

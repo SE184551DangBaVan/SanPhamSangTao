@@ -10,24 +10,42 @@
   position: relative;
 }
 
-/* Binding shadow - shown on left-hand pages, positioned at right edge */
+/* Base binding shadow styles */
 .bindingShadow {
   position: absolute;
   top: 0;
-  right: 0; /* Position at right edge of left-hand page */
-  width: 8px;
+  width: 30px; /* Width of shadow spread */
   height: 100%;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 0.15) 25%,
-    rgba(0, 0, 0, 0.25) 50%,
-    rgba(0, 0, 0, 0.15) 75%,
-    transparent 100%
-  );
   pointer-events: none;
   z-index: 1;
-  border-radius: 2px;
+}
+
+/* Left page shadow - spreads from right edge (binding) toward left */
+.leftPageShadow {
+  right: 0; /* Position at right edge of left-hand page */
+  background: linear-gradient(
+    to left, /* Shadow spreads from the binding (right) to the left */
+    rgba(0, 0, 0, 0.4) 0%,     /* Darkest at the binding */
+    rgba(0, 0, 0, 0.3) 10%,    /* Still dark close to binding */
+    rgba(0, 0, 0, 0.2) 25%,    /* Medium shadow */
+    rgba(0, 0, 0, 0.1) 50%,    /* Light shadow */
+    rgba(0, 0, 0, 0.05) 75%,   /* Very light shadow */
+    transparent 100%           /* Completely transparent at the edge */
+  );
+}
+
+/* Right page shadow - spreads from left edge (binding) toward right */
+.rightPageShadow {
+  left: 0; /* Position at left edge of right-hand page */
+  background: linear-gradient(
+    to right, /* Shadow spreads from the binding (left) to the right */
+    rgba(0, 0, 0, 0.4) 0%,     /* Darkest at the binding */
+    rgba(0, 0, 0, 0.3) 10%,    /* Still dark close to binding */
+    rgba(0, 0, 0, 0.2) 25%,    /* Medium shadow */
+    rgba(0, 0, 0, 0.1) 50%,    /* Light shadow */
+    rgba(0, 0, 0, 0.05) 75%,   /* Very light shadow */
+    transparent 100%           /* Completely transparent at the edge */
+  );
 }
 
 /* When page has binding shadow, ensure it's positioned correctly */

@@ -1,10 +1,12 @@
 import React, { forwardRef } from 'react';
 import styles from './Page.module.css';
 
-const Page = forwardRef(({ title, content, image, pageNumber, showBindingShadow = false }, ref) => {
+const Page = forwardRef(({ title, content, image, pageNumber, showBindingShadow = false, isLeftPage = true }, ref) => {
   return (
     <div className={`${styles.page} ${showBindingShadow ? styles.pageWithBinding : ''}`} ref={ref}>
-      {showBindingShadow && <div className={styles.bindingShadow}></div>}
+      {showBindingShadow && (
+        <div className={`${styles.bindingShadow} ${isLeftPage ? styles.leftPageShadow : styles.rightPageShadow}`}></div>
+      )}
       
       <div className={styles.pageContent}>
         <div className={styles.pageHeader}>
