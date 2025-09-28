@@ -22,7 +22,7 @@ export default function Navbar({selectVal}) {
         setSelected("f");
       }
 
-      if (scrollAtTop > 450 && scrollAtTop < 780)
+      if (scrollAtTop > 450 && scrollAtTop < 3500)
         setSelected("fo");
 
       if (scrollAtTop > 3500 && scrollAtTop < 4500)
@@ -60,7 +60,7 @@ export default function Navbar({selectVal}) {
         id="fo"
         name="a"
         checked={selected === "fo"}
-        onChange={() => { handleSelect("fo"); handleScrollTo(700); }}
+        onChange={() => { handleSelect("fo"); handleScrollTo(800); }}
       />
       <label htmlFor="fo">Bối Cảnh Lịch Sử</label>
 

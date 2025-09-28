@@ -1,0 +1,95 @@
+.flipbookContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flipbookControls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.controlButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.controlButton:hover:not(:disabled) {
+  background: #45a049;
+}
+
+.controlButton:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.pageIndicator {
+  color: white;
+  font-weight: bold;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* restored to original state: removed wrapper/gutter and orientation styles */
+
+.hcmFlipbook {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.hcmFlipbook::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 25%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.15) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+
+
+@media (max-width: 768px) {
+  .flipbookContainer {
+    gap: 15px;
+  }
+  
+  .flipbookControls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .pageIndicator {
+    order: -1;
+  }
+}
