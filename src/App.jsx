@@ -6,6 +6,7 @@ import BookReader from './pages/BookWithPageScroll/BookReader'
 import BookMain from './pages/BookReadSelectionMain/BookMain'
 import HomePage from './pages/HomePage/HomePage'
 import ScrollToTop from './components/ScrollToTop';
+import MinhPage from "./pages/MinhPage/MinhPage.jsx";
 
 function App() {
 
@@ -36,6 +37,17 @@ function App() {
           }
         />
       </Routes>
+
+        <Routes>
+            <Route
+                path="/minh"
+                element={
+                    <>
+                        <MinhPage/>
+                    </>
+                }
+            />
+        </Routes>
     </div>
   )
 }
