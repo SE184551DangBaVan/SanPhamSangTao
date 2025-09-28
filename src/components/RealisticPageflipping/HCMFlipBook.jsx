@@ -6,8 +6,9 @@ import styles from './HCMFlipBook.module.css';
 const HCMFlipBook = () => {
   const flipBook = useRef();
   const [currentPage, setCurrentPage] = useState(0);
+  const [flipState, setFlipState] = useState('read'); // 'read', 'user_fold', 'fold_corner'
 
-  // Sample content for the book - in a real app, this would come from the DOCX file
+  // Sample content for the book
   const bookContent = [
     {
       title: "Trang Bìa",
@@ -45,6 +46,9 @@ const HCMFlipBook = () => {
     setCurrentPage(e.data);
   };
 
+  // We don't need onChangeState anymore since the binding shadow is now part of the pages
+  // and will automatically follow their z-index behavior
+
   return (
     <div className={styles.flipbookContainer}>
       <div className={styles.flipbookControls}>
@@ -66,20 +70,20 @@ const HCMFlipBook = () => {
       </div>
       
       <HTMLFlipBook
-          width={550}
-          height={700}
-          size="fixed"
-          minWidth={315}
-          maxWidth={1000}
-          minHeight={400}
-          maxHeight={1200}
-          maxShadowOpacity={0.5}
-          drawShadow={true}
-          showCover={true}
-          onFlip={onFlip}
-          ref={flipBook}
-          className={styles.hcmFlipbook}
-        >
+        width={550}
+        height={700}
+        size="fixed"
+        minWidth={315}
+        maxWidth={1000}
+        minHeight={400}
+        maxHeight={1200}
+        maxShadowOpacity={0.5}
+        drawShadow={true}
+        showCover={true}
+        onFlip={onFlip}
+        ref={flipBook}
+        className={styles.hcmFlipbook}
+      >
         {bookContent.map((page, index) => (
           <Page
             key={index}
@@ -87,6 +91,7 @@ const HCMFlipBook = () => {
             content={page.content}
             image={page.image}
             pageNumber={index + 1}
+            showBindingShadow={index % 2 === 1} // Only show on odd-indexed pages (right-hand pages)
           />
         ))}
       </HTMLFlipBook>

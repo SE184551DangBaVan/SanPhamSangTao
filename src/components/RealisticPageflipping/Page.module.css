@@ -7,6 +7,32 @@
   justify-content: center;
   padding: 20px;
   box-sizing: border-box;
+  position: relative;
+}
+
+/* Binding shadow - shown on left-hand pages, positioned at right edge */
+.bindingShadow {
+  position: absolute;
+  top: 0;
+  right: 0; /* Position at right edge of left-hand page */
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 25%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.15) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+/* When page has binding shadow, ensure it's positioned correctly */
+.pageWithBinding {
+  overflow: visible;
 }
 
 .pageContent {
@@ -16,6 +42,8 @@
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  position: relative;
+  z-index: 2; /* Ensure content is above the binding shadow */
 }
 
 .pageHeader {
