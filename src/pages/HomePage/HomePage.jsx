@@ -6,7 +6,7 @@ import maskTwo from '../../assets/black-ink-blots (2).gif';
 import maskThree from '../../assets/black-ink-blots (3).gif';
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
-import TimelineCarousel from '../../components/TimelineCarousel/TimelineCarousel.jsx';
+import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 
 export default function HomePage() {
   const [scrollHomePageOffset, setScrollHomePageOffset] = useState(0);
@@ -24,11 +24,11 @@ export default function HomePage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!shown && scrollHomePageOffset>600 && scrollHomePageOffset<1600) {
+      if (!shown && scrollHomePageOffset>100 && scrollHomePageOffset<1600) {
         setShow(true);
         setShown(true);
       }
-      else if (shown && scrollHomePageOffset<=700 && !retract) {
+      else if (shown && scrollHomePageOffset<=650 && !retract) {
         setRetract(true);
       }
       else if (shown && scrollHomePageOffset<=600 || shown && scrollHomePageOffset===0){
@@ -60,19 +60,66 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} style={{position: `${show ? 'fixed' : 'absolute'}`, 
-                                                  transform:  `translateY(${show ? '0px' : '200px'})`}}>
-            <div className={`hr-pg-left ${show ? 'show' : ''}`}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+          <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} 
+                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '200px'})`}}>
+            <div className="stuck-grid">
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item"></div>
+              <div className="grid-item">Xã Hội</div>
+              <div className="grid-item"></div>
+              <div className="grid-item">Trí Thức</div>
+              <div className="grid-item"></div>
+              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item"></div>
+              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item"></div>
+              <div className="grid-item special">Nền Văn Minh</div>
+              <div className="grid-item">Xã Hội</div>
+              <div className="grid-item">Trí Thức</div>
+              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item">Kinh Tế</div>
+              <div className="grid-item">Đoàn Kết</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Yêu Nước</div>
+              <div className="grid-item"></div>
+              <div className="grid-item">Đoàn Kết</div>
+              <div className="grid-item">Khát Vọng</div>
+              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item">Nhân Dân</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Kinh Tế</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item">Khát Vọng</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Nhân Dân</div>
+              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Đoàn Kết</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item"></div>
+              <div className="grid-item">Xã Hội</div>
+              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Đoàn Kết</div>
+              <div className="grid-item">Ý Chí</div>
             </div>
-            <div className={`history-timeline ${show ? 'show' : ''}`}>
-              <div className="history-timeline-container" style={{left: `${100 - scrollHomePageOffset/10}%`}}>
-                <TimelineCarousel />
+            <div className={`history-timeline ${show ? 'show' : ''}`} style={{}}>
+              <div className="history-timeline-container">
+                <PhotoGallery />
               </div>
             </div>
-            <div className={`hr-pg-right ${show ? 'show' : ''}`}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-            </div>
+            
           </div>
         </div>
       </div>

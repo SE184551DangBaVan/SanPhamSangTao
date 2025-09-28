@@ -22,7 +22,7 @@ export default function Navbar({selectVal}) {
         setSelected("f");
       }
 
-      if (scrollAtTop > 450 && scrollAtTop < 780)
+      if (scrollAtTop > 450 && scrollAtTop < 3500)
         setSelected("fo");
 
       if (scrollAtTop > 3500 && scrollAtTop < 4500)
