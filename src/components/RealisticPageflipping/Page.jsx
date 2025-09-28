@@ -27,7 +27,7 @@ const Page = forwardRef(({ title, content, image, pageNumber, showBindingShadow 
         </div>
         
         <div className={styles.pageFooter}>
-          <p>Nội dung HCM Chương IV - Phần 4.1.1</p>
+          <p>Cơ cấu xã hội - giai cấp và Liên minh giai cấp ở Việt Nam</p>
         </div>
       </div>
     </div>
