@@ -50,68 +50,69 @@ export default function HomePage() {
 
   return (
     <div className='homePage-container'>
-      <DynamicBackground pageScroll={scrollHomePageOffset}/>
+      
       <div className="hero-container">
         <div className="hero-content">
           <div className="hero-header">
-            <div className="great-leader-image"/>
+            
             <div className="header-title">
-              Tư Tưởng <span>Hồ Chí Minh</span>
+              <DynamicBackground pageScroll={scrollHomePageOffset}/>
+              <div className="great-leader-image"/>
+              <span className='primary-title'>AI</span>
             </div>
           </div>
 
           <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} 
-                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '200px'})`}}>
+                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '120vh'})`}}>
             <div className="stuck-grid">
-              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Toàn cầu hóa</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Xã Hội</div>
+              <div className="grid-item">AI</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Trí Thức</div>
+              <div className="grid-item">Kinh tế số</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item">Doanh nhân</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item">Lao động số</div>
               <div className="grid-item"></div>
-              <div className="grid-item special">Nền Văn Minh</div>
-              <div className="grid-item">Xã Hội</div>
-              <div className="grid-item">Trí Thức</div>
-              <div className="grid-item">Văn Hóa</div>
-              <div className="grid-item">Kinh Tế</div>
-              <div className="grid-item">Đoàn Kết</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Yêu Nước</div>
+              <div className="grid-item special">Trí thức trẻ</div>
+              <div className="grid-item">Bất bình đẳng</div>
+              <div className="grid-item">Cơ hội</div>
+              <div className="grid-item">Tăng trưởng</div>
+              <div className="grid-item">Đào tạo</div>
+              <div className="grid-item">Công nhân</div>
+              <div className="grid-item">Nông dân</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Đoàn Kết</div>
-              <div className="grid-item">Khát Vọng</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Văn Hóa</div>
-              <div className="grid-item">Nhân Dân</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Kinh Tế</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Văn Hóa</div>
-              <div className="grid-item">Khát Vọng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Nhân Dân</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Đoàn Kết</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Phân hóa</div>
+              <div className="grid-item">Đoàn kết</div>
+              <div className="grid-item">Công bằng</div>
+              <div className="grid-item">Hội nhập</div>
+              <div className="grid-item">Văn minh</div>
+              <div className="grid-item">Cách mạng 4.0</div>
+              <div className="grid-item">Đoàn kết</div>
+              <div className="grid-item">Công bằng</div>
+              <div className="grid-item">Toàn cầu hóa</div>
+              <div className="grid-item">AI</div>
+              <div className="grid-item">Kinh tế số</div>
+              <div className="grid-item">Doanh nhân</div>
+              <div className="grid-item">Lao động số</div>
+              <div className="grid-item">Trí thức trẻ</div>
+              <div className="grid-item">Bất bình đẳng</div>
+              <div className="grid-item">Cơ hội</div>
+              <div className="grid-item">Tăng trưởng</div>
+              <div className="grid-item">Đào tạo</div>
+              <div className="grid-item">Công nhân</div>
+              <div className="grid-item">Nông dân</div>
+              <div className="grid-item">Phân hóa</div>
+              <div className="grid-item">Đoàn kết</div>
+              <div className="grid-item">Công bằng</div>
+              <div className="grid-item">Hội nhập</div>
+              <div className="grid-item">Văn minh</div>
+              <div className="grid-item">Cách mạng 4.0</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Xã Hội</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Đoàn Kết</div>
+              <div className="grid-item">Toàn cầu hóa</div>
+              <div className="grid-item">AI</div>
+              <div className="grid-item">Đoàn kết</div>
               <div className="grid-item">Ý Chí</div>
             </div>
             <div className={`history-timeline ${show ? 'show' : ''}`} style={{}}>
@@ -136,7 +137,57 @@ export default function HomePage() {
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
       </div>
       <div className="book-selection-block">
-
+        <div class="book-selection-block-container">
+          <div class="book-selection-block-book">
+            <div class="book-selection-block-front">
+              <div class="book-selection-block-cover">
+                <p class="book-selection-block-num-up">Industry</p> 
+                <p class="book-selection-block-num-down">with AI</p>
+                <p class="author">George Orwell</p>
+              </div>
+            </div>
+            <div class="book-selection-block-left-side">
+              <h2>
+                <span>George Orwell</span>
+                <span>1984</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="book-selection-block-container">
+          <div class="book-selection-block-book">
+            <div class="book-selection-block-front">
+              <div class="book-selection-block-cover">
+                <p class="book-selection-block-num-up">Industry</p> 
+                <p class="book-selection-block-num-down">with AI</p>
+                <p class="author">George Orwell</p>
+              </div>
+            </div>
+            <div class="book-selection-block-left-side">
+              <h2>
+                <span>George Orwell</span>
+                <span>1984</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="book-selection-block-container">
+          <div class="book-selection-block-book">
+            <div class="book-selection-block-front">
+              <div class="book-selection-block-cover">
+                <p class="book-selection-block-num-up">Industry</p> 
+                <p class="book-selection-block-num-down">with AI</p>
+                <p class="author">George Orwell</p>
+              </div>
+            </div>
+            <div class="book-selection-block-left-side">
+              <h2>
+                <span>George Orwell</span>
+                <span>1984</span>
+              </h2>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
