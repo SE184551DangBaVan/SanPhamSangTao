@@ -4,6 +4,7 @@ import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import BookReader from './pages/BookWithPageScroll/BookReader'
 import BookMain from './pages/BookReadSelectionMain/BookMain'
+import HCMFlipBook from './components/RealisticPageflipping/HCMFlipBook';
 import HomePage from './pages/HomePage/HomePage'
 import ScrollToTop from './components/ScrollToTop';
 
@@ -30,8 +31,9 @@ function App() {
           element={
             <>
               <Navbar selectVal={"s"}/>
-              <BookMain />
-              <BookReader />
+              {/* <BookMain />
+              <BookReader /> */}
+              <HCMFlipBook />
             </>
           }
         />

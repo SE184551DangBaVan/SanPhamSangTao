@@ -1,0 +1,204 @@
+.page {
+  background: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid #999898;
+}
+
+.page:hover{
+  border: 1px solid #999898;
+}
+
+/* Base binding shadow styles */
+.bindingShadow {
+  position: absolute;
+  top: 0;
+  width: 30px; /* Width of shadow spread */
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Left page shadow - spreads from right edge (binding) toward left */
+.leftPageShadow {
+  right: 0; /* Position at right edge of left-hand page */
+  background: linear-gradient(
+    to left, /* Shadow spreads from the binding (right) to the left */
+    rgba(0, 0, 0, 0.4) 0%,     /* Darkest at the binding */
+    rgba(0, 0, 0, 0.3) 10%,    /* Still dark close to binding */
+    rgba(0, 0, 0, 0.2) 25%,    /* Medium shadow */
+    rgba(0, 0, 0, 0.1) 50%,    /* Light shadow */
+    rgba(0, 0, 0, 0.05) 75%,   /* Very light shadow */
+    transparent 100%           /* Completely transparent at the edge */
+  );
+}
+
+/* Right page shadow - spreads from left edge (binding) toward right */
+.rightPageShadow {
+  left: 0; /* Position at left edge of right-hand page */
+  background: linear-gradient(
+    to right, /* Shadow spreads from the binding (left) to the right */
+    rgba(0, 0, 0, 0.4) 0%,     /* Darkest at the binding */
+    rgba(0, 0, 0, 0.3) 10%,    /* Still dark close to binding */
+    rgba(0, 0, 0, 0.2) 25%,    /* Medium shadow */
+    rgba(0, 0, 0, 0.1) 50%,    /* Light shadow */
+    rgba(0, 0, 0, 0.05) 75%,   /* Very light shadow */
+    transparent 100%           /* Completely transparent at the edge */
+  );
+}
+
+/* When page has binding shadow, ensure it's positioned correctly */
+.pageWithBinding {
+  overflow: visible;
+}
+
+.pageContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+  z-index: 2; /* Ensure content is above the binding shadow */
+}
+
+.pageHeader {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.pageHeader h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+  font-weight: bold;
+}
+
+.pageNumber {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.8rem;
+  color: #666;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.pageBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageImage {
+  max-width: 100%;
+  max-height: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.pageImage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pageText {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.pageText p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
+  text-align: justify;
+}
+
+.pageFooter {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.pageFooter p {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Cover page styling */
+.page:first-child .pageContent {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.page:first-child .pageHeader h2 {
+  color: white;
+  font-size: 2rem;
+}
+
+.page:first-child .pageText p {
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.page:first-child .pageFooter p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Last page styling */
+.page:last-child .pageContent {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  color: white;
+}
+
+.page:last-child .pageHeader h2 {
+  color: white;
+}
+
+.page:last-child .pageText p {
+  color: white;
+  text-align: center;
+}
+
+.page:last-child .pageFooter p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 15px;
+  }
+  
+  .pageHeader h2 {
+    font-size: 1.2rem;
+  }
+  
+  .pageText p {
+    font-size: 0.9rem;
+  }
+  
+  .pageImage {
+    max-height: 200px;
+  }
+}
