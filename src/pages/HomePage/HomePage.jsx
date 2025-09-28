@@ -7,6 +7,7 @@ import maskThree from '../../assets/black-ink-blots (3).gif';
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
 import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
+import BookSelector from "../../components/BookSelection/BookSelector.jsx";
 
 export default function HomePage() {
   const [scrollHomePageOffset, setScrollHomePageOffset] = useState(0);
@@ -136,7 +137,7 @@ export default function HomePage() {
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
       </div>
       <div className="book-selection-block">
-
+        <BookSelector/>
       </div>
     </div>
   )

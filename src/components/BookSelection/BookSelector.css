@@ -1,24 +1,43 @@
 .book-selection{
-    overflow: scroll;
-    display:flex;
+    background: linear-gradient(135deg, #e8d5a3, #cfbb87, #b8a572);
+    opacity: 1;
+    overflow: hidden;
+    display: flex;
     width: 100%;
     height: 100%;
-    background-color: #5b5bb6;
+    position: relative;
+    box-shadow: 0px -100px 100px rgba(182, 182, 182, 0.6);
 }
 
-.bookshelf{
+.book-selection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.book-selection .bookshelf{
     max-width: 50%;
     box-sizing: border-box;
     overflow: scroll;
-    display:flex;
+    display: flex;
     align-items: center;
+    position: relative;
+    z-index: 2;
+
 }
 
-.book-display {
-    background-color: #9f5454;
+.book-selection .book-display {
+    background-color: rgba(248, 225, 179, 0.33);
     box-sizing: border-box;
-
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
@@ -27,94 +46,258 @@
 
     width: 50vw;
     min-width: 48rem;
-    height: 80vh;
+    height: 100vh;
     min-height: 37.5rem;
-
 
     z-index: 100;
     padding: 4rem;
+    position: relative;
 }
 
-.book {
-    box-sizing: border-box;
-    top: 4vh;
-    left: 1.5vw;
 
-    max-width: 3rem;
+
+.book-selection .book {
+    box-sizing: border-box;
+    top: 15.8vh;
+    left: 1.8vw;
+
+    max-width: 2.8rem;
     width: 8%;
-    max-height: 3.625rem;
+    max-height: 3.425rem;
     height: 13%;
 
     position: relative;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 4px;
+
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 6px;
+
     font-family: 'Georgia', serif;
     font-size: 10%;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.95);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    line-height: 1.3;
-
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
+    border: 2px solid rgba(139, 115, 85, 0.3);
     padding: 0;
     margin: 0;
-
     background: linear-gradient(145deg,
-    #CD853F,
-    #A0522D,
-    #8B4513
+    #d39f6d,
+    #cd9f74,
+    #aa745b,
+    #916241
     );
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    user-select:none;
+    box-shadow:
+            0 8px 16px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255,255,255,0.2),
+            inset 0 -1px 0 rgba(0,0,0,0.2);
+    user-select: none;
+    overflow: hidden;
 }
 
-.book.book-drop{
-    top: -18px;
-}
-
-.book::after {
+.book-selection .book::after {
     content: '';
     position: absolute;
     top: 8px;
     left: 8px;
     right: 8px;
     bottom: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
     pointer-events: none;
 }
 
-.book:hover {
-    transform: translateY(-5px) scale(1.02) rotate3d(1, 1, 1, -5deg);
+.book-selection .book:hover {
+    transform: translateY(-5px) scale(1.04) rotate3d(1, 1, 1, -3deg);
+    z-index: 10;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.book-selection .book:active {
+    transform: translateY(-5px) scale(1.08) rotate3d(1, 1, 1, -10deg);
+    transition: all 0.1s ease;
     z-index: 10;
 }
 
-.book:active {
-    transform: translateY(-5px) scale(1.1) rotate3d(1, 1, 1, -5deg);
-    transition: 0.1s;
-    z-index: 10;
-}
-
-.book-info{
+.book-selection .book-info {
     width: 50%;
-    height:100%;
-    background-color: #cfbb87;
+    height: 100%;
+    background: none;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+    color: #2c2c2c;
+    position: relative;
+    overflow-y: auto;
+    z-index: 2;
+    border-left: 3px solid rgba(139, 115, 85, 0.2);
+}
 
+.book-selection .book-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 60%),
+            radial-gradient(circle at 70% 70%, rgba(139,115,85,0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+
+.book-selection .book-info:has(.book-title) {
+    background: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.book-selection .book-info:has(:not(.book-title)) {
+    background: linear-gradient(135deg, #f5ebcc, #f0e4c1, #e8d5a3);
+    font-size: 1.8rem;
+    color: #8b7355;
+    font-style: italic;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.8);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.book-selection .book-title {
+    margin-bottom: 2rem;
+    animation: slideInFromTop 0.6s ease-out 0.2s both;
+}
+
+.book-selection .book-title h2 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #4a3c28;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(145deg, #4a3c28, #6d5a42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.book-selection .book-desc {
+    margin-bottom: 2.5rem;
+    max-width: 450px;
+    animation: slideInFromBottom 0.6s ease-out 0.4s both;
+}
+
+.book-selection .book-desc p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #5a4d35;
+    margin: 0;
+    text-align: justify;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.book-selection .read-button {
+    background: linear-gradient(145deg, #8b7355, #6d5a42, #5a4830);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow:
+            0 8px 20px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    animation: slideInFromBottom 0.6s ease-out 0.6s both;
+}
+
+
+.book-selection .read-button:hover {
+    background: linear-gradient(145deg, #9d8463, #7a6449, #65523a);
+    transform: translateY(-4px) scale(5);
+}
+.book-selection .read-button:active {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow:
+            0 6px 15px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* "slide in" lmao */
+@keyframes slideInFromTop {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromBottom {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .book-selection .book-info {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .book-selection .book-title h2 {
+        font-size: 2.2rem;
+    }
+
+    .book-selection .book-desc p {
+        font-size: 1.1rem;
+    }
+
+    .book-selection .read-button {
+        padding: 14px 32px;
+        font-size: 1.1rem;
+    }
 }
 
 @media(max-width:800px){
-    .book-display{
+    .book-selection .book-display{
         right: 0;
     }
 }
-body {
+
+.book-selection body {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+
+.book-selection *::-webkit-scrollbar {
+    width: 8px;
+}
+
+.book-selection *::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+.book-selection *::-webkit-scrollbar-thumb {
+    background: rgba(139, 115, 85, 0.3);
+    border-radius: 4px;
+}
+
+.book-selection *::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 115, 85, 0.5);
 }

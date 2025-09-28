@@ -1,23 +1,27 @@
 import "./BookSelector.css"
 import Bookshelf from "../../assets/minhbox/bookshelf4.png"
-import {useEffect, useState} from "react";
+import BeigeWall from "../../assets/minhbox/beige wall.png"
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 const BookSelector = ()=>{
+    const navigate = useNavigate();
     const books = [
         {
-            title: "The Great Gatsby",
-            description: "A tragic story of Jay Gatsby and his obsession with the American Dream."
+            title: "The Great Gaslight",
+            description: "Did you just spill my tea?"
         },
         {
-            title: "To Kill a Mockingbird",
-            description: "A novel about justice and race in the Deep South, told through the eyes of young Scout Finch."
+            title: "Cow",
+            description: "Moo."
         },
         {
-            title: "1984",
-            description: "A dystopian tale of surveillance, control, and rebellion against totalitarianism."
+            title: "Unwritten Rule",
+            description: "Do not tell me to add more than 4 books. " +
+                "Unwritten Rule was written in this book."
         },
         {
-            title: "Pride and Prejudice",
-            description: "A classic romance where Elizabeth Bennet navigates love, society, and self-discovery."
+            title: "Nuclear Code",
+            description: "https://www.youtube.com/watch?v=uNl6Sh01ZIU"
         }
     ];
 
@@ -28,7 +32,10 @@ const BookSelector = ()=>{
         setSelectedBook(books[index]);
     }
     return(
-        <div className="book-selection">
+        <div className="book-selection"
+             style={{
+                 backgroundImage: `url(${BeigeWall})`
+             }}>
             <div className="book-info">
                 {(selectedBook!=null) ?
                     (<>
@@ -38,14 +45,16 @@ const BookSelector = ()=>{
                         <div className="book-desc">
                             <p>{selectedBook.description}</p>
                         </div>
-                        <button className="read-button">
-
+                        <button className="read-button"
+                            onClick={()=>navigate("/doc-sach")}
+                            >
+                            Read
                         </button>
                     </>)
                     :
                     (
                         <>
-                            Select a book!
+                        <p>Select a book</p>
                         </>
                     )}
 
@@ -55,11 +64,13 @@ const BookSelector = ()=>{
                      style={{
                          backgroundImage: `url(${Bookshelf})`,
                          backgroundSize: "cover",
-                         backgroundPosition: "center"
+                         backgroundPosition: "center",
                      }}
                 >
+
                     {books.map((book, index) => {
                             let bookClass = "book";
+                            {/* Applies dark magic*/}
                             if (index > 3 && index < 8) {
                                 bookClass = "book book-drop"
                             }
