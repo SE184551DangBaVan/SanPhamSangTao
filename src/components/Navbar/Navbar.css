@@ -68,6 +68,34 @@
   pointer-events: none;
 }
 
+.nav-logo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-self: center;
+  position: relative;
+  top: 0;
+  width: 100px;
+  height: 100px;
+  white-space: wrap;
+}
+
+.nav-logo h1 {
+  line-height: 60px;
+  font-size: 8em;
+  color: #ccccccb4;
+  text-shadow: 12px 10px 18px rgba(0,0,0,.6);
+}
+.nav-logo span {
+  position: absolute;
+  left: 36px;
+  color: #6a6a6a66;
+  overflow: hidden;
+  line-break: anywhere;
+  line-height: 14px;
+  width: 14px;
+  text-shadow: none;
+}
+
 .menu-border {
   position: absolute;
   z-index: 2;

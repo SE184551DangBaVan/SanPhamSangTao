@@ -75,7 +75,7 @@ export default function Navbar({selectVal}) {
         checked={selected === "t"}
         onChange={() => handleSelect("t")}
       />
-      <label htmlFor="t"></label>
+      <label htmlFor="t"><span className='nav-logo'><h1>4</h1> <span>Nhóm</span> </span></label>
 
       <input
         type="radio"
