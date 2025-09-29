@@ -6,6 +6,7 @@ import maskTwo from '../../assets/black-ink-blots (2).gif';
 import maskThree from '../../assets/black-ink-blots (3).gif';
 import coverOne from '../../assets/cong-nhan-khu-cong-nghiep-420221204194047.jpg';
 import coverTwo from '../../assets/double-exposure-portrait-oil-refinery-worker-with-hardhat_66608507.jpg';
+import coverThree from '/src/assets/vecteezy_man-hand-holds-an-electronic-globe-while-looking-at-the_22862409.jpg'
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
@@ -182,11 +183,11 @@ export default function HomePage() {
         </div>
 
         <div class="book-selection-block-container">
-          <div class="book-selection-block-book" onClick={() =>  navigate("/doc-sach-2")}>
+          <div class="book-selection-block-book" onClick={() =>  navigate("/doc-sach-3")}>
             <div class="book-selection-block-front">
-              <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverTwo})`}}>
-                <p class="book-selection-block-num-up">Liên minh giai cấp, tầng lớp ở VN thời kỳ quá độ lên chủ nghĩa XH</p>
-                <p class="book-selection-block-num-down">Liên minh giai cấp</p>
+              <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverThree})`}}>
+                <p class="book-selection-block-num-up">Tác động của Toàn cầu hóa và Công nghệ đến cơ cấu xã hội Việt Nam"</p>
+                <p class="book-selection-block-num-down">Toàn cầu hóa và Công nghệ</p>
                 <p class="author">Báo Thanh Niên</p>
               </div>
             </div>

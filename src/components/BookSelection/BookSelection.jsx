@@ -12,7 +12,7 @@ const BookSelection = () => {
       subtitle: "Phân Tích Cơ Cấu Giai Cấp Xã Hội Việt Nam Hiện Nay",
       author: "Bao Dong Khoi",
       cover: "/src/assets/cong-nhan-khu-cong-nghiep-420221204194047.jpg",
-      route: "/doc-sach/sach-1"
+      route: "/doc-sach"
     },
     {
       id: 2,
@@ -20,7 +20,15 @@ const BookSelection = () => {
       subtitle: "with AI",
       author: "Bao Thanh Nien",
       cover: "/src/assets/double-exposure-portrait-oil-refinery-worker-with-hardhat_66608507.jpg",
-      route: "/doc-sach/sach-2"
+      route: "/doc-sach-2"
+    },
+    {
+      id: 3,
+      title: "Tác động của Toàn cầu hóa và Công nghệ đến cơ cấu xã hội Việt Nam",
+      subtitle: "Phân Tích Tác Động Công Nghệ Và Toàn Cầu Hóa",
+      author: "Bao Thanh Nien",
+      cover: "/src/assets/vecteezy_man-hand-holds-an-electronic-globe-while-looking-at-the_22862409.jpg",
+      route: "/doc-sach-3"
     }
   ];
 

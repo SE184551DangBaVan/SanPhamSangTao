@@ -7,6 +7,7 @@ import BookMain from './pages/BookReadSelectionMain/BookMain'
 import HCMFlipBook from './components/RealisticPageflipping/HCMFlipBook';
 import HCMFlipBook1 from './components/RealisticPageflipping/HCMFlipBook1';
 import HCMFlipBook2 from './components/RealisticPageflipping/HCMFlipBook2';
+import HCMFlipBook3 from './components/RealisticPageflipping/HCMFlipBook3';
 import { TestBook1, TestBook2 } from './tmp_rovodev_test';
 import BookSelection from './components/BookSelection/BookSelection';
 import HomePage from './pages/HomePage/HomePage'
@@ -44,6 +45,15 @@ function App() {
             <>
               <Navbar selectVal={"s"}/>
               <HCMFlipBook2 />
+            </>
+          }
+        />
+        <Route
+          path="/doc-sach-3"
+          element={
+            <>
+              <Navbar selectVal={"s"}/>
+              <HCMFlipBook3 />
             </>
           }
         />
