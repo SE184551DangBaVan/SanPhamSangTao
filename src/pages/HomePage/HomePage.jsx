@@ -4,8 +4,11 @@ import './HomePage.css'
 import maskOne from '../../assets/black-ink-blots (1).gif';
 import maskTwo from '../../assets/black-ink-blots (2).gif';
 import maskThree from '../../assets/black-ink-blots (3).gif';
+import coverOne from '../../assets/cong-nhan-khu-cong-nghiep-420221204194047.jpg';
+import coverTwo from '../../assets/double-exposure-portrait-oil-refinery-worker-with-hardhat_66608507.jpg';
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 
 export default function HomePage() {
@@ -14,6 +17,8 @@ export default function HomePage() {
   const [shown, setShown] = useState(false);
   const [retract, setRetract] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
+
+  const navigate = useNavigate();
 
   useMotionValueEvent(scrollYProgress, "change");
   const shift = useTransform(scrollYProgress, [0.8, 1], ["0", "-20px"]);
@@ -137,11 +142,30 @@ export default function HomePage() {
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
       </div>
       <div className="book-selection-block">
+        <div className="book-selection-block-title">Lựa Chọn Sách</div>
+        <div class="book-selection-block-container">
+          <div class="book-selection-block-book" onClick={() =>  navigate("/doc-sach")}>
+            <div class="book-selection-block-front">
+              <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverOne})`}}>
+                <p class="book-selection-block-num-up">Cơ cấu xã hội - giai cấp ở Việt Nam thời kỳ quá độ lên chủ nghĩa xã hội</p> 
+                <p class="book-selection-block-num-down">Phân Tích Cơ Cấu Giai Cấp Xã Hội Việt Nam Hiện Nay</p>
+                <p class="author">Bao Dong Khoi</p>
+              </div>
+            </div>
+            <div class="book-selection-block-left-side">
+              <h2>
+                <span>George Orwell</span>
+                <span>1984</span>
+              </h2>
+            </div>
+          </div>
+          <h1 className='book-selection-count'><span>B</span><span>o</span><span>o</span><span>k</span> <span>1</span></h1>
+        </div>
         <div class="book-selection-block-container">
           <div class="book-selection-block-book">
             <div class="book-selection-block-front">
-              <div class="book-selection-block-cover">
-                <p class="book-selection-block-num-up">Industry</p> 
+              <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverTwo})`}}>
+                <p class="book-selection-block-num-up">Liên minh giai cấp, tầng lớp ở VN thời kỳ quá độ lên chủ nghĩa XH</p> 
                 <p class="book-selection-block-num-down">with AI</p>
                 <p class="author">George Orwell</p>
               </div>
@@ -153,41 +177,9 @@ export default function HomePage() {
               </h2>
             </div>
           </div>
+          <h1 className='book-selection-count'><span>B</span><span>o</span><span>o</span><span>k</span> <span>2</span></h1>
         </div>
-        <div class="book-selection-block-container">
-          <div class="book-selection-block-book">
-            <div class="book-selection-block-front">
-              <div class="book-selection-block-cover">
-                <p class="book-selection-block-num-up">Industry</p> 
-                <p class="book-selection-block-num-down">with AI</p>
-                <p class="author">George Orwell</p>
-              </div>
-            </div>
-            <div class="book-selection-block-left-side">
-              <h2>
-                <span>George Orwell</span>
-                <span>1984</span>
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div class="book-selection-block-container">
-          <div class="book-selection-block-book">
-            <div class="book-selection-block-front">
-              <div class="book-selection-block-cover">
-                <p class="book-selection-block-num-up">Industry</p> 
-                <p class="book-selection-block-num-down">with AI</p>
-                <p class="author">George Orwell</p>
-              </div>
-            </div>
-            <div class="book-selection-block-left-side">
-              <h2>
-                <span>George Orwell</span>
-                <span>1984</span>
-              </h2>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   )

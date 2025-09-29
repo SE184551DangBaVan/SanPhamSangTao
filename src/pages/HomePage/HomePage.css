@@ -364,16 +364,27 @@
     position: relative;
     z-index: 10;
     width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: row;
     background-color: #ccc;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
+.book-selection-block-title {
+  position: absolute;
+  font-size: 60px;
+  font-weight: 800;
+  width: 100%;
+  transform: translateY(60px);
+}
+
 .book-selection-block-container {
   z-index: 1;
   width: 100%;
+  height: 100%;
   perspective:3000px;
+  transform: translateY(80px);
 }
 
 .book-selection-block-container .book-selection-block-book {
@@ -458,18 +469,29 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
 
 .book-selection-block-cover .book-selection-block-num-up{
   position: absolute;
+  font-family: "Oswald", sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+  -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: #2b2b2b;
+  width: 280px;
   top: 64px;
-  left: 47px;
-  letter-spacing: 10px;
+  left: 70px;
 }
 
 .book-selection-block-cover .book-selection-block-num-down{
   position: relative;
-  top: 120px;
-  left: -22%;
+  font-size: 16px;
+  top: 240px;
+  left: 0;
+  color: red;
 }
 
 .book-selection-block-container .author{
+  color: #eeeeee;
   font-family: acumin-pro, sans-serif;
   font-weight: 400;
   position: absolute;
@@ -524,7 +546,6 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
 .book-selection-block-cover {
   background-size: cover;
   background-position: -200px 0;
- background-image: url('../../assets/double-exposure-portrait-oil-refinery-worker-with-hardhat_66608507.jpg');
 }
 
 
@@ -537,3 +558,28 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
 .book-selection-block-left-side h2 span:last-child{
   font-family: acumin-pro, sans-serif;
 } 
+
+.book-selection-count {
+  position: absolute;
+  transform: translate(340px,-180px);
+}
+
+.book-selection-count span {
+  position: relative;
+  text-transform: uppercase;
+  text-shadow: -15px 5px 20px #828282;
+  color: #ccc;
+  letter-spacing: -0.1em;
+  font-family: "Anton", Arial, sans-serif;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-transform: uppercase;
+  font-size: 100px;
+  transition: all 0.25s ease-out;
+}
+
+.book-selection-block-container:has(.book-selection-block-book:hover) .book-selection-count span {
+  text-shadow: -18px 5px 20px #828282;
+}

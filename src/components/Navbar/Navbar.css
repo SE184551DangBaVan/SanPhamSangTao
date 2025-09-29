@@ -79,3 +79,12 @@
   transition: left 0.4s ease-out, right 0.4s ease;
   transition-delay: 0.2s, 0.2s;
 }
+
+body:not(:has(.app .homePage-container)) .menu-container {
+  top: -50px;
+  transition: top 0.4s ease;
+}
+body:not(:has(.app .homePage-container)) .menu-container:hover {
+  top: 0px;
+  transition: top 0.4s ease;
+}
