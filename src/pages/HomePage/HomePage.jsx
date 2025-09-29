@@ -63,6 +63,7 @@ export default function HomePage() {
             <div className="header-title">
               <DynamicBackground pageScroll={scrollHomePageOffset}/>
               <div className="great-leader-image"/>
+              <div className="great-leader-image after" style={{transform: `translate(350px, ${10 + scrollHomePageOffset*0.4}px)`}}/>
               <span className='primary-title'>AI</span>
             </div>
           </div>
@@ -149,7 +150,7 @@ export default function HomePage() {
               <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverOne})`}}>
                 <p class="book-selection-block-num-up">Cơ cấu xã hội - giai cấp ở Việt Nam thời kỳ quá độ lên chủ nghĩa xã hội</p>
                 <p class="book-selection-block-num-down">Phân Tích Cơ Cấu Giai Cấp Xã Hội Việt Nam Hiện Nay</p>
-                <p class="author">Bao Dong Khoi</p>
+                <p class="author">Báo Đồng Khởi</p>
               </div>
             </div>
             <div class="book-selection-block-left-side">
@@ -167,7 +168,7 @@ export default function HomePage() {
               <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverTwo})`}}>
                 <p class="book-selection-block-num-up">Liên minh giai cấp, tầng lớp ở VN thời kỳ quá độ lên chủ nghĩa XH</p>
                 <p class="book-selection-block-num-down">Liên minh giai cấp</p>
-                <p class="author">Tư tưởng Hồ Chí Minh</p>
+                <p class="author">Báo Thanh Niên</p>
               </div>
             </div>
             <div class="book-selection-block-left-side">
@@ -178,6 +179,25 @@ export default function HomePage() {
             </div>
           </div>
           <h1 className='book-selection-count'><span>B</span><span>o</span><span>o</span><span>k</span> <span>2</span></h1>
+        </div>
+
+        <div class="book-selection-block-container">
+          <div class="book-selection-block-book" onClick={() =>  navigate("/doc-sach-2")}>
+            <div class="book-selection-block-front">
+              <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverTwo})`}}>
+                <p class="book-selection-block-num-up">Liên minh giai cấp, tầng lớp ở VN thời kỳ quá độ lên chủ nghĩa XH</p>
+                <p class="book-selection-block-num-down">Liên minh giai cấp</p>
+                <p class="author">Báo Thanh Niên</p>
+              </div>
+            </div>
+            <div class="book-selection-block-left-side">
+              <h2>
+                <span>Liên minh</span>
+                <span>Giai cấp</span>
+              </h2>
+            </div>
+          </div>
+          <h1 className='book-selection-count'><span>B</span><span>o</span><span>o</span><span>k</span> <span>3</span></h1>
         </div>
         
       </div>

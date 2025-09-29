@@ -54,8 +54,8 @@
   background-image: radial-gradient(circle, #858585, #919191, #c0c0c0, #cfcfcf, #ffffff);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  overflow: hidden;
-  background-image: url('/src/assets/wood.jpg');
+  overflow: visible;
+  background-image: url('/src/assets/white-crumpled-craft-paper-texture.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
