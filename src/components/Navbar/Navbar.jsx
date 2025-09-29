@@ -92,7 +92,7 @@ export default function Navbar({selectVal}) {
         name="a"
         checked={selected === "fi"}
         onChange={() => handleSelect("fi")}
-        onClick={() => {window.location.href = 'https://nhatdang1102.github.io/MLN131_Game/';}}
+        onClick={() => {window.location.href = 'https://truongdaidise184543.github.io/MLN131_Game/';}}
       />
       <label htmlFor="fi">Trò chơi</label>
 
