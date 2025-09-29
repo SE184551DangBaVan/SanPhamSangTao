@@ -5,6 +5,10 @@ import Navbar from './components/Navbar/Navbar'
 import BookReader from './pages/BookWithPageScroll/BookReader'
 import BookMain from './pages/BookReadSelectionMain/BookMain'
 import HCMFlipBook from './components/RealisticPageflipping/HCMFlipBook';
+import HCMFlipBook1 from './components/RealisticPageflipping/HCMFlipBook1';
+import HCMFlipBook2 from './components/RealisticPageflipping/HCMFlipBook2';
+import { TestBook1, TestBook2 } from './tmp_rovodev_test';
+import BookSelection from './components/BookSelection/BookSelection';
 import HomePage from './pages/HomePage/HomePage'
 import ScrollToTop from './components/ScrollToTop';
 import Robot from './components/ReadBot/Robot';
@@ -25,17 +29,21 @@ function App() {
             </>
           }
         />
-      </Routes>
-
-      <Routes>
         <Route
           path="/doc-sach"
           element={
             <>
               <Navbar selectVal={"s"}/>
-              {/* <BookMain />
-              <BookReader /> */}
-              <HCMFlipBook />
+              <HCMFlipBook1 />
+            </>
+          }
+        />
+        <Route
+          path="/doc-sach-2"
+          element={
+            <>
+              <Navbar selectVal={"s"}/>
+              <HCMFlipBook2 />
             </>
           }
         />
