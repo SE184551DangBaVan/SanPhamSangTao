@@ -5,6 +5,7 @@ import styles from './HCMFlipBook.module.css';
 import electronicGlobe from '../../assets/vecteezy_man-hand-holds-an-electronic-globe-while-looking-at-the_22862409.jpg';
 import futuristicFactory from '../../assets/vecteezy_futuristic-factory-with-robotic-arms-and-automated_24615921.jpg';
 import roboticArms from '../../assets/vecteezy_3d-rendering-robotic-arms-working-in-a-factory-automotive_34460796.jpg';
+import doubleExposurePortrait from '../../assets/double-exposure-portrait-oil-refinery-worker-with-hardhat_66608507.jpg';
 import khainiemchatluongnguonnhanluc from '../../assets/sach/khai-niem-chat-luong-nguon-nhan-luc.jpeg';
 import vhxh from '../../assets/sach/vhxh.jpg';
 import chinhsach from '../../assets/sach/chinhsach.jpg';
