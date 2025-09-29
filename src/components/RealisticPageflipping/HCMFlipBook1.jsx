@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import Page from './Page';
 import styles from './HCMFlipBook.module.css';
+import coverOne from '../../assets/cong-nhan-khu-cong-nghiep-420221204194047.jpg';
 
 const HCMFlipBook1 = () => {
   const flipBook = useRef();
@@ -13,7 +14,7 @@ const HCMFlipBook1 = () => {
     {
       title: "Cơ cấu xã hội - giai cấp ở Việt Nam",
       content: "Cơ cấu xã hội - giai cấp ở Việt Nam thời kỳ quá độ lên chủ nghĩa xã hội",
-      image: "/src/assets/ho-chi-minh-2026935_1280_black.png"
+      image: "/src/assets/cong-nhan-khu-cong-nghiep-420221204194047.jpg"
     },
     {
       title: "Thời kỳ quá độ",
@@ -23,27 +24,27 @@ const HCMFlipBook1 = () => {
     {
       title: "Cơ cấu xã hội đa dạng",
       content: "Cơ cấu xã hội trở nên đa dạng, thay thế mô hình đơn giản trước đổi mới gồm công nhân, nông dân, trí thức. Các giai cấp, tầng lớp biến đổi nội bộ, chuyển hóa lẫn nhau, xuất hiện tầng lớp mới như doanh nhân. Sự đa dạng này thúc đẩy kinh tế phát triển năng động, trở thành động lực quan trọng cho đổi mới đất nước, xây dựng chủ nghĩa xã hội, đồng thời tạo cơ hội và thách thức trong quản lý xã hội.",
-      image: "/src/assets/ConfrenceImage.jpg"
+      image: "/src/assets/sach/cocauxh.jpg"
     },
     {
       title: "Giai cấp công nhân",
       content: "Giai cấp công nhân giữ vai trò lãnh đạo cách mạng thông qua Đảng Cộng sản Việt Nam, đại diện phương thức sản xuất tiên tiến. Họ tiên phong trong công nghiệp hóa, hiện đại hóa và mục tiêu dân giàu, nước mạnh, dân chủ, công bằng, văn minh. Công nhân hiện đại và công nhân trí thức ngày càng phát triển, đáp ứng yêu cầu kinh tế tri thức và Cách mạng công nghiệp lần thứ tư, nâng cao kỹ năng và tác phong công nghiệp.",
-      image: "/src/assets/BTATN21214BacHo1.jpg"
+      image: "/src/assets/sach/giaicapcongnhan.jpg"
     },
     {
       title: "Giai cấp nông dân",
       content: "Giai cấp nông dân đóng vai trò chiến lược trong công nghiệp hóa, hiện đại hóa nông nghiệp, xây dựng nông thôn mới, bảo vệ an ninh, quốc phòng, văn hóa dân tộc và môi trường. Một bộ phận nông dân chuyển sang công nghiệp, dịch vụ, trở thành công nhân. Xuất hiện chủ trang trại lớn và nông dân làm thuê, phân hóa giàu nghèo rõ nét, đòi hỏi chính sách hỗ trợ để đảm bảo công bằng xã hội.",
-      image: "/src/assets/BTATN21214BacHo4.jpg"
+      image: "/src/assets/sach/giaicapnongdan.jpg"
     },
     {
       title: "Trí thức và doanh nhân",
       content: "Đội ngũ trí thức là lực lượng sáng tạo quan trọng, thúc đẩy công nghiệp hóa, hội nhập quốc tế, xây dựng kinh tế tri thức và văn hóa dân tộc tiến tiến. Doanh nhân phát triển nhanh về số lượng, quy mô, đóng góp vào kinh tế, tạo việc làm, xóa đói giảm nghèo. Đảng chủ trương xây dựng đội ngũ doanh nhân vững mạnh, có đạo đức, trình độ quản trị cao, nâng cao sức cạnh tranh kinh tế.",
-      image: "/src/assets/BTATN21214BacHo5.jpg"
+      image: "/src/assets/sach/trithucdoanhnhan.jpg"
     },
     {
       title: "Kết luận",
       content: "Cơ cấu xã hội - giai cấp biến đổi liên tục, xuất hiện nhóm xã hội mới, đòi hỏi giải pháp đồng bộ để các giai cấp khẳng định vai trò. Cần chính sách sát thực, tác động tích cực để phát huy hiệu quả vai trò của công nhân, nông dân, trí thức, doanh nhân trong phát triển đất nước theo định hướng xã hội chủ nghĩa, đảm bảo sự ổn định và phát triển bền vững của xã hội Việt Nam.",
-      image: "/src/assets/Reading-Website-Design.png"
+      image: "/src/assets/sach/chinhsach.jpg"
     }
   ];
 
