@@ -75,7 +75,7 @@ export default function Navbar({selectVal}) {
         checked={selected === "t"}
         onChange={() => handleSelect("t")}
       />
-      <label htmlFor="t">Hồ Chí Minh</label>
+      <label htmlFor="t"></label>
 
       <input
         type="radio"
@@ -92,6 +92,7 @@ export default function Navbar({selectVal}) {
         name="a"
         checked={selected === "fi"}
         onChange={() => handleSelect("fi")}
+        onClick={() => {window.location.href = 'https://nhatdang1102.github.io/MLN131_Game/';}}
       />
       <label htmlFor="fi">Trò chơi</label>
 

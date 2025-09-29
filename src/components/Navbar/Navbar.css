@@ -63,6 +63,11 @@
   left: 80%;
   right: 0;
 }
+.menu-container input[type=radio]#t,
+.menu-container input[type=radio]#t + label{
+  pointer-events: none;
+}
+
 .menu-border {
   position: absolute;
   z-index: 2;
