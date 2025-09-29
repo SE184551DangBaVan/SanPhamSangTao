@@ -6,7 +6,7 @@ import maskTwo from '../../assets/black-ink-blots (2).gif';
 import maskThree from '../../assets/black-ink-blots (3).gif';
 import coverOne from '../../assets/cong-nhan-khu-cong-nghiep-420221204194047.jpg';
 import coverTwo from '../../assets/double-exposure-portrait-oil-refinery-worker-with-hardhat_66608507.jpg';
-import coverThree from '/src/assets/vecteezy_man-hand-holds-an-electronic-globe-while-looking-at-the_22862409.jpg'
+import coverThree from '../../assets/vecteezy_man-hand-holds-an-electronic-globe-while-looking-at-the_22862409.jpg'
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
