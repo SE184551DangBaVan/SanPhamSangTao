@@ -147,7 +147,7 @@
 
 /* Cover page styling */
 .page:first-child .pageContent {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 60px -12px inset, rgba(0, 0, 0, 0.3) -200px 18px 600px 160px inset;
   color: white;
 }
 

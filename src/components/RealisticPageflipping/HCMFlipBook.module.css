@@ -10,6 +10,7 @@
 }
 
 .flipbookControls {
+  margin: 20px 0 -20px 0;
   display: flex;
   gap: 20px;
   align-items: center;
@@ -24,7 +25,7 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background: #4CAF50;
+  background: #44b579;
   color: white;
   cursor: pointer;
   font-size: 14px;
@@ -50,6 +51,7 @@
 .hcmFlipbook {
   position: relative;
   z-index: 1;
+  background-image: radial-gradient(circle, #858585, #919191, #c0c0c0, #cfcfcf, #ffffff);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   overflow: hidden;

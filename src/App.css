@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,600|Tulpen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
 
 * {
   box-sizing: border-box;
@@ -67,7 +72,7 @@
   background-color: #eeeeee;
 }
 
-.app:has(.book-container) {
-  background-color: #c9bca5;
-  height: 400vh;
+body:not(:has(.app .homePage-container)) .app {
+  background-image: linear-gradient(to top, #ffffff, #dddee7, #b8bed0, #91a0b9, #6784a2);
+  height: 120vh;
 }

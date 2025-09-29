@@ -2,11 +2,14 @@ import "./Navbar.css";
 
 import { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({selectVal}) {
   const [selected, setSelected] = useState(selectVal);
   const { scrollY } = useScroll();
   const [scrollAtTop, setScrollAtTop] = useState(0);
+
+  const navigate = useNavigate();
 
   const handleSelect = (value) => {
     setSelected(value);
@@ -18,7 +21,7 @@ export default function Navbar({selectVal}) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollAtTop < 200 && selected!="f") {
+      if (scrollAtTop < 200 && selected!="f" && selected!="s") {
         setSelected("f");
       }
 
@@ -51,6 +54,7 @@ export default function Navbar({selectVal}) {
         name="a"
         checked={selected === "f"}
         onChange={() => {handleSelect("f"); handleScrollTo(0);}}
+        onClick={() => { if(selected != "f") navigate("/"); else {console.log("Stop it.")}}}
       />
       <label htmlFor="f">Trang chủ</label>
 
@@ -62,7 +66,7 @@ export default function Navbar({selectVal}) {
         checked={selected === "fo"}
         onChange={() => { handleSelect("fo"); handleScrollTo(800); }}
       />
-      <label htmlFor="fo">Bối Cảnh Lịch Sử</label>
+      <label htmlFor="fo">Bối Cảnh</label>
 
       <input
         type="radio"

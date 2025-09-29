@@ -4,8 +4,11 @@ import './HomePage.css'
 import maskOne from '../../assets/black-ink-blots (1).gif';
 import maskTwo from '../../assets/black-ink-blots (2).gif';
 import maskThree from '../../assets/black-ink-blots (3).gif';
+import coverOne from '../../assets/cong-nhan-khu-cong-nghiep-420221204194047.jpg';
+import coverTwo from '../../assets/double-exposure-portrait-oil-refinery-worker-with-hardhat_66608507.jpg';
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 
 export default function HomePage() {
@@ -14,6 +17,8 @@ export default function HomePage() {
   const [shown, setShown] = useState(false);
   const [retract, setRetract] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
+
+  const navigate = useNavigate();
 
   useMotionValueEvent(scrollYProgress, "change");
   const shift = useTransform(scrollYProgress, [0.8, 1], ["0", "-20px"]);
@@ -50,68 +55,69 @@ export default function HomePage() {
 
   return (
     <div className='homePage-container'>
-      <DynamicBackground pageScroll={scrollHomePageOffset}/>
+      
       <div className="hero-container">
         <div className="hero-content">
           <div className="hero-header">
-            <div className="great-leader-image"/>
+            
             <div className="header-title">
-              Tư Tưởng <span>Hồ Chí Minh</span>
+              <DynamicBackground pageScroll={scrollHomePageOffset}/>
+              <div className="great-leader-image"/>
+              <span className='primary-title'>AI</span>
             </div>
           </div>
 
           <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} 
-                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '200px'})`}}>
+                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '120vh'})`}}>
             <div className="stuck-grid">
-              <div className="grid-item">Tư Tưởng</div>
+              <div className="grid-item">Toàn cầu hóa</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Xã Hội</div>
+              <div className="grid-item">AI</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Trí Thức</div>
+              <div className="grid-item">Kinh tế số</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item">Doanh nhân</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Văn Hóa</div>
+              <div className="grid-item">Lao động số</div>
               <div className="grid-item"></div>
-              <div className="grid-item special">Nền Văn Minh</div>
-              <div className="grid-item">Xã Hội</div>
-              <div className="grid-item">Trí Thức</div>
-              <div className="grid-item">Văn Hóa</div>
-              <div className="grid-item">Kinh Tế</div>
-              <div className="grid-item">Đoàn Kết</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Yêu Nước</div>
+              <div className="grid-item special">Trí thức trẻ</div>
+              <div className="grid-item">Bất bình đẳng</div>
+              <div className="grid-item">Cơ hội</div>
+              <div className="grid-item">Tăng trưởng</div>
+              <div className="grid-item">Đào tạo</div>
+              <div className="grid-item">Công nhân</div>
+              <div className="grid-item">Nông dân</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Đoàn Kết</div>
-              <div className="grid-item">Khát Vọng</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Văn Hóa</div>
-              <div className="grid-item">Nhân Dân</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Kinh Tế</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Văn Hóa</div>
-              <div className="grid-item">Khát Vọng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Nhân Dân</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Đoàn Kết</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Cường Quốc</div>
-              <div className="grid-item">Cường Quốc</div>
+              <div className="grid-item">Phân hóa</div>
+              <div className="grid-item">Đoàn kết</div>
+              <div className="grid-item">Công bằng</div>
+              <div className="grid-item">Hội nhập</div>
+              <div className="grid-item">Văn minh</div>
+              <div className="grid-item">Cách mạng 4.0</div>
+              <div className="grid-item">Đoàn kết</div>
+              <div className="grid-item">Công bằng</div>
+              <div className="grid-item">Toàn cầu hóa</div>
+              <div className="grid-item">AI</div>
+              <div className="grid-item">Kinh tế số</div>
+              <div className="grid-item">Doanh nhân</div>
+              <div className="grid-item">Lao động số</div>
+              <div className="grid-item">Trí thức trẻ</div>
+              <div className="grid-item">Bất bình đẳng</div>
+              <div className="grid-item">Cơ hội</div>
+              <div className="grid-item">Tăng trưởng</div>
+              <div className="grid-item">Đào tạo</div>
+              <div className="grid-item">Công nhân</div>
+              <div className="grid-item">Nông dân</div>
+              <div className="grid-item">Phân hóa</div>
+              <div className="grid-item">Đoàn kết</div>
+              <div className="grid-item">Công bằng</div>
+              <div className="grid-item">Hội nhập</div>
+              <div className="grid-item">Văn minh</div>
+              <div className="grid-item">Cách mạng 4.0</div>
               <div className="grid-item"></div>
-              <div className="grid-item">Xã Hội</div>
-              <div className="grid-item">Tư Tưởng</div>
-              <div className="grid-item">Đoàn Kết</div>
+              <div className="grid-item">Toàn cầu hóa</div>
+              <div className="grid-item">AI</div>
+              <div className="grid-item">Đoàn kết</div>
               <div className="grid-item">Ý Chí</div>
             </div>
             <div className={`history-timeline ${show ? 'show' : ''}`} style={{}}>
@@ -136,7 +142,44 @@ export default function HomePage() {
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
       </div>
       <div className="book-selection-block">
-
+        <div className="book-selection-block-title">Lựa Chọn Sách</div>
+        <div class="book-selection-block-container">
+          <div class="book-selection-block-book" onClick={() =>  navigate("/doc-sach")}>
+            <div class="book-selection-block-front">
+              <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverOne})`}}>
+                <p class="book-selection-block-num-up">Cơ cấu xã hội - giai cấp ở Việt Nam thời kỳ quá độ lên chủ nghĩa xã hội</p> 
+                <p class="book-selection-block-num-down">Phân Tích Cơ Cấu Giai Cấp Xã Hội Việt Nam Hiện Nay</p>
+                <p class="author">Bao Dong Khoi</p>
+              </div>
+            </div>
+            <div class="book-selection-block-left-side">
+              <h2>
+                <span>George Orwell</span>
+                <span>1984</span>
+              </h2>
+            </div>
+          </div>
+          <h1 className='book-selection-count'><span>B</span><span>o</span><span>o</span><span>k</span> <span>1</span></h1>
+        </div>
+        <div class="book-selection-block-container">
+          <div class="book-selection-block-book">
+            <div class="book-selection-block-front">
+              <div class="book-selection-block-cover" style={{backgroundImage: `url(${coverTwo})`}}>
+                <p class="book-selection-block-num-up">Liên minh giai cấp, tầng lớp ở VN thời kỳ quá độ lên chủ nghĩa XH</p> 
+                <p class="book-selection-block-num-down">with AI</p>
+                <p class="author">George Orwell</p>
+              </div>
+            </div>
+            <div class="book-selection-block-left-side">
+              <h2>
+                <span>George Orwell</span>
+                <span>1984</span>
+              </h2>
+            </div>
+          </div>
+          <h1 className='book-selection-count'><span>B</span><span>o</span><span>o</span><span>k</span> <span>2</span></h1>
+        </div>
+        
       </div>
     </div>
   )

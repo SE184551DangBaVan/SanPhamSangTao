@@ -7,12 +7,14 @@ import BookMain from './pages/BookReadSelectionMain/BookMain'
 import HCMFlipBook from './components/RealisticPageflipping/HCMFlipBook';
 import HomePage from './pages/HomePage/HomePage'
 import ScrollToTop from './components/ScrollToTop';
+import Robot from './components/ReadBot/Robot';
 
 function App() {
 
   return (
     <div className='app'>
       <ScrollToTop />
+      {/* <Robot /> */}
       <Routes>
         <Route
           path="/"
