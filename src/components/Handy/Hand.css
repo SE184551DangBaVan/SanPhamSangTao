@@ -1,0 +1,108 @@
+.hand-container {
+  position: absolute;
+  z-index: 9999;
+  margin: auto;
+  width: 70vmin;
+  height: 70vmin;
+  scale: 0.15;
+  pointer-events: none;
+}
+
+@-webkit-keyframes wave-hi {
+  0%, 100% {
+    transform: rotate(30deg) rotate3d(0, 1, 0, 20deg) translate(5%, -10%);
+    box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    transform: rotate(-20deg) rotate3d(0, 1, 0, -20deg) translate(-5%, 0);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: rotate(20deg) rotate3d(0, 1, 0, 20deg) translate(5%, -10%);
+    box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+  75% {
+    transform: rotate(-30deg) rotate3d(0, 1, 0, -20deg) translate(-5%, 0%);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes wave-hi {
+  0%, 100% {
+    transform: rotate(30deg) rotate3d(0, 1, 0, 20deg) translate(5%, -10%);
+    box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    transform: rotate(-20deg) rotate3d(0, 1, 0, -20deg) translate(-5%, 0);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: rotate(20deg) rotate3d(0, 1, 0, 20deg) translate(5%, -10%);
+    box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+  75% {
+    transform: rotate(-30deg) rotate3d(0, 1, 0, -20deg) translate(-5%, 0%);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+}
+.hand, .hand-top {
+  background: #fff;
+  height: 28vmin;
+  width: 28vmin;
+  border-radius: 9.8vmin 9.8vmin 7vmin 7vmin;
+  position: absolute;
+  bottom: 15%;
+  left: 30%;
+  -webkit-animation: wave-hi 2s forwards;
+          animation: wave-hi 2s forwards;
+  box-shadow: 3px 10px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.hand-top {
+  box-shadow: none;
+}
+
+.finger {
+  box-shadow: 0px 6px 3px 6px rgba(0, 0, 0, 0.3);
+  width: 5.88vmin;
+  height: 28vmin;
+  position: absolute;
+  bottom: 68%;
+  background: #fff;
+  border-radius: 2.8vmin;
+  left: 0vmin;
+  transition: height 0.4s ease;
+}
+.finger:nth-child(2) {
+  left: 7.42vmin;
+  bottom: 86%;
+}
+.finger:nth-child(3) {
+  left: 14.7vmin;
+  bottom: 76%;
+}
+.finger:nth-child(4) {
+  left: 22.12vmin;
+  bottom: 54%;
+}
+
+.hand-container.grab .finger {
+  height: 16vmin;
+}
+
+.thumb {
+  width: 8.4vmin;
+  height: 25.9vmin;
+  background: #fff;
+  position: absolute;
+  transform: skew(30deg);
+  border-radius: 7vmin 2.8vmin 0 7vmin;
+  left: -5.6vmin;
+  bottom: 0vmin;
+  box-shadow: 0px 2px 5px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease;
+}
+
+.hand-container.grab .thumb {
+  transform: skew(20deg);
+}

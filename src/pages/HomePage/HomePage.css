@@ -144,7 +144,7 @@
   position: absolute;
     width: 1200px;
     height: 800px;
-    left: -10px;
+    left: -200px;
     top: -140px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -155,6 +155,9 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .historical-figure2 {
     position: absolute;
@@ -177,8 +180,8 @@
     position: absolute;
     width: 1200px;
     height: 800px;
-    left: 60px;
-    top: 900px;
+    left: -200px;
+    top: 1000px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -189,6 +192,32 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
+}
+
+.historical-texts1,
+.historical-texts2,
+.historical-texts3 {
+  position: absolute;
+  max-width: 60vmax;
+  font-size: 18px;
+  background-image: radial-gradient(50% 40%, #000000ab 20%, transparent 100%);
+  padding: 120px 20px;
+  mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+  transition: opacity 0.4s ease;
+}
+.historical-texts1 {
+  top: 80px;
+  left: 40%;
+}
+
+.historical-texts2 {
+  top: 600px;
+  right: 40%;
+}
+
+.historical-texts3 {
+  top: 1300px;
+  left: 40%;
 }
 
 @keyframes zoom-in {
@@ -362,5 +391,18 @@
     z-index: 10;
     width: 100%;
     height: 100vh;
-    background-color: gray;
+    box-shadow: 0 -20px 0px #000000;
+}
+
+.book-selection-block::before {
+  content: '';
+    position: absolute;
+    top: 0px;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: calc(100% - 50px);
+    pointer-events: none;
+    border-top: 50px #3b3b3b solid;
+    box-shadow: inset 0 10px 40px #333;
 }

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
 import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 import BookSelector from "../../components/BookSelection/BookSelector.jsx";
+import Hand from '../../components/Handy/Hand.jsx';
 
 export default function HomePage() {
   const [scrollHomePageOffset, setScrollHomePageOffset] = useState(0);
@@ -15,6 +16,8 @@ export default function HomePage() {
   const [shown, setShown] = useState(false);
   const [retract, setRetract] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
+  
+  const [handsOff, setHandsOff] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change");
   const shift = useTransform(scrollYProgress, [0.8, 1], ["0", "-20px"]);
@@ -62,7 +65,7 @@ export default function HomePage() {
           </div>
 
           <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} 
-                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '200px'})`}}>
+                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '100vh'})`}}>
             <div className="stuck-grid">
               <div className="grid-item">Tư Tưởng</div>
               <div className="grid-item"></div>
@@ -129,15 +132,22 @@ export default function HomePage() {
         <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 1000
                                                     ? `url('${maskOne}')`
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    <span className='historical-texts1' 
+                                                    style={{opacity: scrollHomePageOffset > 1200 ? 1 : 0}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor lacus eget risus luctus, ac consequat nisi rutrum. Nam auctor egestas ex, fringilla scelerisque enim vehicula et. Curabitur auctor enim sed velit placerat malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pulvinar lectus eget purus placerat, eu sodales dolor pulvinar. In tristique elementum nisl id mollis.</span>
         <div className="historical-figure2" style={{maskImage: scrollHomePageOffset > 1500
                                                     ? `url('${maskTwo}')`
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    <span className='historical-texts2'
+                                                    style={{opacity: scrollHomePageOffset > 1700 ? 1 : 0}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor lacus eget risus luctus, ac consequat nisi rutrum. Nam auctor egestas ex, fringilla scelerisque enim vehicula et.</span>
         <div className="historical-figure3" style={{maskImage: scrollHomePageOffset > 2000
                                                     ? `url('${maskThree}')`
                                                     : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    <span className='historical-texts3'
+                                                    style={{opacity: scrollHomePageOffset > 2200 ? 1 : 0}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor lacus eget risus luctus, ac consequat nisi rutrum. Nam auctor egestas ex, fringilla scelerisque enim vehicula et.</span>
       </div>
-      <div className="book-selection-block">
+      <div className="book-selection-block" onMouseEnter={() => setHandsOff(true)} onMouseLeave={() => setHandsOff(false)}>
         <BookSelector/>
+        <Hand toggle={handsOff} />
       </div>
     </div>
   )

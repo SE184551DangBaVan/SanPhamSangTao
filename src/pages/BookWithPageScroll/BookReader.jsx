@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import "./BookReader.css";
+import Image from '../../assets/HoChiMinhLockedIn.jpg'
 
 export default function BookReader() {
   const [scrollOffset, setScrollOffset] = useState(0);
@@ -30,28 +31,28 @@ export default function BookReader() {
     <div style={{ height: `${totalScrollNeeded + 1000}px` }}>
       <div className="book">
         {paragraphs.map((_, i) => {
-          // Each page gets a slice of the scroll
           const start = ((i + 1) / totalPages);
           const end = (i / totalPages);
           let localProgress = (progress - start) / (end - start);
-
-          // Clamp between 0 and 1
           localProgress = Math.max(0, Math.min(localProgress, 1));
 
-          // Rotate from 0deg → 180deg
           const rotation = localProgress * 180;
 
           return (
             <span
               key={i}
               className="page"
-              style={{ transform: `rotateY(${rotation}deg)` }}
-            ></span>
+              style={{ transform: `rotateY(${rotation}deg)`, zIndex: `calc(99 + ${i})` }}
+            >
+              <span className="page-front">
+                {paragraphs[i]}
+              </span>
+              <span className="page-back"></span>
+            </span>
           );
         })}
-
-        <span className="cover"></span>
-        <span className="cover back"></span>
+        <span className="cover" style={{backgroundColor: `rgb(105, 20, 20)`}}></span>
+        <span className="cover back" style={{backgroundColor: `rgb(105, 20, 20)`}}></span>
       </div>
     </div>
   );

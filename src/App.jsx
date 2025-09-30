@@ -30,7 +30,6 @@ function App() {
           path="/doc-sach"
           element={
             <>
-              <Navbar selectVal={"s"}/>
               <BookMain />
               <BookReader />
             </>
