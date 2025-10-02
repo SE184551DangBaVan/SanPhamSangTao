@@ -6,16 +6,45 @@ import './BookMain.css'
 
 import React, { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
+import {useNavigate} from "react-router-dom";
+import UserBookGuide from '../../components/UserBookGuide/UserBookGuide';
+import { DirectionsRun, HomeFilled } from '@mui/icons-material';
 
 export default function BookMain() {
+    const navigate = useNavigate();
+
     const [scrollPageOffset, setScrollPageOffset] = useState(0);
     const { scrollY } = useScroll();
+    
+    const [scrollStartToggle, setScrollStartToggle] = useState(false);
+    const [scrollEndToggle, setScrollEndToggle] = useState(false);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         setScrollPageOffset(latest);
     });
+    
+    useEffect(() => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            left: 0,
+            behavior: "smooth",
+        });
+    }, [scrollEndToggle]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, right: 0, behavior: "smooth" });
+    }, [scrollStartToggle]);
+
     return (
         <>
+        <UserBookGuide bookScrollProgress={scrollPageOffset}/>
+        <button className='home-button' onClick={() => navigate('/')}>
+            <HomeFilled className='home-button-icons'/>
+            <span className='home-button-text'>
+                Trang chủ
+            </span>
+            <DirectionsRun className='home-button-icons'/>
+        </button>
         <header className="header">
             <div className="header-container">
                 <div className="header-texture"></div>
@@ -25,10 +54,10 @@ export default function BookMain() {
                 </div>
                 
                 <nav className="nav" id="mainNav">
-                <a href="#" className="nav-item"><KeyboardDoubleArrowLeftIcon/> To Beginning</a>
-                <a href="#" className="nav-item"><ArrowCircleLeftIcon/> Previous Page</a>
-                <a href="#" className="nav-item">Next Page <ArrowCircleRightIcon/></a>
-                <a href="#" className="nav-item">To End <KeyboardDoubleArrowRightIcon/></a>
+                <a className={`nav-item ${scrollPageOffset <= 0 && 'disabled'}`} onClick={() => setScrollStartToggle(!scrollStartToggle) }><KeyboardDoubleArrowLeftIcon/> Trở lại trang đầu</a>
+                <a className={`nav-item ${scrollPageOffset <= 0 && 'disabled'}`} onClick={() => window.scrollTo({ top: scrollPageOffset-600, right: 0, behavior: "smooth" })}><ArrowCircleLeftIcon/> Trang trước</a>
+                <a className={`nav-item ${scrollPageOffset+1000 >= document.documentElement.scrollHeight && 'disabled'}`} onClick={() => window.scrollTo({ top: scrollPageOffset+600, right: 0, behavior: "smooth" })}>Trang tiếp <ArrowCircleRightIcon/></a>
+                <a className={`nav-item ${scrollPageOffset+1000 >= document.documentElement.scrollHeight && 'disabled'}`} onClick={() => setScrollEndToggle(!scrollEndToggle)}>Đến trang cuối <KeyboardDoubleArrowRightIcon/></a>
                 </nav>
                 
                 <div className="ink-blot ink-blot-1"></div>

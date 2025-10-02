@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import "./BookReader.css";
-import Image from '../../assets/HoChiMinhLockedIn.jpg'
+
+import Image1 from '../../assets/HoChiMinhLockedIn.jpg'
+import Image2 from '../../assets/ho-chi-minh-portrait-lance-bourne.jpg'
 
 export default function BookReader() {
   const [scrollOffset, setScrollOffset] = useState(0);
@@ -12,11 +14,18 @@ export default function BookReader() {
   });
 
   const paragraphs = [
-    "Once upon a time, in a faraway land, there was a magical book.",
+    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
     "This book could turn its own pages when the reader scrolled.",
     "Inside, it contained countless stories and adventures.",
     "The more the reader scrolled, the more secrets unfolded.",
     "And thus began the greatest story ever told..."
+  ];
+  const images = [
+    Image1,
+    Image1,
+    Image2,
+    Image1,
+    Image1,
   ];
 
   // Split scroll progress into chunks (one per page)
@@ -28,7 +37,7 @@ export default function BookReader() {
   const progress = Math.min(scrollOffset / totalScrollNeeded, 1);
 
   return (
-    <div style={{ height: `${totalScrollNeeded + 1000}px` }}>
+    <div style={{ height: `${totalScrollNeeded + 1000}px`, scrollBehavior: 'smooth' }}>
       <div className="book">
         {paragraphs.map((_, i) => {
           const start = ((i + 1) / totalPages);
@@ -45,6 +54,7 @@ export default function BookReader() {
               style={{ transform: `rotateY(${rotation}deg)`, zIndex: `calc(99 + ${i})` }}
             >
               <span className="page-front">
+                <div className="page-images" style={{backgroundImage: `url('${images[i]}')`}}></div>
                 {paragraphs[i]}
               </span>
               <span className="page-back"></span>

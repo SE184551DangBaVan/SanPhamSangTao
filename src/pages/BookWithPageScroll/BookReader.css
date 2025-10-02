@@ -35,7 +35,7 @@
   transform-style: preserve-3d;
   box-shadow: inset 3px 0px 20px rgba(0, 0, 0, 0.2),
     0px 0px 15px rgba(0, 0, 0, 0.1);
-    font-size: 8px;
+    font-size: 6px;
 }
 
 .page::before {
@@ -68,6 +68,10 @@
   padding: 1rem;
   border-radius: 5px 0 0 5px;
   backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
 .page-back {
@@ -79,6 +83,17 @@
   background-color: var(--primary-color);
   opacity: 0.9;
   border-radius: 0 5px 5px 0;
+  backface-visibility: hidden;
+}
+
+.page-images {
+  height: 80px;
+  width: 160px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* .image-page {

@@ -7,6 +7,7 @@ import BookMain from './pages/BookReadSelectionMain/BookMain'
 import HomePage from './pages/HomePage/HomePage'
 import ScrollToTop from './components/ScrollToTop';
 import MinhPage from "./pages/MinhPage/MinhPage.jsx";
+import LoadingAnimation from './components/LoadingAnimation/LoadingAnimation.jsx';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
           path="/doc-sach"
           element={
             <>
+              <LoadingAnimation />
               <BookMain />
               <BookReader />
             </>
