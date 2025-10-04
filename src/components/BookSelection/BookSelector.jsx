@@ -69,7 +69,7 @@ const BookSelector = ()=>{
                 >
 
                     {books.map((book, index) => {
-                            let bookClass = "book";
+                            let bookClass = "book" ;
                             {/* Applies dark magic*/}
                             if (index > 3 && index < 8) {
                                 bookClass = "book book-drop"
@@ -79,6 +79,7 @@ const BookSelector = ()=>{
                                     key={index}
                                     className={`${bookClass}`}
                                     title={book.title}
+                                    data-index={index}
                                     onClick={()=> bookClick(index)}
                                 >
                                     {book.title}

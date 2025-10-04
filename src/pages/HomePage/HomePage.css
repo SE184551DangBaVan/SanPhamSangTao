@@ -78,6 +78,9 @@
 
 .hero-header .header-title span {
     color: #FF6961;
+    font-family: "Protest Revolution", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .hero-paragraph {
@@ -97,7 +100,6 @@
     opacity: 0;
     transition: transform 0.4s ease, opacity 0.2s ease;
 }
-
 
 
 .hero-paragraph .history-timeline {
@@ -141,11 +143,11 @@
 }
 
 .historical-figure1 {
-  position: absolute;
+    position: absolute;
     width: 1200px;
     height: 800px;
-    left: -200px;
-    top: -140px;
+    left: -250px;
+    top: -200px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -158,12 +160,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
+    transition: left 0.4s ease;
 }
 .historical-figure2 {
     position: absolute;
     width: 1200px;
     height: 800px;
-    right: -150px;
+    left: 480px;
     top: 500px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -175,6 +179,8 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: 20% -20%;
+    pointer-events: none;
+    transition: left 0.4s ease;
 }
 .historical-figure3 {
     position: absolute;
@@ -192,32 +198,144 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
+    pointer-events: none;
+    transition: left 0.4s ease;
 }
 
 .historical-texts1,
 .historical-texts2,
 .historical-texts3 {
   position: absolute;
-  max-width: 60vmax;
+  z-index: -1;
+  width: 75vmax;
+  background-color: white;
+  color: var(--secondary-color);
   font-size: 18px;
-  background-image: radial-gradient(50% 40%, #000000ab 20%, transparent 100%);
-  padding: 120px 20px;
-  mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+  text-align: left;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+  transition: transform 0.4s ease;
+}
+
+.historical-texts1-upperlayer{
+  position: absolute;
+  z-index: 1;
+  width: 75vmax;
+  color: white;
+  text-shadow: 2px 1px 1px #000000;
+  background-color: transparent;
+  font-size: 18px;
+  text-align: left;
+  pointer-events: none;
+  user-select: none;
+  
+  mask-size: 51% 92%;
+  mask-repeat: no-repeat;
+  mask-position: -30% 0.6em;
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
-.historical-texts1 {
-  top: 80px;
-  left: 40%;
+
+.historical-texts2-upperlayer {
+  position: absolute;
+  z-index: 1;
+  width: 75vmax;
+  color: white;
+  text-shadow: 2px 1px 1px #000000;
+  background-color: transparent;
+  font-size: 18px;
+  text-align: left;
+  pointer-events: none;
+  user-select: none;
+  
+  mask-size: 80% 181%;
+  mask-repeat: no-repeat;
+  mask-position: 23.8rem -8.2em;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-.historical-texts2 {
-  top: 600px;
-  right: 40%;
+.historical-texts3-upperlayer {
+  position: absolute;
+  z-index: 1;
+  width: 75vmax;
+  color: white;
+  text-shadow: 2px 1px 1px #000000;
+  background-color: transparent;
+  font-size: 18px;
+  text-align: left;
+  pointer-events: none;
+  user-select: none;
+  
+  mask-size: 80% 185%;
+  mask-repeat: no-repeat;
+  mask-position: -17.3rem -9.1em;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-.historical-texts3 {
+.historical-texts1::after,
+.historical-texts2::after,
+.historical-texts3::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  height: 20px;
+  width: 100%;
+  left: 0;
+  background: url('../../assets/ripped.svg') bottom;
+  background-size: 100%;
+}
+
+.historical-texts1 .first-letter,
+.historical-texts1-upperlayer .first-letter,
+.historical-texts2 .first-letter,
+.historical-texts2-upperlayer .first-letter,
+.historical-texts3 .first-letter,
+.historical-texts3-upperlayer .first-letter {
+  font-size: 46px;
+  width: 100%;
+}
+
+.historical-texts1 .first-letter,
+.historical-texts2 .first-letter,
+.historical-texts2 .first-letter {
+  margin-bottom: 20px;
+  padding-left: 50px;
+}
+.historical-texts1-upperlayer .first-letter {
+  margin: 10px 0;
+  padding-left: 50px;
+}
+
+.historical-texts2-upperlayer .first-letter {
+  margin: 10px 0;
+  padding-left: 50px;
+}
+
+.historical-texts3-upperlayer .first-letter {
+  margin: 0;
+  padding-left: -2px;
+}
+
+.historical-texts1,
+.historical-texts1-upperlayer {
+  top:10px;
+  left: 15%;
+  padding: 50px 30px 30px 300px;
+}
+
+.historical-texts2,
+.historical-texts2-upperlayer {
+  top: 700px;
+  left: 15%;
+  padding: 50px 300px 30px 30px;
+}
+
+.historical-texts3,
+.historical-texts3-upperlayer {
   top: 1300px;
-  left: 40%;
+  left: 15%;
+  padding: 50px 30px 30px 250px;
 }
 
 @keyframes zoom-in {
@@ -235,6 +353,24 @@
     transform: translateZ(1000px);
     opacity: 0;
     filter: blur(5px);
+  }
+}
+
+@media (max-width: 1500px) {
+  .historical-texts1-upperlayer,
+  .historical-texts2-upperlayer,
+  .historical-texts3-upperlayer {
+    opacity: 0;
+  }
+
+  .historical-figure1 {
+    left: -400px;
+  }
+  .historical-figure2 {
+    left: 750px;
+  }
+  .historical-figure3 {
+    left: -600px;
   }
 }
 
@@ -388,6 +524,7 @@
 .book-selection-block {
     margin-top: 300vh;
     position: relative;
+    cursor: none;
     z-index: 10;
     width: 100%;
     height: 100vh;
@@ -405,4 +542,67 @@
     pointer-events: none;
     border-top: 50px #3b3b3b solid;
     box-shadow: inset 0 10px 40px #333;
+}
+
+.home-page-progress-indicator {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  top: 5%;
+  left: 5%;
+  pointer-events: none;
+}
+.home-page-progress-indicator .mouse {
+  transition: transform 0.4s ease;
+}
+.home-page-progress-indicator .mouse.end {
+  transform: translateX(150%);
+}
+
+.home-page-progress-indicator .back-to-top-button {
+  position: absolute;
+  bottom: 8%;
+  right: 6%;
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  color: black;
+  background-color: #e7e7e7d5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transform: translateX(150%);
+  transition: all 0.4s ease;
+}
+
+.home-page-progress-indicator .back-to-top-button:hover {
+  background-color: #cccccc91;
+}
+
+.home-page-progress-indicator .back-to-top-button span {
+  position: absolute;
+  right: -10px;
+  bottom: 40px;
+  font-size: 12px;
+  padding: 5px;
+  width: 120px;
+  background-color: #333;
+  color: white;
+  pointer-events: none;
+  border: 1px solid white;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.home-page-progress-indicator .back-to-top-button:hover span {
+  bottom: 60px;
+  opacity: 1;
+}
+
+.home-page-progress-indicator:has(.mouse.end) .back-to-top-button {
+  pointer-events: all;
+  cursor: pointer;
+  transform: translateX(0%);
 }

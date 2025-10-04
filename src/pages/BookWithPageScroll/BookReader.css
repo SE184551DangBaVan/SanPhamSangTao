@@ -35,7 +35,6 @@
   transform-style: preserve-3d;
   box-shadow: inset 3px 0px 20px rgba(0, 0, 0, 0.2),
     0px 0px 15px rgba(0, 0, 0, 0.1);
-    font-size: 6px;
 }
 
 .page::before {
@@ -65,12 +64,31 @@
   background-color: var(--primary-color);
   color: var(--secondary-color);
   display: flex;
-  padding: 1rem;
+  padding: 0;
   border-radius: 5px 0 0 5px;
   backface-visibility: hidden;
+}
+
+.page-front .content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
+  align-items: center;
+}
+
+.page-front .content .article-content {
+  font-size: 6px;
+  width: 100%;
+  padding: 2px 5px;
+  min-height: 130px;
+}
+.page-front .content .article-content .first-letter {
+  font-size: 16px;
+  height: 15px;
+  display: flex;
   align-items: center;
 }
 
@@ -89,11 +107,55 @@
 .page-images {
   height: 80px;
   width: 160px;
-  margin-top: -10px;
+  margin-top: 10px;
   margin-bottom: 10px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.hand-canvas-book {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    cursor: none;
+}
+
+.tool-bar {
+  position: fixed;
+  z-index: 100;
+  top: 40%;
+  left: 20px;
+  width: 50px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tool-bar #magnify {
+  width: 50px;
+  height: 50px;
+  color: #555;
+  background-color: transparent;
+  border-radius: 50%;
+  outline: none;
+  border: 3px solid #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.tool-bar #magnify svg {
+  scale: 1.5;
+}
+
+.tool-bar #magnify:hover {
+  width: 50px;
+  height: 50px;
+  cursor: none;
 }
 
 /* .image-page {
