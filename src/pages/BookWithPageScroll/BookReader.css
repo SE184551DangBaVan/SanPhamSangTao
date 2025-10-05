@@ -35,7 +35,6 @@
   transform-style: preserve-3d;
   box-shadow: inset 3px 0px 20px rgba(0, 0, 0, 0.2),
     0px 0px 15px rgba(0, 0, 0, 0.1);
-    font-size: 6px;
 }
 
 .page::before {
@@ -65,12 +64,31 @@
   background-color: var(--primary-color);
   color: var(--secondary-color);
   display: flex;
-  padding: 1rem;
+  padding: 0;
   border-radius: 5px 0 0 5px;
   backface-visibility: hidden;
+}
+
+.page-front .content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
+  align-items: center;
+}
+
+.page-front .content .article-content {
+  font-size: 6px;
+  width: 100%;
+  padding: 2px 5px;
+  min-height: 130px;
+}
+.page-front .content .article-content .first-letter {
+  font-size: 16px;
+  height: 15px;
+  display: flex;
   align-items: center;
 }
 
@@ -89,11 +107,104 @@
 .page-images {
   height: 80px;
   width: 160px;
-  margin-top: -10px;
+  margin-top: 10px;
   margin-bottom: 10px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.hand-canvas-book {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    cursor: none;
+}
+
+.tool-bar {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 150px;
+  width: 120px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.tool-bar #magnify {
+  height: 80%;
+  color: #555;
+  transform: rotateZ(-45deg) translate(12px, -10px);
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.tool-bar #magnify:hover {
+  cursor: none;
+}
+
+.magnifier-wrapper {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.magnifying-glass {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #333;
+  background: radial-gradient(#fefefe57 40%, #ccccccd4);
+}
+
+.magnify-handle {
+  position: absolute;
+  z-index: -1;
+  width: 160px;
+  height: 30px;
+  top: calc(102%);
+  left: 69%;
+  background-color: rgb(92, 55, 13);
+  border: 3px solid #333;
+  border-radius: 0 24px 24px 0;
+  transform: rotate(45deg);
+}
+
+.magnifying-glass::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 15px;
+  top: 65%;
+  left: 65%;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  transform: rotate(-45deg);
+}
+
+.magnified-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform-origin: 0 0;
+}
+
+.book-clone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
 }
 
 /* .image-page {

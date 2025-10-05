@@ -60,9 +60,9 @@ export default function Navbar({selectVal}) {
         id="fo"
         name="a"
         checked={selected === "fo"}
-        onChange={() => { handleSelect("fo"); handleScrollTo(800); }}
+        onChange={() => { handleSelect("fo"); handleScrollTo(1200); }}
       />
-      <label htmlFor="fo">Bối Cảnh Lịch Sử</label>
+      <label htmlFor="fo">Tư tưởng Về VH</label>
 
       <input
         type="radio"

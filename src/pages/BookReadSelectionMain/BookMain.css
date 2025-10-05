@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 200;
     transition: transform 0.3s ease;
 }
 
@@ -247,11 +247,11 @@
 
 @keyframes scroll {
     0% {
-        transform: translateX(50%);
+        transform: translateX(80%);
     }
 
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-80%);
     }
 }
 
@@ -276,6 +276,7 @@
     flex-direction: row;
     filter: blur(5px);
     pointer-events: none;
+    user-select: none;
 }
 
 .content {

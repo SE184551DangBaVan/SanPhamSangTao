@@ -38,7 +38,7 @@ export default function BookMain() {
     return (
         <>
         <UserBookGuide bookScrollProgress={scrollPageOffset}/>
-        <button className='home-button' onClick={() => navigate('/')}>
+        <button className='home-button' onClick={() => navigate("/")}>
             <HomeFilled className='home-button-icons'/>
             <span className='home-button-text'>
                 Trang chủ
@@ -54,7 +54,7 @@ export default function BookMain() {
                 </div>
                 
                 <nav className="nav" id="mainNav">
-                <a className={`nav-item ${scrollPageOffset <= 0 && 'disabled'}`} onClick={() => setScrollStartToggle(!scrollStartToggle) }><KeyboardDoubleArrowLeftIcon/> Trở lại trang đầu</a>
+                <a className={`nav-item ${scrollPageOffset <= 0 && 'disabled'}`} onClick={() => setScrollStartToggle(!scrollStartToggle) }><KeyboardDoubleArrowLeftIcon/> Đến trang đầu</a>
                 <a className={`nav-item ${scrollPageOffset <= 0 && 'disabled'}`} onClick={() => window.scrollTo({ top: scrollPageOffset-600, right: 0, behavior: "smooth" })}><ArrowCircleLeftIcon/> Trang trước</a>
                 <a className={`nav-item ${scrollPageOffset+1000 >= document.documentElement.scrollHeight && 'disabled'}`} onClick={() => window.scrollTo({ top: scrollPageOffset+600, right: 0, behavior: "smooth" })}>Trang tiếp <ArrowCircleRightIcon/></a>
                 <a className={`nav-item ${scrollPageOffset+1000 >= document.documentElement.scrollHeight && 'disabled'}`} onClick={() => setScrollEndToggle(!scrollEndToggle)}>Đến trang cuối <KeyboardDoubleArrowRightIcon/></a>
@@ -69,8 +69,8 @@ export default function BookMain() {
                 </div>
                 <div className="header-shadow"></div>
             </div>
-        </header>
 
+        </header>
         <main className='book-container' style={{right: `calc(-50% + ${scrollPageOffset/2}px)`}}>
             <article className="content">
                 <h2 className="article-title">Digital Newspapers Experience Renaissance in Modern Age</h2>
