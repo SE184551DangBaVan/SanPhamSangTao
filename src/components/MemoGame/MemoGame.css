@@ -21,7 +21,9 @@
 }
 
 .stats {
+    width: 100%;
     display: flex;
+    justify-content: space-around;
     gap: 20px;
     align-items: center;
     flex-wrap: wrap;
@@ -32,7 +34,7 @@
     color: #e4e4e4;
 }
 
-.reset-btn {
+.reset-btn, .quiz-btn {
     padding: 8px 16px;
     background: #007bff;
     color: white;
@@ -43,8 +45,21 @@
     transition: background 0.2s;
 }
 
-.reset-btn:hover {
+.reset-btn:hover, .quiz-btn:hover {
     background: #0056b3;
+}
+
+.quiz-btn {
+    background: #28a745;
+}
+
+.quiz-btn:hover {
+    background: #218838;
+}
+
+.available-moves {
+    color: #42e6b5 ;
+    font-size: 1.1em;
 }
 
 .victory-message {
@@ -59,10 +74,11 @@
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
     gap: 20px;
-    max-width: 1080px;
+    max-width: 1400px;
     margin: 0 auto;
+    width: 95%;
 }
 
 .card {
@@ -110,7 +126,7 @@
 .card-back {
     background: white;
     transform: rotateY(180deg);
-    padding: 8px;
+    padding: 3px;
 }
 
 .card-back img {
@@ -136,6 +152,144 @@
     height:12%;
     background-color: rgba(255, 255, 255, 0.6);
 }
+/* -------------------------------------- QUIZ MODAL * --------------------------------------*/
+/* -------------------------------------- QUIZ MODAL * --------------------------------------*/
+/* -------------------------------------- QUIZ MODAL * --------------------------------------*/
+.quiz-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.quiz-modal {
+    background: linear-gradient(135deg, #667eea 0%, #684ba2 100%);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 720px;
+    min-height: 450px;
+    max-height: 720px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+
+.quiz-question {
+    font-size: 18px;
+    margin: 20px 0;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.quiz-option {
+    padding: 12px;
+    background-color: #7f9cf5;
+    color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.quiz-option:hover {
+    background-color: #5a67d8;
+}
+
+.quiz-option.selected {
+    background: #1b8dfb;
+    color: white;
+    border-color: #ffffff;
+}
+
+.quiz-option.correct {
+    background-color: #27ae60;
+    border-color: #2ecc71;
+    color: white;
+}
+
+.quiz-option.wrong {
+    background-color: #e74c3c;
+    border-color: #ff6b6b;
+    color: white;
+}
+
+.quiz-option:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.submit-quiz-btn {
+    width: 100%;
+    padding: 12px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-quiz-btn:hover:not(:disabled) {
+    background: #38a169;
+}
+
+.submit-quiz-btn:disabled {
+    background: #a0aec0;
+    color: #e2e8f0;
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.quiz-feedback {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.quiz-feedback.correct {
+    background: #d4edda;
+    color: #155724;
+}
+
+.quiz-feedback.wrong {
+    background: #f8d7da;
+    color: #721c24;
+}
 
 @media (max-width: 600px) {
     .cards-grid {
@@ -147,4 +301,17 @@
         flex-direction: column;
         text-align: center;
     }
+}
+
+@keyframes flash-red {
+    0%, 100% {
+        color: inherit;
+    }
+    50% {
+        color: #ff0000;
+    }
+}
+
+.flash-red {
+    animation: flash-red 0.5s ease-in-out 3;
 }
