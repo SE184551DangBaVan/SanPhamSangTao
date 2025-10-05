@@ -123,6 +123,10 @@
     z-index: 10;
 }
 
+.book-selection .book-drop {
+    margin-top: -8rem;
+}
+
 .book-selection .book-info {
     width: 50%;
     height: 100%;
