@@ -47,7 +47,7 @@ const BookSelector = ()=>{
                             <h2>{selectedBook.title}</h2>
                         </div>
                         <div className="book-desc">
-                            <div>{selectedBook.paragraphs[0]}</div>
+                            <div>{selectedBook.subtitle}</div>
                         </div>
                         <button className="read-button"
                             onClick={handleReadClick}
