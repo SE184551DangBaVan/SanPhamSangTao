@@ -2,44 +2,34 @@ import "./BookSelector.css"
 import Bookshelf from "../../assets/minhbox/bookshelf4.png"
 import BeigeWall from "../../assets/minhbox/beige wall.png"
 
-import Cover1 from "../../assets/ho-chi-minh-portrait-lance-bourne.jpg";
-import Cover2 from "../../assets/SelectedWritingsOfHCM.jpg";
-import Cover3 from "../../assets/ho-chi-minh-portrait-lance-bourne.jpg";
-import Cover4 from "../../assets/SelectedWritingsOfHCM.jpg";
-
+import { allBooks } from "../../data/books.jsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+
 const BookSelector = ()=>{
     const navigate = useNavigate();
-    const books = [
-        {
-            title: "The Great Gaslight",
-            description: "Did you just spill my tea?",
-            cover: Cover1
-        },
-        {
-            title: "Cow",
-            description: "Moo.",
-            cover: Cover2
-        },
-        {
-            title: "Unwritten Rule, The Fuck Do You Mean Unwrtten Rule",
-            description: [<><span>Do not tell me to add more than 4 books.<br/> Unwritten Rule was written in this book.<br/>  And I'm not telling, I AM COMMANDING IT <br/> The only thing you need to command is me to unload these nuts on yo buttcheeks</span></>
-            ],
-            cover: Cover3
-        },
-        {
-            title: "Nuclear Code",
-            description: "https://www.youtube.com/watch?v=uNl6Sh01ZIU",
-            cover: Cover4
-        }
-    ];
 
     const [selectedBook, setSelectedBook] = useState(null);
-
+    const [selectedBookIndex, setSelectedBookIndex] = useState(null);
 
     function bookClick(index) {
-        setSelectedBook(books[index]);
+        setSelectedBook(allBooks[index]);
+        setSelectedBookIndex(index);
+    }
+
+    function handleReadClick() {
+        console.log("handleReadClick called");
+        console.log("selectedBook:", selectedBook);
+        console.log("selectedBookIndex:", selectedBookIndex);
+
+        if (selectedBook && selectedBookIndex !== null) {
+            console.log("Navigating to book:", selectedBookIndex + 1, "with index:", selectedBookIndex);
+            navigate(`/book/${selectedBookIndex + 1}`, { state: { bookIndex: selectedBookIndex } });
+        } else {
+            console.log("No book selected or missing index");
+            console.log("selectedBook:", selectedBook);
+            console.log("selectedBookIndex:", selectedBookIndex);
+        }
     }
     return(
         <div className="book-selection"
@@ -57,10 +47,10 @@ const BookSelector = ()=>{
                             <h2>{selectedBook.title}</h2>
                         </div>
                         <div className="book-desc">
-                            <p>{selectedBook.description}</p>
+                            <div>{selectedBook.paragraphs[0]}</div>
                         </div>
                         <button className="read-button"
-                            onClick={()=>navigate("/doc-sach")}
+                            onClick={handleReadClick}
                             >
                             Read
                         </button>
@@ -82,7 +72,7 @@ const BookSelector = ()=>{
                      }}
                 >
 
-                    {books.map((book, index) => {
+                    {allBooks.map((book, index) => {
                             let bookClass = "book" ;
                             {/* Applies dark magic*/}
                             if (index > 3 && index < 8) {

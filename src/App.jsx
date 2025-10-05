@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage/HomePage'
 import ScrollToTop from './components/ScrollToTop';
 import MinhPage from "./pages/MinhPage/MinhPage.jsx";
 import LoadingAnimation from './components/LoadingAnimation/LoadingAnimation.jsx';
+import { allBooks } from './data/books.jsx';
 
 function App() {
 
@@ -24,9 +25,6 @@ function App() {
             </>
           }
         />
-      </Routes>
-
-      <Routes>
         <Route
           path="/doc-sach"
           element={
@@ -37,18 +35,29 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/minh"
+          element={
+            <>
+              <MinhPage/>
+            </>
+          }
+        />
+        {/* Individual book routes */}
+        {allBooks.map((book, index) => (
+          <Route
+            key={index}
+            path={`/book/${index + 1}`}
+            element={
+              <>
+                <LoadingAnimation />
+                <BookMain />
+                <BookReader />
+              </>
+            }
+          />
+        ))}
       </Routes>
-
-        <Routes>
-            <Route
-                path="/minh"
-                element={
-                    <>
-                        <MinhPage/>
-                    </>
-                }
-            />
-        </Routes>
     </div>
   )
 }
