@@ -2,8 +2,11 @@ import "./Navbar.css";
 
 import { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
+import {useNavigate} from "react-router-dom";
 
 export default function Navbar({selectVal}) {
+  const navigate = useNavigate();
+
   const [selected, setSelected] = useState(selectVal);
   const { scrollY } = useScroll();
   const [scrollAtTop, setScrollAtTop] = useState(0);
@@ -18,7 +21,7 @@ export default function Navbar({selectVal}) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollAtTop < 200 && selected!="f") {
+      if (scrollAtTop < 200 && selected!="f" && selected!="fi") {
         setSelected("f");
       }
 
@@ -51,6 +54,7 @@ export default function Navbar({selectVal}) {
         name="a"
         checked={selected === "f"}
         onChange={() => {handleSelect("f"); handleScrollTo(0);}}
+        onClick={() => navigate("/")}
       />
       <label htmlFor="f">Trang chủ</label>
 
@@ -88,6 +92,7 @@ export default function Navbar({selectVal}) {
         name="a"
         checked={selected === "fi"}
         onChange={() => handleSelect("fi")}
+        onClick={() => navigate("/game-selection")}
       />
       <label htmlFor="fi">Trò chơi</label>
 

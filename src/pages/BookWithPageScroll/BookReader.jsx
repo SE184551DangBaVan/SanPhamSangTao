@@ -4,16 +4,19 @@ import "./BookReader.css";
 
 import Image1 from '../../assets/HoChiMinhLockedIn.jpg'
 import Image2 from '../../assets/ho-chi-minh-portrait-lance-bourne.jpg'
-import { SearchOutlined } from "@mui/icons-material";
+import { RecordVoiceOver, SearchOutlined } from "@mui/icons-material";
 import Hand from '../../components/Handy/Hand';
 
 export default function BookReader() {
   const [scrollOffset, setScrollOffset] = useState(0);
   const { scrollY } = useScroll();
   
+  const [isMagnifyOn, setIsMagnifyOn] = useState(false);
   const [isMagnifying, setIsMagnifying] = useState(false);
   const [magPos, setMagPos] = useState({ x: 0, y: 0 });
   const magnifyRef = useRef(null);
+  
+  const [isSpeechOn, setIsSpeechOn] = useState(false);
   
   const [handsOff, setHandsOff] = useState(false);
 
@@ -74,13 +77,18 @@ export default function BookReader() {
 
       <div className="hand-canvas-book">
         <div className="tool-bar">
-          <button id="magnify" onMouseDown={handleMouseDown}>
+          <button className={`magnifying-glass-toggle ${isMagnifyOn ? 'active' : ''} tool-set`} onClick={() => setIsMagnifyOn(!isMagnifyOn)}>
+            <SearchOutlined />
           </button>
+          <button className={`speech-toggle ${isSpeechOn ? 'active' : ''} tool-set`} onClick={() => setIsSpeechOn(!isSpeechOn)}>
+            <RecordVoiceOver />
+          </button>
+          {isMagnifyOn && <button id="magnify" onMouseDown={handleMouseDown}/>}
         </div>
         <Hand toggle={handsOff} />
       </div>
 
-      <div
+      {isMagnifyOn && <div
   className="magnifier-wrapper"
   style={{
     left: isMagnifying ? `${magPos.x - SIZE / 2 - 100}px` : "0px",
@@ -135,11 +143,11 @@ export default function BookReader() {
             <span className="cover" style={{ backgroundColor: `rgb(105, 20, 20)` }}></span>
             <span className="cover back" style={{ backgroundColor: `rgb(105, 20, 20)` }}></span>
           </div>
-          </div>
+        </div>
     </div>
   </div>
   <div className="magnify-handle" />
-</div>
+</div>}
 
       <div className="book">
         {paragraphs.map((_, i) => {

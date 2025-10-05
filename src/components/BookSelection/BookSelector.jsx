@@ -9,6 +9,7 @@ import Cover4 from "../../assets/SelectedWritingsOfHCM.jpg";
 
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import { PanToolAlt } from "@mui/icons-material";
 const BookSelector = ()=>{
     const navigate = useNavigate();
     const books = [
@@ -62,13 +63,13 @@ const BookSelector = ()=>{
                         <button className="read-button"
                             onClick={()=>navigate("/doc-sach")}
                             >
-                            Read
+                            Đọc
                         </button>
                     </>)
                     :
                     (
                         <>
-                        <p>Select a book</p>
+                        <p>Chọn một cuốn sách <PanToolAlt style={{rotate: '60deg'}} /> </p>
                         </>
                     )}
 

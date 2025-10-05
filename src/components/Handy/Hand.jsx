@@ -58,10 +58,8 @@ export default function Hand({ toggle }) {
   }, []);
 
   useEffect(() => {
-    const ponderingBlocks = document.querySelectorAll(".book");
+    const ponderingBlocks = document.querySelectorAll(".book, .tool-set");
     if (!ponderingBlocks.length) return;
-
-    if (grab) handleMouseNormal;
 
     const handleMousePonder = () => setPonder(true);
     const handleMouseNormal = () => setPonder(false);
@@ -94,11 +92,11 @@ export default function Hand({ toggle }) {
       }}
     >
       <div className="hand">
-        <div className={`finger ${ponder ? "pondering" : ""}`}></div>
-        <div className={`finger ${ponder ? "pondering" : ""}`}></div>
-        <div className={`finger ${ponder ? "pondering" : ""}`}></div>
-        <div className={`finger ${ponder ? "pondering" : ""}`}></div>
-        <div className={`thumb ${ponder ? "pondering" : ""}`}></div>
+        <div className={`finger ${(ponder && !grab) ? "pondering" : ""}`}></div>
+        <div className={`finger ${(ponder && !grab) ? "pondering" : ""}`}></div>
+        <div className={`finger ${(ponder && !grab) ? "pondering" : ""}`}></div>
+        <div className={`finger ${(ponder && !grab) ? "pondering" : ""}`}></div>
+        <div className={`thumb ${(ponder && !grab) ? "pondering" : ""}`}></div>
       </div>
       <div className="hand-top"></div>
     </div>

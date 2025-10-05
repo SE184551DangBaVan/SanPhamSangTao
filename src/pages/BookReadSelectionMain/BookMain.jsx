@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 import UserBookGuide from '../../components/UserBookGuide/UserBookGuide';
 import { DirectionsRun, HomeFilled } from '@mui/icons-material';
 
-export default function BookMain() {
+export default function BookMain({bookTitle, bookDesc, tldr}) {
     const navigate = useNavigate();
 
     const [scrollPageOffset, setScrollPageOffset] = useState(0);
@@ -49,8 +49,8 @@ export default function BookMain() {
             <div className="header-container">
                 <div className="header-texture"></div>
                 <div className="header-title">
-                <h1 className="masthead">HCM Cultural Preservation</h1>
-                <div className="tagline">All cutural inheritance that connects us</div>
+                <h1 className="masthead">{bookTitle}</h1>
+                <div className="tagline">{bookDesc}</div>
                 </div>
                 
                 <nav className="nav" id="mainNav">
@@ -64,7 +64,7 @@ export default function BookMain() {
                 <div className="ink-blot ink-blot-2"></div>
                 <div className="header-introduction">
                     <div className="header-content">
-                        Ho Chi Minh’s ideology stands at the crossroads of pragmatism, humanism, and revolutionary vision. From his deep respect for culture and ethics to his mastery of political language and collective leadership, these books reveal how he fused Eastern traditions with Western thought to create a living philosophy. His ideas were not abstract dogma, but a practical guide for liberation, renewal, and human dignity—an enduring legacy that continues to shape Vietnam’s path today.
+                        {tldr}
                     </div>
                 </div>
                 <div className="header-shadow"></div>

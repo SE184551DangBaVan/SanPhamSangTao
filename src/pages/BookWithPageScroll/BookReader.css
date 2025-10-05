@@ -84,6 +84,10 @@
   width: 100%;
   padding: 2px 5px;
   min-height: 130px;
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+  text-align: left;
 }
 .page-front .content .article-content .first-letter {
   font-size: 16px;
@@ -116,7 +120,7 @@
 
 .hand-canvas-book {
     position: fixed;
-    z-index: 100;
+    z-index: 900;
     width: 100%;
     height: 100vh;
     cursor: none;
@@ -125,18 +129,46 @@
 .tool-bar {
   position: fixed;
   z-index: 100;
-  top: 50%;
-  left: 150px;
-  width: 120px;
-  height: 200px;
+  top: 40%;
+  left: 90px;
+  width: 60px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 24px;
+  border: 2px solid #333;
+}
+
+.tool-bar .tool-set {
+  background-color: transparent;
+  color: #555;
+  height: 40px;
+  width: 40px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  outline: none;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s ease;
+}
+.tool-bar .tool-set:hover { background-color: rgba(255, 255, 255, 0.3); cursor: none; }
+.tool-bar .tool-set.active {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 .tool-bar #magnify {
-  height: 80%;
+  position: absolute;
+  height: 160px;
   color: #555;
-  transform: rotateZ(-45deg) translate(12px, -10px);
+  transform: rotateZ(-45deg) translate(55px, 85px);
   outline: none;
   border: none;
   background-color: transparent;
