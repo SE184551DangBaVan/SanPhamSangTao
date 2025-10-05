@@ -3,6 +3,26 @@ import Image1 from '../assets/HoChiMinhLockedIn.jpg';
 import Image2 from '../assets/ho-chi-minh-portrait-lance-bourne.jpg';
 import Image3 from '../assets/SelectedWritingsOfHCM.jpg';
 
+// Book-specific images
+import Book1Image3 from '../assets/bookImages/book1-3.jpg';
+import Book1Image2 from '../assets/bookImages/book1-2.jpg';
+import Book2Image1 from '../assets/bookImages/book2-1.png';
+import Book2Image2 from '../assets/bookImages/book2-2.png';
+import Book2Image3 from '../assets/bookImages/book2-3.jpg';
+import Book3Image1 from '../assets/bookImages/book3-1.jpg';
+import Book3Image2 from '../assets/bookImages/book3-2.png';
+import Book3Image3 from '../assets/bookImages/book3-3.jpg';
+import Book3Image4 from '../assets/bookImages/book3-4.jpg';
+import Book4Image1 from '../assets/bookImages/book4-1.jpg';
+import Book4Image2 from '../assets/bookImages/book4-2.png';
+import Book4Image3 from '../assets/bookImages/book4-3.jpg';
+import Book5Image1 from '../assets/bookImages/vh-kt.jpg';
+import Book5Image2 from '../assets/bookImages/book5-2.jpg';
+import Book5Image3 from '../assets/bookImages/vh-xh.jpg';
+import Book6Image1 from '../assets/bookImages/book6-1.jpg';
+import Book6Image2 from '../assets/bookImages/book6-2.jpg';
+import Book6Image3 from '../assets/bookImages/book6-3.jpg';
+
 // Book 1: Nhận thức chung về văn hóa trong tư tưởng Hồ Chí Minh
 export const book1Data = {
   title: "Nhận thức chung về văn hóa trong tư tưởng Hồ Chí Minh",
@@ -13,8 +33,8 @@ export const book1Data = {
   ],
   images: [
     Image2,
-    Image1,
-    Image3
+    Book1Image2,
+    Book1Image3,
   ]
 };
 
@@ -27,9 +47,9 @@ export const book2Data = {
     <p className="article-content"><span className="first-letter">V</span>ăn hóa phục vụ nhân dân: các hoạt động văn hóa phải gắn bó với đời sống thực tiễn, phản ánh tư tưởng, khát vọng và lợi ích của nhân dân – vì nhân dân, do nhân dân.</p>
   ],
   images: [
-    Image2,
-    Image1,
-    Image3
+    Book2Image1,
+    Book2Image2,
+    Book2Image3
   ]
 };
 
@@ -43,10 +63,10 @@ export const book3Data = {
     <p className="article-content"><span className="first-letter">N</span>ền văn hóa mới Việt Nam: nền văn hóa toàn diện, vừa bảo tồn giá trị truyền thống, vừa tiếp thu tinh hoa nhân loại, hướng tới con người mới.</p>
   ],
   images: [
-    Image2,
-    Image1,
-    Image3,
-    Image2
+    Book3Image1,
+    Book3Image2,
+    Book3Image3,
+    Book3Image4
   ]
 };
 
@@ -59,9 +79,9 @@ export const book4Data = {
     <p className="article-content"><span className="first-letter">H</span>ội nhập quốc tế: Hồ Chí Minh nhấn mạnh văn hóa phải vừa đậm đà bản sắc dân tộc, vừa tiếp thu tinh hoa nhân loại. Hiện nay, Việt Nam tham gia nhiều công ước văn hóa quốc tế, quảng bá di sản ra thế giới, nhưng vẫn chú trọng giữ gìn bản sắc dân tộc, xây dựng hệ giá trị văn hóa và chuẩn mực con người Việt Nam thời kỳ mới.</p>
   ],
   images: [
-    Image2,
-    Image1,
-    Image3
+    Book4Image1,
+    Book4Image2,
+    Book4Image3
   ]
 };
 
@@ -74,9 +94,9 @@ export const book5Data = {
     <p className="article-content"><span className="first-letter">X</span>ã hội: Văn hóa định hình nhân cách, lối sống; góp phần xây dựng xã hội văn minh, nhân văn, đẩy lùi cái xấu, tệ nạn.</p>
   ],
   images: [
-    Image2,
-    Image1,
-    Image3
+    Book5Image1,
+    Book5Image2,
+    Book5Image3
   ]
 };
 
@@ -89,9 +109,9 @@ export const book6Data = {
     <p className="article-content"><span className="first-letter">T</span>iếp thu tinh hoa nhân loại, giữ bản sắc: Con người Việt Nam hiện đại cần hội nhập quốc tế, làm chủ khoa học kỹ thuật, đồng thời có bản lĩnh văn hóa, không bị hòa tan. Đảng xác định xây dựng hệ giá trị con người Việt Nam trong thời kỳ mới.</p>
   ],
   images: [
-    Image2,
-    Image1,
-    Image3
+    Book6Image1,
+    Book6Image2,
+    Book6Image3
   ]
 };
 
