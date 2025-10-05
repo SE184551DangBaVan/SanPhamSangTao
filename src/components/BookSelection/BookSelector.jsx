@@ -1,6 +1,12 @@
 import "./BookSelector.css"
 import Bookshelf from "../../assets/minhbox/bookshelf4.png"
 import BeigeWall from "../../assets/minhbox/beige wall.png"
+
+import Cover1 from "../../assets/ho-chi-minh-portrait-lance-bourne.jpg";
+import Cover2 from "../../assets/SelectedWritingsOfHCM.jpg";
+import Cover3 from "../../assets/ho-chi-minh-portrait-lance-bourne.jpg";
+import Cover4 from "../../assets/SelectedWritingsOfHCM.jpg";
+
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 const BookSelector = ()=>{
@@ -8,20 +14,23 @@ const BookSelector = ()=>{
     const books = [
         {
             title: "The Great Gaslight",
-            description: "Did you just spill my tea?"
+            description: "Did you just spill my tea?",
+            cover: Cover1
         },
         {
             title: "Cow",
-            description: "Moo."
+            description: "Moo.",
+            cover: Cover2
         },
         {
-            title: "Unwritten Rule",
-            description: "Do not tell me to add more than 4 books. " +
-                "Unwritten Rule was written in this book."
+            title: "Unwritten Rule, The Fuck Do You Mean Unwrtten Rule",
+            description: [<><span>Do not tell me to add more than 4 books.<br/> Unwritten Rule was written in this book.<br/>  And I'm not telling, I AM COMMANDING IT</span></>],
+            cover: Cover3
         },
         {
             title: "Nuclear Code",
-            description: "https://www.youtube.com/watch?v=uNl6Sh01ZIU"
+            description: "https://www.youtube.com/watch?v=uNl6Sh01ZIU",
+            cover: Cover4
         }
     ];
 
@@ -36,7 +45,11 @@ const BookSelector = ()=>{
              style={{
                  backgroundImage: `url(${BeigeWall})`
              }}>
-            <div className="book-info">
+            <div className="book-info" style={{
+                "--book-cover": selectedBook
+                ? `url(${`${selectedBook.cover}`})`
+                : '',
+            }}>
                 {(selectedBook!=null) ?
                     (<>
                         <div className="book-title">

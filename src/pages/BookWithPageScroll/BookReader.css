@@ -125,37 +125,86 @@
 .tool-bar {
   position: fixed;
   z-index: 100;
-  top: 40%;
-  left: 20px;
-  width: 50px;
+  top: 50%;
+  left: 150px;
+  width: 120px;
   height: 200px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .tool-bar #magnify {
-  width: 50px;
-  height: 50px;
+  height: 80%;
   color: #555;
-  background-color: transparent;
-  border-radius: 50%;
+  transform: rotateZ(-45deg) translate(12px, -10px);
   outline: none;
-  border: 3px solid #555;
+  border: none;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
 }
 
-.tool-bar #magnify svg {
-  scale: 1.5;
+.tool-bar #magnify:hover {
+  cursor: none;
 }
 
-.tool-bar #magnify:hover {
-  width: 50px;
-  height: 50px;
-  cursor: none;
+.magnifier-wrapper {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.magnifying-glass {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #333;
+  background: radial-gradient(#fefefe57 40%, #ccccccd4);
+}
+
+.magnify-handle {
+  position: absolute;
+  z-index: -1;
+  width: 160px;
+  height: 30px;
+  top: calc(102%);
+  left: 69%;
+  background-color: rgb(92, 55, 13);
+  border: 3px solid #333;
+  border-radius: 0 24px 24px 0;
+  transform: rotate(45deg);
+}
+
+.magnifying-glass::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 15px;
+  top: 65%;
+  left: 65%;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  transform: rotate(-45deg);
+}
+
+.magnified-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform-origin: 0 0;
+}
+
+.book-clone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
 }
 
 /* .image-page {
