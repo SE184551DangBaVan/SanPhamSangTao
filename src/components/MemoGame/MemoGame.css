@@ -35,6 +35,7 @@
 }
 
 .reset-btn, .quiz-btn {
+    position: relative;
     padding: 8px 16px;
     background: #007bff;
     color: white;
@@ -44,6 +45,33 @@
     font-weight: bold;
     transition: background 0.2s;
 }
+
+
+.quiz-btn::after {
+    content: "Do quiz to get more Moves!";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: floatText 2.5s ease-in-out infinite;
+}
+
+@keyframes floatText {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -2px);
+    }
+}
+
 
 .reset-btn:hover, .quiz-btn:hover {
     background: #0056b3;
@@ -261,6 +289,8 @@
     cursor: pointer;
     transition: background 0.2s;
 }
+
+
 
 .submit-quiz-btn:hover:not(:disabled) {
     background: #38a169;
