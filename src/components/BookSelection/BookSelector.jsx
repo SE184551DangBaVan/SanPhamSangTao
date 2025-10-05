@@ -24,7 +24,8 @@ const BookSelector = ()=>{
         },
         {
             title: "Unwritten Rule, The Fuck Do You Mean Unwrtten Rule",
-            description: [<><span>Do not tell me to add more than 4 books.<br/> Unwritten Rule was written in this book.<br/>  And I'm not telling, I AM COMMANDING IT</span></>],
+            description: [<><span>Do not tell me to add more than 4 books.<br/> Unwritten Rule was written in this book.<br/>  And I'm not telling, I AM COMMANDING IT <br/> The only thing you need to command is me to unload these nuts on yo buttcheeks</span></>
+            ],
             cover: Cover3
         },
         {
