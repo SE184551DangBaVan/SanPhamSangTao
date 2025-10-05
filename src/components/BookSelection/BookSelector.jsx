@@ -5,6 +5,7 @@ import BeigeWall from "../../assets/minhbox/beige wall.png"
 import { allBooks } from "../../data/books.jsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import { PanToolAlt } from "@mui/icons-material";
 
 const BookSelector = ()=>{
     const navigate = useNavigate();
@@ -52,13 +53,13 @@ const BookSelector = ()=>{
                         <button className="read-button"
                             onClick={handleReadClick}
                             >
-                            Read
+                            Đọc
                         </button>
                     </>)
                     :
                     (
                         <>
-                        <p>Select a book</p>
+                        <p>Chọn một cuốn sách <PanToolAlt style={{rotate: '60deg'}} /> </p>
                         </>
                     )}
 
