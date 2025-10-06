@@ -92,6 +92,7 @@
 }
 
 .masthead {
+    margin-top: 10px;
     font-size: 48px;
     font-weight: 700;
     font-family: 'Times New Roman', Times, serif;
@@ -132,11 +133,11 @@
 }
 
 .tagline {
+    margin: 0 0 -15px 0;
     font-style: italic;
     color: var(--accent-color);
     font-size: 14px;
     letter-spacing: 1px;
-    margin-top: -5px;
 }
 
 .nav {

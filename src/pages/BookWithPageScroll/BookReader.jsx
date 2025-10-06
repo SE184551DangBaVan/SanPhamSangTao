@@ -90,10 +90,10 @@ export default function BookReader() {
 
       <div className="hand-canvas-book">
         <div className="tool-bar">
-          <button className={`magnifying-glass-toggle ${isMagnifyOn ? 'active' : ''} tool-set`} onClick={() => setIsMagnifyOn(!isMagnifyOn)}>
+          <button className={`magnifying-glass-toggle ${isMagnifyOn ? 'active' : ''} tool-set`} onClick={() => setIsMagnifyOn(!isMagnifyOn)} data-tooltip="Kính lúp (nếu chữ quá nhỏ)">
             <SearchOutlined />
           </button>
-          <button className={`speech-toggle ${isSpeechOn ? 'active' : ''} tool-set`} onClick={() => setIsSpeechOn(!isSpeechOn)}>
+          <button className={`speech-toggle ${isSpeechOn ? 'active' : ''} tool-set`} onClick={() => setIsSpeechOn(!isSpeechOn)} data-tooltip={`Đọc cho bạn ` /*(Chú ý âm lượng)*/ + `(Chưa triển khai)`}>
             <RecordVoiceOver />
           </button>
           {isMagnifyOn && <button id="magnify" onMouseDown={handleMouseDown}/>}

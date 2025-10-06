@@ -162,6 +162,45 @@
   border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
+.tool-bar .tool-set::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: var(--secondary-color);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Tooltip arrow */
+.tool-bar .tool-set::before {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Show tooltip on hover */
+.tool-bar .tool-set:hover::after,
+.tool-bar .tool-set:hover::before {
+  opacity: 1;
+}
+
 .tool-bar #magnify {
   position: absolute;
   height: 160px;
@@ -199,7 +238,7 @@
   z-index: -1;
   width: 160px;
   height: 30px;
-  top: calc(102%);
+  top: 102%;
   left: 69%;
   background-color: rgb(92, 55, 13);
   border: 3px solid #333;

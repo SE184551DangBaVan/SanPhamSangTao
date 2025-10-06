@@ -208,6 +208,7 @@
   position: absolute;
   z-index: -1;
   width: 75vmax;
+  min-height: 300px;
   background-color: white;
   color: var(--secondary-color);
   font-size: 18px;
@@ -220,6 +221,7 @@
   position: absolute;
   z-index: 1;
   width: 75vmax;
+  min-height: 400px;
   color: white;
   text-shadow: 2px 1px 1px #000000;
   background-color: transparent;
@@ -239,6 +241,7 @@
   position: absolute;
   z-index: 1;
   width: 75vmax;
+  min-height: 300px;
   color: white;
   text-shadow: 2px 1px 1px #000000;
   background-color: transparent;
@@ -247,9 +250,9 @@
   pointer-events: none;
   user-select: none;
   
-  mask-size: 80% 181%;
+  mask-size: 84% 182%;
   mask-repeat: no-repeat;
-  mask-position: 23.8rem -8.2em;
+  mask-position: 23rem -7.9em;
   opacity: 1;
   transition: opacity 0.4s ease;
 }
@@ -258,6 +261,7 @@
   position: absolute;
   z-index: 1;
   width: 75vmax;
+  min-height: 300px;
   color: white;
   text-shadow: 2px 1px 1px #000000;
   background-color: transparent;
@@ -266,9 +270,9 @@
   pointer-events: none;
   user-select: none;
   
-  mask-size: 80% 185%;
+  mask-size: 80% 180%;
   mask-repeat: no-repeat;
-  mask-position: -17.3rem -9.1em;
+  mask-position: -17.2rem -9.5em;
   opacity: 1;
   transition: opacity 0.4s ease;
 }
@@ -308,7 +312,7 @@
 }
 
 .historical-texts2-upperlayer .first-letter {
-  margin: 10px 0;
+  margin: 0 0 20px 0;
   padding-left: 50px;
 }
 
