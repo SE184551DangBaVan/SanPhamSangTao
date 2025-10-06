@@ -132,9 +132,9 @@ export default function HomePage() {
       <div className="historical-figure-block" style={{ opacity: `${show ? '1' : '0'}`}}>
         <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 1100
                                                     ? `url('${maskOne}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 1100 ? "scale(0.5) translateY(0)" : "scale(0.5) translateY(800px)"}}></div>
                                                     <span className='historical-texts1' 
-                                                    style={{transform: scrollHomePageOffset > 1000 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">1. Văn hóa – gốc của dân tộc</span><br/>
+                                                    style={{transform: scrollHomePageOffset > 1100 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">1. Văn hóa – gốc của dân tộc</span><br/>
 Văn hóa là sức sống tinh thần, phản ánh trí tuệ và tâm hồn Việt Nam.<br/>
 Khi đất nước được giải phóng, văn hóa nảy nở, trở thành nền tảng cho xã hội phát triển.<br/></span>
 <div className='historical-texts1-upperlayer' style={{maskImage: scrollHomePageOffset > 1100
@@ -144,9 +144,9 @@ Văn hóa là sức sống tinh thần, phản ánh trí tuệ và tâm hồn Vi
 Khi đất nước được giải phóng, văn hóa nảy nở, trở thành nền tảng cho xã hội phát triển.<br/></div>
         <div className="historical-figure2" style={{maskImage: scrollHomePageOffset > 1800
                                                     ? `url('${maskTwo}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset >  1800 ? "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)"}}></div>
                                                     <span className='historical-texts2'
-                                                    style={{transform: scrollHomePageOffset >  1700 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">2. Văn hóa – sức mạnh đổi thay</span><br/>
+                                                    style={{transform: scrollHomePageOffset >  1800 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">2. Văn hóa – sức mạnh đổi thay</span><br/>
 Văn hóa vừa là mục tiêu, vừa là động lực cách mạng.<br/>
 Nó khơi dậy lòng yêu nước, nuôi dưỡng nhân cách và khát vọng vươn lên của con người.<br/></span>
 <div className='historical-texts2-upperlayer' style={{maskImage: scrollHomePageOffset > 1800
@@ -156,14 +156,15 @@ Văn hóa vừa là mục tiêu, vừa là động lực cách mạng.<br/>
 Nó khơi dậy lòng yêu nước, nuôi dưỡng nhân cách và khát vọng vươn lên của con người.<br/></div>
         <div className="historical-figure3" style={{maskImage: scrollHomePageOffset > 2300
                                                     ? `url('${maskThree}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 2300 ?  "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)"}}></div>
                                                     <span className='historical-texts3'
-                                                    style={{transform: scrollHomePageOffset > 2200 ?  "translateY(0)" : "translateY(400px)"}}><span className="first-letter">3. Xây dựng văn hóa mới</span><br/>
+                                                    style={{transform: scrollHomePageOffset > 2300 ?  "translateY(0)" : "translateY(400px)"}}><span className="first-letter">3. Xây dựng văn hóa mới</span><br/>
 Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br/>
 Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br/></span>
 <div className='historical-texts3-upperlayer' style={{maskImage: scrollHomePageOffset > 2300
                                                     ? `url('${maskThree}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}><span className="first-letter">3. Xây dựng văn hóa mới</span><br/>
+                                                    : `linear-gradient(to right, transparent, transparent)`}}
+                                                    ><span className="first-letter">3. Xây dựng văn hóa mới</span><br/>
 Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br/>
 Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br/></div>
       </div>

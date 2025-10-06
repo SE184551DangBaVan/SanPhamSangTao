@@ -152,7 +152,6 @@
     background-size: contain;
     background-position: center;
     background-image: url('../../assets/HoChiMinhLockedIn.jpg');
-    transform: scale(0.5);
     
     mask-size: contain;
     mask-repeat: no-repeat;
@@ -161,7 +160,7 @@
     justify-content: center;
     align-items: center;
     pointer-events: none;
-    transition: left 0.4s ease;
+    transition: transform 0.4s ease;
 }
 .historical-figure2 {
     position: absolute;
@@ -173,14 +172,13 @@
     background-size: contain;
     background-position: center;
     background-image: url('../../assets/BTATN21214BacHo6.jpg');
-    transform: scale(0.8);
 
     mask-image: url('../../assets/black-ink-blots (2).gif');
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: 20% -20%;
     pointer-events: none;
-    transition: left 0.4s ease;
+    transition: transform 0.4s ease;
 }
 .historical-figure3 {
     position: absolute;
@@ -192,14 +190,13 @@
     background-size: contain;
     background-position: center;
     background-image: url('../../assets/ConfrenceImage.jpg');
-    transform: scale(0.8);
 
     mask-image: url('../../assets/black-ink-blots (3).gif');
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
     pointer-events: none;
-    transition: left 0.4s ease;
+    transition: transform 0.4s ease;
 }
 
 .historical-texts1,

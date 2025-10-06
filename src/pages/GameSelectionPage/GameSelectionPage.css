@@ -118,7 +118,7 @@
     0 92%,
     0 0
   );
-  animation: backglitch 50ms linear infinite;
+  animation: backglitch 20ms linear infinite;
 }
 
 .input-dist {

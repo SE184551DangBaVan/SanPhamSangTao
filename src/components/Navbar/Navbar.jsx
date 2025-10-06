@@ -49,6 +49,7 @@ export default function Navbar({selectVal}) {
   return (
     <div className="menu-container">
       <input
+        disabled={selected === "fi"}
         type="radio"
         id="f"
         name="a"
@@ -60,6 +61,7 @@ export default function Navbar({selectVal}) {
 
       
       <input
+        disabled={selected === "fi"}
         type="radio"
         id="fo"
         name="a"
@@ -73,11 +75,16 @@ export default function Navbar({selectVal}) {
         id="t"
         name="a"
         checked={selected === "t"}
-        onChange={() => handleSelect("t")}
+        onChange={() => handleSelect("t") }
+        onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "https://www.youtube.com/watch?v=8E940gAAxpo";
+                }}
       />
       <label htmlFor="t">Hồ Chí Minh</label>
 
       <input
+        disabled={selected === "fi"}
         type="radio"
         id="s"
         name="a"
