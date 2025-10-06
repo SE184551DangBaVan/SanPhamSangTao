@@ -17,7 +17,7 @@ export default function GameSelectionPage() {
                     navigate("/memory-card-quiz")}}>Quiz Thẻ Nhớ</button>
                 <button class="submit" onClick={(e) => {
                     e.preventDefault();
-                    window.location.href = "https://truongdaidise184543.github.io/MLN131_Game/";
+                    window.location.href = "https://nhatdang1102.github.io/QuizHCM202/";
                 }}>Chạy Né 2D</button>
               </div>
             </div>

@@ -184,7 +184,6 @@
   position: fixed;
   z-index: 100;
   pointer-events: none;
-  transition: all 0.25s ease;
 }
 
 .magnifying-glass {
