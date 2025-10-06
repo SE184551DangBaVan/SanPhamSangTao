@@ -49,7 +49,6 @@ export default function Navbar({selectVal}) {
   return (
     <div className="menu-container">
       <input
-        disabled={selected === "fi"}
         type="radio"
         id="f"
         name="a"
@@ -61,7 +60,7 @@ export default function Navbar({selectVal}) {
 
       
       <input
-        disabled={selected === "fi"}
+        className={`${selected === "fi" && 'disabled'}`}
         type="radio"
         id="fo"
         name="a"
@@ -84,7 +83,7 @@ export default function Navbar({selectVal}) {
       <label htmlFor="t">Hồ Chí Minh</label>
 
       <input
-        disabled={selected === "fi"}
+        className={`${selected === "fi" && 'disabled'}`}
         type="radio"
         id="s"
         name="a"
