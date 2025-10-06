@@ -278,10 +278,10 @@ const MemoGame = ({ pictures }) => {
         setShowAnswers(true);
 
         if (quizAnswer === currentQuiz.answer) {
-            setQuizFeedback(`Correct! You earned ${QUIZ_ADD_MOVE} moves!`);
+            setQuizFeedback(`Đúng! Bạn nhận được thêm ${QUIZ_ADD_MOVE} lượt!`);
             setAvailableMoves(prev => prev + QUIZ_ADD_MOVE);
         } else {
-            setQuizFeedback("Incorrect answer... You'll get it right next time!");
+            setQuizFeedback("Không sao cả, bạn sẽ đúng lần sau!");
         }
 
         setTimeout(() => {
@@ -418,11 +418,11 @@ const MemoGame = ({ pictures }) => {
         <div className="memory-game">
             <div className="game-header">
                 <div className="stats">
-                    <div>Score: {score}</div>
-                    <div>Total moves: {moves}</div>
-                    <div>Timer: {timer}</div>
-                    <div>Streak: {streak}</div>
-                    <div className={`available-moves ${isFlashing ? 'flash-red' : ''}`}>Available Moves: {availableMoves}</div>
+                    <div>Điểm: {score}</div>
+                    <div>Tổng số lật: {moves}</div>
+                    <div>Thời gian: {timer}</div>
+                    <div>Chuỗi: {streak}</div>
+                    <div className={`available-moves ${isFlashing ? 'flash-red' : ''}`}>Lượt còn lại: {availableMoves}</div>
                     <motion.button
                         whileHover={{scale: 1.08}}
                         whileTap={{scale: 0.95}}
@@ -439,7 +439,7 @@ const MemoGame = ({ pictures }) => {
                         transition={{type: "spring", stiffness: 300}}
 
                         onClick={initializeGame} className="reset-btn">
-                        New Game
+                        Chơi mới
                     </motion.button>
                 </div>
 
@@ -449,7 +449,7 @@ const MemoGame = ({ pictures }) => {
 
             {isGameComplete && (
                 <div className="victory-message">
-                    You completed the game in {moves} moves.
+                    Bạn đã hoàn thành game với {moves} lần lật thẻ.
                 </div>
             )}
 
@@ -485,10 +485,10 @@ const MemoGame = ({ pictures }) => {
                             onClick={handleQuizSubmit}
                             disabled={!quizAnswer || quizSubmitDisable}
                         >
-                            Submit
+                            Chọn
                         </button>
                         {quizFeedback && (
-                            <p className={`quiz-feedback ${quizFeedback.includes('Correct') ? 'correct' : 'wrong'}`}>
+                            <p className={`quiz-feedback ${quizFeedback.includes('Đúng') ? 'correct' : 'wrong'}`}>
                                 {quizFeedback}
                             </p>
                         )}
