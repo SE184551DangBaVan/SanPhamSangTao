@@ -47,7 +47,7 @@ export default function Navbar({selectVal}) {
   };
 
   return (
-    <div className="menu-container">
+    <div className="menu-container" id="shelf">
       <input
         type="radio"
         id="f"
@@ -103,6 +103,9 @@ export default function Navbar({selectVal}) {
       <label htmlFor="fi">Trò chơi</label>
 
       <div className="menu-border"></div>
+      <div class="top" />
+      <div class="front" />
+      <div class="shadow" />
     </div>
   );
 }

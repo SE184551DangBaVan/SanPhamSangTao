@@ -58,16 +58,26 @@ export default function HomePage() {
       <DynamicBackground pageScroll={scrollHomePageOffset}/>
       <div className="hero-container">
         <div className="hero-content">
+          <div className='film-container'>
+            <div className="screen">
+              <div className="shine"></div>
+            </div>
+            <div className='film'>
+              <div className="effect">
+                <div className="grain"></div>
+              </div>
+            </div>
+          </div>
           <div className="hero-header">
-            <div className="great-leader-image"/>
-            <div className="header-title">
-              Tư Tưởng <span>Hồ Chí Minh</span>
+            <div className="great-leader-image" style={{ transform: `translateY(${-scrollHomePageOffset}px)` }}/>
+            <div className="header-title" style={{ transform: `translateY(${-scrollHomePageOffset}px)` }}>
+              Công Cuộc <span>Đổi Mới</span>
             </div>
           </div>
 
           <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} 
-                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '100vh'})`}}>
-            <div className="stuck-grid">
+                          style={{position: `fixed`}}>
+            {/* <div className="stuck-grid">
               <div className="grid-item">Tư Tưởng</div>
               <div className="grid-item"></div>
               <div className="grid-item">Xã Hội</div>
@@ -119,11 +129,11 @@ export default function HomePage() {
               <div className="grid-item">Đoàn Kết</div>
               <div className="grid-item">Ý Chí</div>
             </div>
-            <div className={`history-timeline ${show ? 'show' : ''}`} style={{}}>
+            <div className={`history-timeline ${show ? 'show' : ''}`} >
               <div className="history-timeline-container">
                 <PhotoGallery />
               </div>
-            </div>
+            </div> */}
             
           </div>
         </div>

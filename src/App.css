@@ -12,7 +12,7 @@
   padding: 0;
   width: 100%;
   height: 100vh;
-  background-color: #efecdb;
+  background-color: transparent;
   
   --background-color: #333;
   --primary-color: #f8f5e6;
@@ -65,7 +65,6 @@
   position: relative;
   top: 0;
   left: 0;
-  background-color: #eeeeee;
 }
 
 .app:has(.book-container) {
