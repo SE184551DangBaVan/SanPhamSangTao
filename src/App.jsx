@@ -40,7 +40,7 @@ function App() {
                 path="/game-selection"
                 element={
                   <>
-                    <Navbar  selectVal={"fi"}/>
+                    {/* <Navbar  selectVal={"fi"}/> */}
                     <GameSelectionPage />
                   </>
                 }

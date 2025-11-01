@@ -59,7 +59,7 @@
 
 .book-selection .book {
     box-sizing: border-box;
-    top: 15.8vh;
+    top: 15vh;
     left: 1.8vw;
 
     max-width: 2.8rem;
@@ -84,31 +84,41 @@
     line-height: 1.2;
     border: 2px solid rgba(139, 115, 85, 0.3);
     padding: 0;
-    margin: 0;
-    background: linear-gradient(145deg,
-    #d39f6d,
-    #cd9f74,
-    #aa745b,
-    #916241
-    );
+    margin: 0 0 -50px 0;
+    border-radius: 5px 5px 2px 6px;
+    background-image: linear-gradient(to right,#960915 48px, #480c0c 50px, transparent 50px);  
+   
     box-shadow:
             0 8px 16px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255,255,255,0.2),
             inset 0 -1px 0 rgba(0,0,0,0.2);
     user-select: none;
-    overflow: hidden;
 }
 
 .book-selection .book::after {
     content: '';
     position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 7px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 3px;
     pointer-events: none;
+}
+
+.book-selection .book::before {
+  content: '';
+  position: absolute;
+  height: 5px;
+  width: 42px; 
+  bottom: 0px;
+  left: 1px;
+  background: white;
+  border-radius: 32px 4px 4px 32px;
+  box-shadow: inset 4px 6px 0px 0px #E4E0CE;  
+  background-image: linear-gradient(to bottom, transparent 6px, #E4E0CE 8px, transparent 8px, transparent 12px, #E4E0CE 12px, transparent 14px, transparent 18px,#E4E0CE 18px, transparent 20px, transparent 24px, #E4E0CE 24px, transparent 26px, transparent 30px, #E4E0CE 30px, transparent 32px, transparent 36px, #E4E0CE 36px, transparent 38px, transparent 42px, #E4E0CE 42px, transparent 44px, transparent 48px, #E4E0CE 48px, transparent 50px);     
+
 }
 
 .book-selection .book:hover {

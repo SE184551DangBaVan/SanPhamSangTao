@@ -58,16 +58,26 @@ export default function HomePage() {
       <DynamicBackground pageScroll={scrollHomePageOffset}/>
       <div className="hero-container">
         <div className="hero-content">
+          <div className='film-container'>
+            <div className="screen">
+              <div className="shine"></div>
+            </div>
+            <div className='film'>
+              <div className="effect">
+                <div className="grain"></div>
+              </div>
+            </div>
+          </div>
           <div className="hero-header">
-            <div className="great-leader-image"/>
-            <div className="header-title">
-              Tư Tưởng <span>Hồ Chí Minh</span>
+            <div className="great-leader-image" style={{ transform: `translateY(${-scrollHomePageOffset}px)` }}/>
+            <div className="header-title" style={{ transform: `translateY(${-scrollHomePageOffset}px)` }}>
+              Công Cuộc <span>Đổi Mới</span>
             </div>
           </div>
 
           <div id="hero" className={`hero-paragraph ${retract && !show ? 'hidden':''}`} 
-                          style={{position: `fixed`, transform:  `translateY(${show ? '0' : '100vh'})`}}>
-            <div className="stuck-grid">
+                          style={{position: `fixed`}}>
+            {/* <div className="stuck-grid">
               <div className="grid-item">Tư Tưởng</div>
               <div className="grid-item"></div>
               <div className="grid-item">Xã Hội</div>
@@ -119,11 +129,11 @@ export default function HomePage() {
               <div className="grid-item">Đoàn Kết</div>
               <div className="grid-item">Ý Chí</div>
             </div>
-            <div className={`history-timeline ${show ? 'show' : ''}`} style={{}}>
+            <div className={`history-timeline ${show ? 'show' : ''}`} >
               <div className="history-timeline-container">
                 <PhotoGallery />
               </div>
-            </div>
+            </div> */}
             
           </div>
         </div>
@@ -132,88 +142,41 @@ export default function HomePage() {
       <div className="historical-figure-block" style={{ opacity: `${show ? '1' : '0'}`}}>
         <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 1100
                                                     ? `url('${maskOne}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 1100 ? "scale(0.5) translateY(0)" : "scale(0.5) translateY(800px)"}}></div>
                                                     <span className='historical-texts1' 
-                                                    style={{transform: scrollHomePageOffset > 1000 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">1. Nhận thức chung về văn hóa</span><br/>
-
-Định nghĩa văn hóa: Văn hóa là toàn bộ những sáng tạo và phát minh của loài người (ngôn ngữ, chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật, công cụ sinh hoạt…), nhằm đáp ứng nhu cầu sinh tồn và phát triển.<br/>
-
-Quan hệ của văn hóa với các lĩnh vực khác:<br/>
-
-Chính trị: Chính trị giải phóng thì văn hóa mới được giải phóng; chính trị mở đường cho văn hóa phát triển.<br/>
-
-Kinh tế: Kinh tế là nền tảng vật chất để xây dựng và phát triển văn hóa.<br/>
-
-Xã hội: Giải phóng xã hội tạo điều kiện cho văn hóa phát triển.<br/>
-
-Bản sắc dân tộc và tiếp thu tinh hoa nhân loại: Văn hóa dân tộc có giá trị to lớn, vừa giữ gìn truyền thống vừa tiếp thu văn hóa tiến bộ của nhân loại.</span>
+                                                    style={{transform: scrollHomePageOffset > 1100 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">1. Văn hóa – gốc của dân tộc</span><br/>
+Văn hóa là sức sống tinh thần, phản ánh trí tuệ và tâm hồn Việt Nam.<br/>
+Khi đất nước được giải phóng, văn hóa nảy nở, trở thành nền tảng cho xã hội phát triển.<br/></span>
 <div className='historical-texts1-upperlayer' style={{maskImage: scrollHomePageOffset > 1100
                                                     ? `url('${maskOne}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}><span className="first-letter">1. Nhận thức chung về văn hóa</span><br/>
-
-Định nghĩa văn hóa: Văn hóa là toàn bộ những sáng tạo và phát minh của loài người (ngôn ngữ, chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật, công cụ sinh hoạt…), nhằm đáp ứng nhu cầu sinh tồn và phát triển.<br/>
-
-Quan hệ của văn hóa với các lĩnh vực khác:<br/>
-
-Chính trị: Chính trị giải phóng thì văn hóa mới được giải phóng; chính trị mở đường cho văn hóa phát triển.<br/>
-
-Kinh tế: Kinh tế là nền tảng vật chất để xây dựng và phát triển văn hóa.<br/>
-
-Xã hội: Giải phóng xã hội tạo điều kiện cho văn hóa phát triển.<br/>
-
-Bản sắc dân tộc và tiếp thu tinh hoa nhân loại: Văn hóa dân tộc có giá trị to lớn, vừa giữ gìn truyền thống vừa tiếp thu văn hóa tiến bộ của nhân loại.</div>
+                                                    : `linear-gradient(to right, transparent, transparent)`}}><span className="first-letter">1. Văn hóa – gốc của dân tộc</span><br/>
+Văn hóa là sức sống tinh thần, phản ánh trí tuệ và tâm hồn Việt Nam.<br/>
+Khi đất nước được giải phóng, văn hóa nảy nở, trở thành nền tảng cho xã hội phát triển.<br/></div>
         <div className="historical-figure2" style={{maskImage: scrollHomePageOffset > 1800
                                                     ? `url('${maskTwo}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset >  1800 ? "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)"}}></div>
                                                     <span className='historical-texts2'
-                                                    style={{transform: scrollHomePageOffset >  1700 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">2. Vai trò của văn hóa</span><br/>
-
-Mục tiêu và động lực của cách mạng: Văn hóa vừa là mục tiêu cần đạt tới, vừa là động lực thúc đẩy sự nghiệp cách mạng.<br/>
-
-Văn hóa là một mặt trận: Đấu tranh trên lĩnh vực văn hóa - tư tưởng, phản ánh tính chất quyết liệt, độc lập và gắn bó với chính trị, kinh tế, xã hội.<br/>
-
-Phục vụ quần chúng nhân dân: Mọi hoạt động văn hóa phải gắn bó với đời sống thực tiễn, phản ánh tư tưởng và khát vọng của nhân dân, vì nhân dân và do nhân dân.<br/></span>
+                                                    style={{transform: scrollHomePageOffset >  1800 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">2. Văn hóa – sức mạnh đổi thay</span><br/>
+Văn hóa vừa là mục tiêu, vừa là động lực cách mạng.<br/>
+Nó khơi dậy lòng yêu nước, nuôi dưỡng nhân cách và khát vọng vươn lên của con người.<br/></span>
 <div className='historical-texts2-upperlayer' style={{maskImage: scrollHomePageOffset > 1800
                                                     ? `url('${maskTwo}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}><span className="first-letter">2. Vai trò của văn hóa</span><br/>
-
-Mục tiêu và động lực của cách mạng: Văn hóa vừa là mục tiêu cần đạt tới, vừa là động lực thúc đẩy sự nghiệp cách mạng.<br/>
-
-Văn hóa là một mặt trận: Đấu tranh trên lĩnh vực văn hóa - tư tưởng, phản ánh tính chất quyết liệt, độc lập và gắn bó với chính trị, kinh tế, xã hội.<br/>
-
-Phục vụ quần chúng nhân dân: Mọi hoạt động văn hóa phải gắn bó với đời sống thực tiễn, phản ánh tư tưởng và khát vọng của nhân dân, vì nhân dân và do nhân dân.<br/></div>
+                                                    : `linear-gradient(to right, transparent, transparent)`}}><span className="first-letter">2. Văn hóa – sức mạnh đổi thay</span><br/>
+Văn hóa vừa là mục tiêu, vừa là động lực cách mạng.<br/>
+Nó khơi dậy lòng yêu nước, nuôi dưỡng nhân cách và khát vọng vươn lên của con người.<br/></div>
         <div className="historical-figure3" style={{maskImage: scrollHomePageOffset > 2300
                                                     ? `url('${maskThree}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}></div>
+                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 2300 ?  "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)"}}></div>
                                                     <span className='historical-texts3'
-                                                    style={{transform: scrollHomePageOffset > 2200 ?  "translateY(0)" : "translateY(400px)"}}><span className="first-letter">3. Quan điểm về xây dựng nền văn hóa mới</span><br/>
-
-Trước Cách mạng Tháng Tám 1945: Xây dựng nền văn hóa dân tộc với năm nội dung cơ bản.<br/>
-
-Kháng chiến chống Pháp: Hình thành nền văn hóa dân tộc, khoa học, đại chúng.<br/>
-
-Thời kỳ xây dựng CNXH: Phát triển nền văn hóa có nội dung xã hội chủ nghĩa và tính dân tộc.<br/>
-
-Nền văn hóa mới Việt Nam:<br/>
-
-Toàn diện, giữ gìn cốt cách văn hóa dân tộc.<br/>
-
-Bảo đảm tính khoa học, tiến bộ và nhân văn.</span>
+                                                    style={{transform: scrollHomePageOffset > 2300 ?  "translateY(0)" : "translateY(400px)"}}><span className="first-letter">3. Xây dựng văn hóa mới</span><br/>
+Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br/>
+Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br/></span>
 <div className='historical-texts3-upperlayer' style={{maskImage: scrollHomePageOffset > 2300
                                                     ? `url('${maskThree}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`}}><span className="first-letter">3. Quan điểm về xây dựng nền văn hóa mới</span><br/>
-
-Trước Cách mạng Tháng Tám 1945: Xây dựng nền văn hóa dân tộc với năm nội dung cơ bản.<br/>
-
-Kháng chiến chống Pháp: Hình thành nền văn hóa dân tộc, khoa học, đại chúng.<br/>
-
-Thời kỳ xây dựng CNXH: Phát triển nền văn hóa có nội dung xã hội chủ nghĩa và tính dân tộc.<br/>
-
-Nền văn hóa mới Việt Nam:<br/>
-
-Toàn diện, giữ gìn cốt cách văn hóa dân tộc.<br/>
-
-Bảo đảm tính khoa học, tiến bộ và nhân văn.</div>
+                                                    : `linear-gradient(to right, transparent, transparent)`}}
+                                                    ><span className="first-letter">3. Xây dựng văn hóa mới</span><br/>
+Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br/>
+Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br/></div>
       </div>
       <div className="book-selection-block" onMouseEnter={() => setHandsOff(true)} onMouseLeave={() => setHandsOff(false)}>
         <BookSelector/>
