@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const ContentDisplay = () => {
 
+
     const contentPageToggleAction= "play reset play reset"
 
     let contentPage1 = [];
@@ -31,44 +32,76 @@ const ContentDisplay = () => {
             }
         })
 
-        textSplitTitlePage1 = SplitText.create("#content-page-1 h2", {
+        textSplitTitlePage1 = new SplitText("#content-page-1 h2", {
             type: "chars, lines",
         })
 
         timeline1.from(textSplitTitlePage1.chars, {
-            yPercent: "random([50,-50])",
+            y: -100,
             opacity: 0,
             stagger: {
-                amount: 0.06,
-                from: "random",
+                amount: 0.5,
+                from: "center",
             },
-            duration: 0.9,
+            duration: 0.7,
+            ease: "bounce.out",
         })
             .to("#content-page-1 h2", {
                 fontSize: "2.3rem",
                 top: "2rem",
                 left: "2.5rem",
+                x:0,
+                y:0,
                 xPercent: 0,
                 yPercent: 0,
-                duration: 0.6,
-        }, "+=1.4")
-        contentPage1.forEach((p)=>{
+                duration: 0.8,
+            }, "+=0.8")
+            .to("#content-page-1 h2 span", {
+                display: "inline",
+                duration: 0.8,
+            }, "<");
+
+        contentPage1.forEach((p, index)=>{
             let textSplit = SplitText.create(p, {
                 type: "words, lines",
             })
             timeline1.from(textSplit.words,{
                 yPercent: "random([25,-25])",
-                duration: 0.3,
+                duration: 0.4,
                 opacity: 0,
-                stagger: 0.05,
-            })
+                stagger: 0.08,
+            }, index === 0 ? "+=0.3" : "+=0.5")
             timeline1.to(p.querySelectorAll("span"), {
-                duration: 0.3,
-                color: "red",
+                duration: 0.5,
+                color: "#FFA500",
                 fontWeight: "bold",
-                fontSize: "+=0.2rem"
-            })
+                fontSize: "+=0.1rem",
+                ease: "power2.out"
+            }, "+=0.15")
         })
+
+        timeline1.from(".image-container",{
+            opacity: 0,
+            rotate: 360,
+            x: 500,
+            duration: 0.8,
+            ease: "power2.out"
+        },"-=0.8")
+
+        timeline1.to(".image-container",{
+            maskSize: 500,
+            duration: 1.2,
+            ease: "power2.inOut"
+        }, "+=0.15")
+        const tsDescPage1 = new SplitText("#content-page-1 .image-description",{
+            type: "lines",
+        })
+        timeline1.from(tsDescPage1.lines, {
+            opacity: 0,
+            yPercent: 100,
+            ease: "power2.out",
+            stagger: 0.15,
+        }, "-=0.3")
 
 
     }, [])
@@ -82,10 +115,14 @@ const ContentDisplay = () => {
                 <div className="board-frame">
                     <h2 style={{
                         position:"absolute",
-                        top: "calc(50% - 2rem)",
-                        left: "calc(8rem)",
+                        top: "calc(50%)",
+                        left: "calc(50%)",
+                        transform: "translate(-50%, -50%)",
+                        textWrap: "nowrap",
+                        width: "auto",
                         fontSize:"4rem",
-                    }}> Bối cảnh trước Đổi mới (1975 – 1986)</h2>
+                    }}> Bối cảnh trước Đổi mới (1975 – 1986)
+                    </h2>
 
                     <p
                         style={{
@@ -104,6 +141,13 @@ const ContentDisplay = () => {
                     <p>Quan hệ quốc tế bị <span><b>bao vây, cấm vận.</b></span></p>
 
                     <p>Đời sống nhân dân <span><b>khó khăn.</b></span></p>
+
+                    <div className="content-visual">
+                        <div className="image-container">
+                            <img src={boiCanhTruocDoiMoi} alt="boi-canh-truoc-doi-moi"/>
+                        </div>
+                        <p className={"image-description"}>Trưng bày "Cuộc sống Hà Nội thời bao cấp" (1975-1986)</p>
+                    </div>
                 </div>
             </div>
 

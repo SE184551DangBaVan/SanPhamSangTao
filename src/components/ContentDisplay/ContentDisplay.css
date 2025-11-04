@@ -3,6 +3,7 @@
     width: 100%;
     position: relative;
     cursor: default;
+    color: #FFFFE0;
 }
 
 .content-display h2, .content-display p{
@@ -35,6 +36,42 @@
     left: 2.5%;
     top: 6.5%;
     height:83%;
-    width: 83%;
-        /*background-color: rgba(255, 0, 0, 0.1);*/
+    width: 74%;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+#content-page-1 .content-visual{
+    max-width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+#content-page-1 .image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    mask-image: url("/star-mask.png");
+    mask-repeat: no-repeat;
+    mask-size: 35%;
+    mask-position: center;
+}
+
+.image-container img{
+    width: 100%;
+    height: 100%;
+}
+
+#content-page-1 .image-description{
+    font-size: 1.4rem;
+    text-wrap: wrap;
+    text-align: center;
 }
