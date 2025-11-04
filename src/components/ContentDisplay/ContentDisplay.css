@@ -1,0 +1,40 @@
+.content-display{
+    height:auto;
+    width: 100%;
+    position: relative;
+    cursor: default;
+}
+
+.content-display h2, .content-display p{
+    z-index: 201;
+}
+
+.content-display h2{
+    font-size: 2.3rem;
+    text-align: left;
+    opacity: 1;
+}
+
+.content-display p{
+    text-align: left;
+    font-size: 1.5rem;
+    margin: 0.6rem 0;
+
+    /*opacity:0;*/
+}
+
+.content-page{
+    height:100vh;
+    position: relative;
+}
+
+.board-frame{
+    overflow: hidden;
+    padding: 1rem 2.5rem;
+    position: absolute;
+    left: 2.5%;
+    top: 6.5%;
+    height:83%;
+    width: 83%;
+        /*background-color: rgba(255, 0, 0, 0.1);*/
+}

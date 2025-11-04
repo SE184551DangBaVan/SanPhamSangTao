@@ -10,6 +10,7 @@ import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 import BookSelector from "../../components/BookSelection/BookSelector.jsx";
 import Hand from '../../components/Handy/Hand.jsx';
 import { ArrowUpward, Translate } from '@mui/icons-material';
+import ContentDisplay from "../../components/ContentDisplay/ContentDisplay.jsx";
 
 export default function HomePage() {
   const [scrollHomePageOffset, setScrollHomePageOffset] = useState(0);
@@ -178,10 +179,16 @@ Hướng tới con người toàn diện – có đức, có tài, yêu nước 
 Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br/>
 Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br/></div>
       </div>
+
+        <div className="give-me-some-space">
+            <ContentDisplay/>
+        </div>
+
       <div className="book-selection-block" onMouseEnter={() => setHandsOff(true)} onMouseLeave={() => setHandsOff(false)}>
         <BookSelector/>
         <Hand toggle={handsOff} />
       </div>
+
 
       <div className="home-page-progress-indicator">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`mouse ${scrollHomePageOffset != 0 && scrollHomePageOffset + 800 >= document.documentElement.scrollHeight && 'end'}`}>

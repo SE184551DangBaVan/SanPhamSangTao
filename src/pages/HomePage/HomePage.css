@@ -804,6 +804,18 @@
     box-shadow: 0 -20px 0px #000000;
 }
 
+.give-me-some-space {
+    /*background-color: rgba(255, 255, 255, 0.2);*/
+    margin-top: 300vh;
+    position: relative;
+    cursor: none;
+    z-index: 100;
+    width: 100%;
+    height: auto;
+}
+
+
+
 .book-selection-block::before {
   content: '';
     position: absolute;
