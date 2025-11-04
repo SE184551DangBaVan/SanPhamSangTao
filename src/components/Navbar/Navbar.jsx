@@ -3,6 +3,7 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import {useNavigate} from "react-router-dom";
+import { HomeRounded, SportsEsportsRounded, TimelineRounded, TvRounded, YouTube } from "@mui/icons-material";
 
 export default function Navbar({selectVal}) {
   const navigate = useNavigate();
@@ -21,14 +22,11 @@ export default function Navbar({selectVal}) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollAtTop < 200 && selected!="f" && selected!="fi") {
+      if (scrollAtTop < 200 && selected!="f" && selected!="fi" && selected!="s") {
         setSelected("f");
       }
 
-      if (scrollAtTop > 450 && scrollAtTop < 3500)
-        setSelected("fo");
-
-      if (scrollAtTop > 3500 && scrollAtTop < 4500)
+      if (scrollAtTop > 3900 && selected!="s")
         setSelected("s");
     };
       
@@ -47,7 +45,7 @@ export default function Navbar({selectVal}) {
   };
 
   return (
-    <div className="menu-container" id="shelf">
+    <div className="menu-container" id="shelf" style={{bottom: `${scrollAtTop > 750 ? '10px' : '20px' }`}}>
       <input
         type="radio"
         id="f"
@@ -57,7 +55,6 @@ export default function Navbar({selectVal}) {
         onClick={() => navigate("/")}
       />
       <label htmlFor="f">Trang chủ</label>
-
       
       <input
         className={`${selected === "fi" && 'disabled'}`}
@@ -65,7 +62,7 @@ export default function Navbar({selectVal}) {
         id="fo"
         name="a"
         checked={selected === "fo"}
-        onChange={() => { handleSelect("fo"); handleScrollTo(1200); }}
+        onChange={() => { handleSelect("fo"); }}
       />
       <label htmlFor="fo">Tư tưởng Về VH</label>
 
@@ -101,8 +98,15 @@ export default function Navbar({selectVal}) {
         onClick={() => navigate("/game-selection")}
       />
       <label htmlFor="fi">Trò chơi</label>
-
+      
       <div className="menu-border"></div>
+      <div className="nav-button-container">
+        <button class={`nav-button ${selected === "f" ? 'selected' : ''}`} onClick={() => {handleSelect("f"); navigate("/"); window.scrollTo({ top: 0, left: 0, behavior: "smooth" });}}> <HomeRounded /> </button>
+        <button class={`nav-button ${selected === "fo" ? 'selected' : ''}`} onClick={() => {handleSelect("fo"); navigate("/"); /*handleScrollTo(1200);*/}}><TimelineRounded /></button>
+        <button class={`nav-button`}><YouTube /></button>
+        <button class={`nav-button ${selected === "s" ? 'selected' : ''}`} onClick={() => {handleSelect("s"); handleScrollTo(3900);}}><TvRounded /></button>
+        <button class={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}}><SportsEsportsRounded/></button>
+      </div>
       <div class="top" />
       <div class="front" />
       <div class="shadow" />

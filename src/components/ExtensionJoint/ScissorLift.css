@@ -1,0 +1,139 @@
+.scissor-wrap {
+  --bar-width: 10px;
+  --bar-length: 80px;
+  --gap-min: 100px;
+  --gap-max: 280px;
+  --t: 0;
+  --speed: 0.3s;
+  width: 100px;
+  margin: 10px auto;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+  color: #222;
+  pointer-events: none;
+}
+
+.scissor-stage {
+  position: relative;
+  width: 100%;
+  bottom: calc( (var(--gap-max) - var(--gap-min)) * var(--t) + var(--gap-min) - 280px );
+  height: calc( (var(--gap-max) - var(--gap-min)) * var(--t) + var(--gap-min) + 120px );
+  min-height: 400px;
+  background: transparent;
+  border-radius: 12px;
+  box-sizing: border-box;
+  transition: bottom 0.4s ease;
+}
+
+/* scissor group positioning */
+.scissor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: calc( (var(--gap-max) - var(--gap-min)) * var(--t) + var(--gap-min) );
+  width: 300px;
+  display: grid;
+  grid-auto-rows: 1fr;
+  place-items: center;
+  gap: 0;
+  /* smooth property changes */
+  transition: height var(--speed) ease;
+}
+
+/* each row is an X (two bars crossing) */
+.scissor-row {
+  --i: 0;
+  position: relative;
+  height: calc( (var(--gap-max) - var(--gap-min)) * var(--t) / (var(--links) - 0.0001) + (var(--gap-min) / var(--links)) );
+  display: block;
+  transform-origin: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: height var(--speed) ease;
+}
+
+/* bar styling */
+.bar {
+  --angle: calc( (1 - var(--t)) * 12deg + var(--t) * 40deg ); /* angle interpolation */
+  position: absolute;
+  width: var(--bar-length);
+  height: var(--bar-width);
+  background: linear-gradient(90deg,#d9dbe2,#bfc7d6);
+  border-radius: 4px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  transform-origin: center center;
+  transition: transform var(--speed) ease, left var(--speed) ease, top var(--speed) ease, background var(--speed) ease;
+  will-change: transform;
+}
+
+/* left bar slopes down-right, rotate positive */
+.bar.left {
+  transform: rotate(calc(var(--angle) * 1)) translateY(-15px) translateX(-5px);
+  transform-origin: 20% 50%;
+  /* slight offset to create pivot spacing */
+}
+
+/* right bar slopes down-left, rotate negative */
+.bar.right {
+  transform: rotate(calc(var(--angle) * -1)) translateY(-15px) translateX(5px);
+  transform-origin: 80% 50%;
+}
+
+/* pivot circle in the center of each X */
+.pivot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #ccc);
+  border: 2px solid #9aa3b3;
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* spacing/perspective tweaks: stagger each row a little so it reads like mechanical */
+.scissor-row:nth-child(odd) .bar {
+  background: linear-gradient(90deg,#e6e9f0,#cfd8e6);
+}
+.scissor-row:nth-child(even) .bar {
+  background: linear-gradient(90deg,#d7dbe8,#c1cbe0);
+}
+
+/* top/bottom platforms that the scissor lifts */
+.platform {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 28px;
+  background: linear-gradient(180deg,#efefef,#dcdfe8);
+  border: 0.8px solid rgb(160, 181, 200);
+  border-radius: 6px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.06), 0 6px 18px rgba(0,0,0,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#444;
+  font-weight:700;
+}
+
+/* top platform lifts up as t grows */
+.platform.top {
+  top: calc(40% - 25px - ( (var(--gap-max) - var(--gap-min)) * var(--t) / 2 ));
+  transition: top var(--speed) ease;
+}
+
+/* bottom platform moves down as t grows */
+.platform.bottom {
+  box-shadow: 0 -12px 5px #c8c8c8 inset;
+  top: calc(60% + ( (var(--gap-max) - var(--gap-min)) * var(--t) / 2 ));
+  transition: top var(--speed) ease;
+}
+
+/* Accessibility / small screens */
+@media (max-width: 520px) {
+  .scissor-wrap { width: 95%; }
+  :root { --bar-length: 120px; }
+}

@@ -11,6 +11,7 @@ import BookSelector from "../../components/BookSelection/BookSelector.jsx";
 import Hand from '../../components/Handy/Hand.jsx';
 import { ArrowUpward, Translate } from '@mui/icons-material';
 import ContentDisplay from "../../components/ContentDisplay/ContentDisplay.jsx";
+import ScissorLift from '../../components/ExtensionJoint/ScissorLift.jsx';
 
 export default function HomePage() {
   const [scrollHomePageOffset, setScrollHomePageOffset] = useState(0);
@@ -59,19 +60,33 @@ export default function HomePage() {
       <DynamicBackground pageScroll={scrollHomePageOffset}/>
       <div className="hero-container">
         <div className="hero-content">
-          <div className='film-container'>
+          <div className='extended-joint-container'>
+            <ScissorLift toggled={scrollHomePageOffset > 800 ? 0 : 1}/>
+          </div>
+          <div className='extended-joint-container2'>
+            <ScissorLift toggled={scrollHomePageOffset > 800 ? 0 : 1}/>
+          </div>
+          <div className='film-container' style={{transform: `perspective(0px) rotateZ(-1deg) rotateY(0.002deg) translateX(${scrollHomePageOffset > 800 ? '0': '200px'})`}}>
             <div className="screen">
               <div className="shine"></div>
+              {/* <div className="gibberish" aria-hidden>
+                <span> - --- ------ -- - -- - ---- - - ------ -- - - -- </span>
+                <span> -- ------- --- - -- ----- - --- - - ------------ </span>
+                <span> --- ------ -- --- ------- --------- -- - - ----- </span>
+                <span> ---- ----- -- - --- ------ - --- ---- - -------- </span>
+                <span> ----- ------- - - --- - ----- -- - --- - ----- - </span>
+                <span> ------ -- - -- - ---- - - ---------- -- - - ---- </span>
+              </div> */}
             </div>
-            <div className='film'>
+            <div className='film' style={{transform: `translateX(${scrollHomePageOffset > 800 ? '0': '200px'})`}}>
               <div className="effect">
                 <div className="grain"></div>
               </div>
             </div>
           </div>
-          <div className="hero-header">
+          <div className="hero-header" style={{transform: `perspective(0px) rotateZ(-1deg) rotateY(0.002deg) translateX(${scrollHomePageOffset > 800 ? '0': '200px'})`}}>
             <div className="great-leader-image" style={{ transform: `translateY(${-scrollHomePageOffset}px)` }}/>
-            <div className="header-title" style={{ transform: `translateY(${-scrollHomePageOffset}px)` }}>
+            <div className="header-title" style={{ transform: `translateY(${-scrollHomePageOffset}px) rotateZ(-1deg)` }}>
               Công Cuộc <span>Đổi Mới</span>
             </div>
           </div>
