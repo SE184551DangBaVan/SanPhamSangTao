@@ -907,10 +907,10 @@
 
 .historical-figure-block {
     position: fixed;
-    z-index: 99;
+    z-index: 101;
     top: calc(6%);
     right: calc(5% - 40px);
-    width: 30%;
+    width: 24%;
     height: 700px;
     display: flex;
     justify-content: center;
@@ -920,19 +920,20 @@
     border: 10px solid #866c45;
     border-radius: 8px;
     overflow: hidden;
-    transition: all 0.2s ease-in;
+    transition: all 2s ease-in;
     animation: informative-pop-in 1s forwards;
 }
 
 .historical-figure-block.hidden {
   animation: informative-pop-out 1s forwards;
+    transition: all 0.2s ease-in;
 }
 
 @keyframes informative-pop-in {
-  0% { right: -30%; }
-  20% { right: calc(5% - 30px); }
-  80% { right: calc(5% - 40px); }
-  100% { right: calc(5% - 40px); }
+  0% { right: -30%; scale: 0.98;}
+  20% { right: calc(5% - 30px); scale: 0.98;}
+  80% { right: calc(5% - 40px); scale: 1;}
+  100% { right: calc(5% - 40px); scale: 1;}
 }
 
 @keyframes informative-pop-out {
@@ -1009,7 +1010,7 @@
 .historical-texts3 {
   position: relative;
   z-index: -1;
-  width: 28vmax;
+  width: 22vmax;
   min-height: 500px;
   background-color: white;
   color: var(--secondary-color);
@@ -1038,7 +1039,7 @@
   font-size: 46px;
   width: 100%;
   margin-bottom: 20px;
-  padding-left: 50px;
+  padding-left: 5px;
 }
 
 .historical-texts1 {

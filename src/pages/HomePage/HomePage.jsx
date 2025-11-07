@@ -265,7 +265,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className={`historical-figure-block ${scrollHomePageOffset < 800 ? 'hidden':''}`} style={{ transform: `${show ? 'translateX(0)' : 'translateX(600px)'}`}}>
+      <div className={`historical-figure-block ${scrollHomePageOffset < 800 ? 'hidden':''}`} style={{ opacity: `${show ? '1' : '0'}`}}>
         <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 1100
                                                     ? `url('${maskOne}')`
                                                     : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 1100 ? "scale(0.5) translateY(0)" : "scale(0.5) translateY(800px)"}}></div>
