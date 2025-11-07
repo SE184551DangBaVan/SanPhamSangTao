@@ -5,3 +5,7 @@
     min-height:100vh;
     background-color: #2c1810;
 }
+
+.hide-this{
+    display: none;
+}

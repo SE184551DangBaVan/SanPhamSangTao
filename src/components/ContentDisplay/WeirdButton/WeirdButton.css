@@ -1,0 +1,10 @@
+.cirno-fumo {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.cirno-fumo:hover {
+    transform: scale(1.25);
+}

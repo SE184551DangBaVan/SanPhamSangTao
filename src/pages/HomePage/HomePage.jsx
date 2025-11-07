@@ -5,13 +5,14 @@ import maskOne from '../../assets/black-ink-blots (1).gif';
 import maskTwo from '../../assets/black-ink-blots (2).gif';
 import maskThree from '../../assets/black-ink-blots (3).gif';
 import { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
+import {useScroll, useMotionValueEvent, useTransform } from "framer-motion";
 import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 import BookSelector from "../../components/BookSelection/BookSelector.jsx";
 import Hand from '../../components/Handy/Hand.jsx';
 import { ArrowUpward, Translate } from '@mui/icons-material';
 import ContentDisplay from "../../components/ContentDisplay/ContentDisplay.jsx";
 import ScissorLift from '../../components/ExtensionJoint/ScissorLift.jsx';
+import WeirdButton from "../../components/ContentDisplay/WeirdButton/WeirdButton.jsx";
 
 export default function HomePage() {
   const [scrollHomePageOffset, setScrollHomePageOffset] = useState(0);
@@ -57,6 +58,10 @@ export default function HomePage() {
 
   return (
     <div className='homePage-container'>
+
+        {/*dont mind me just planting this here*/}
+        <WeirdButton />
+
       <DynamicBackground pageScroll={scrollHomePageOffset}/>
       <div className="hero-container">
         <div className="hero-content">
