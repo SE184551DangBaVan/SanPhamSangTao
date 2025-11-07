@@ -25,7 +25,6 @@
   transition: bottom 0.4s ease;
 }
 
-/* scissor group positioning */
 .scissor {
   position: absolute;
   left: 50%;
@@ -37,11 +36,9 @@
   grid-auto-rows: 1fr;
   place-items: center;
   gap: 0;
-  /* smooth property changes */
   transition: height var(--speed) ease;
 }
 
-/* each row is an X (two bars crossing) */
 .scissor-row {
   --i: 0;
   position: relative;
@@ -54,13 +51,11 @@
   transition: height var(--speed) ease;
 }
 
-/* bar styling */
 .bar {
-  --angle: calc( (1 - var(--t)) * 12deg + var(--t) * 40deg ); /* angle interpolation */
+  --angle: calc( (1 - var(--t)) * 12deg + var(--t) * 40deg );
   position: absolute;
   width: var(--bar-length);
   height: var(--bar-width);
-  background: linear-gradient(90deg,#d9dbe2,#bfc7d6);
   border-radius: 4px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.12);
   transform-origin: center center;
@@ -68,48 +63,54 @@
   will-change: transform;
 }
 
-/* left bar slopes down-right, rotate positive */
 .bar.left {
   transform: rotate(calc(var(--angle) * 1)) translateY(-15px) translateX(-5px);
   transform-origin: 20% 50%;
-  /* slight offset to create pivot spacing */
 }
 
-/* right bar slopes down-left, rotate negative */
 .bar.right {
   transform: rotate(calc(var(--angle) * -1)) translateY(-15px) translateX(5px);
   transform-origin: 80% 50%;
 }
 
-/* pivot circle in the center of each X */
 .pivot {
   position: absolute;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff, #ccc);
-  border: 2px solid #9aa3b3;
+  background: radial-gradient(circle at 30% 30%, #f4d2b1, #b18e63);
+  border: 2px solid #844f1a;
   z-index: 5;
   box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
-/* spacing/perspective tweaks: stagger each row a little so it reads like mechanical */
 .scissor-row:nth-child(odd) .bar {
-  background: linear-gradient(90deg,#e6e9f0,#cfd8e6);
+  background: linear-gradient(
+		0deg,
+		#f7b06a 50%,
+    #CE8946 50%
+	);
 }
 .scissor-row:nth-child(even) .bar {
-  background: linear-gradient(90deg,#d7dbe8,#c1cbe0);
+  background: linear-gradient(
+		180deg,
+		#f7b06a 50%,
+    #CE8946 50%
+	);
 }
 
-/* top/bottom platforms that the scissor lifts */
 .platform {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
   height: 28px;
-  background: linear-gradient(180deg,#efefef,#dcdfe8);
-  border: 0.8px solid rgb(160, 181, 200);
+  background: linear-gradient(
+		var(--platform-deg),
+    #ac855e 80%,
+		#e4c09b 80%
+	);
+  border: 2px solid #815522;
   border-radius: 6px;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.06), 0 6px 18px rgba(0,0,0,0.08);
   display:flex;
@@ -119,20 +120,18 @@
   font-weight:700;
 }
 
-/* top platform lifts up as t grows */
 .platform.top {
+  --platform-deg: 180deg;
   top: calc(40% - 25px - ( (var(--gap-max) - var(--gap-min)) * var(--t) / 2 ));
   transition: top var(--speed) ease;
 }
 
-/* bottom platform moves down as t grows */
 .platform.bottom {
-  box-shadow: 0 -12px 5px #c8c8c8 inset;
+  --platform-deg: 0deg;
   top: calc(60% + ( (var(--gap-max) - var(--gap-min)) * var(--t) / 2 ));
   transition: top var(--speed) ease;
 }
 
-/* Accessibility / small screens */
 @media (max-width: 520px) {
   .scissor-wrap { width: 95%; }
   :root { --bar-length: 120px; }
