@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Viaoda+Libre&display=swap');
 .content-display{
     height:auto;
     width: 100%;
     position: relative;
     cursor: default;
     color: #FFFFE0;
+    font-family: "Viaoda Libre", serif;
+}
+
+.content-display * {
+    font-family: inherit;
 }
 
 .content-display h2, .content-display p{
@@ -14,6 +20,7 @@
     font-size: 2.3rem;
     text-align: left;
     opacity: 1;
+    line-height: 4.5rem;
 }
 
 .content-display p{
@@ -74,4 +81,5 @@
     font-size: 1.4rem;
     text-wrap: wrap;
     text-align: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
