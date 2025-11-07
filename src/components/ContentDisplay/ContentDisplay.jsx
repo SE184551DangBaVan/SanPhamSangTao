@@ -410,7 +410,7 @@ const ContentDisplay = () => {
                 // Move and minimize the title to the top center
                 .to("#content-page-5 h2.main-title-page", {
                     fontSize: "2.3rem",
-                    top: "2rem",
+                    top: "1rem",
                     left: "50%",
                     x: 0,
                     y: 0,
@@ -613,6 +613,159 @@ const ContentDisplay = () => {
             })
 
             // ------------------------------------------------------------------- END OF PAGE 8 -------------------------------------------------------------------//
+            // ------------------------------------------------------------------ START OF PAGE 9 (Thành tựu - Nông nghiệp) ------------------------------------------------------------------//
+
+            const timeline9 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#content-page-9",
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    markers: true,
+                    toggleActions: contentPageToggleAction,
+                }
+            })
+
+            // 1. Main Title Animation (Center Minimize)
+            const textSplitMainTitlePage9 = new SplitText("#content-page-9 h2.main-title-page", {
+                type: "chars, lines",
+            })
+
+            timeline9.fromTo(textSplitMainTitlePage9.chars, { y: "6rem" }, {
+                y: 0,
+                stagger: {
+                    amount: 0.8,
+                    from: "left",
+                },
+                duration: 0.4,
+            })
+                // Move and minimize the title to the top center
+                .to("#content-page-9 h2.main-title-page", {
+                    fontSize: "2.3rem",
+                    top: "1rem",
+                    left: "50%",
+                    x: 0,
+                    y: 0,
+                    xPercent: -50, // Center horizontally
+                    yPercent: 0,
+                    textAlign: "center",
+                    duration: 0.8,
+                }, "+=0.8");
+
+            // 2. Sub-Title 1 Animation (Move from Left)
+            const textSplitSubTitlePage9_1 = new SplitText("#content-page-9 h3.sub-title-1", {
+                type: "chars, lines",
+            })
+
+            timeline9.from(textSplitSubTitlePage9_1.chars, {
+                xPercent: -150,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.5,
+            }, "-=0.2");
+
+            // 3. Content 1 Reveal (Nông nghiệp)
+            const contentPage9Paragraphs = Array.from(document.querySelectorAll("#content-page-9 p"));
+
+            contentPage9Paragraphs.forEach((p, index)=>{
+                let textSplit = SplitText.create(p, {
+                    type: "lines",
+                })
+                timeline9.from(textSplit.lines,{
+                    yPercent: 100,
+                    duration: 0.3,
+                    opacity: 0,
+                    stagger: 0.1,
+                }, index === 0 ? "+=0.2" : "+=0.25")
+                timeline9.to(p.querySelectorAll("span"), {
+                    duration: 0.3,
+                    color: HIGHLIGHT_COLOR,
+                    fontSize: "+=0.45rem",
+                    ease: "power2.out"
+                }, "+=0.15")
+            })
+
+            // ------------------------------------------------------------------- END OF PAGE 9 -------------------------------------------------------------------//
+            // ------------------------------------------------------------------ START OF PAGE 10 (Thành tựu - Lạm phát & FDI) ------------------------------------------------------------------//
+
+            const timeline10 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#content-page-10",
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    markers: true,
+                    toggleActions: contentPageToggleAction,
+                }
+            })
+
+            // 1. Main Title Animation (Quick Fade In to Top Center)
+            timeline10.fromTo("#content-page-10 h2.main-title-small", { opacity: 0 }, {
+                opacity: 1,
+                duration: 0.2,
+            }, 0);
+
+            // 2. Sub-Title 1 (Lạm phát) Animation (Move from Left)
+            const textSplitSubTitlePage10_1 = new SplitText("#content-page-10 h3.sub-title-1", {
+                type: "chars, lines",
+            })
+
+            timeline10.from(textSplitSubTitlePage10_1.chars, {
+                xPercent: -150,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.5,
+            }, "+=0.1");
+
+            // 3. Content 1 Reveal (Lạm phát)
+            const contentPage10Paragraphs_1 = new SplitText("#content-group-1", {
+                type: "lines",
+            })
+
+            timeline10.from(contentPage10Paragraphs_1.lines, {
+                yPercent: 100,
+                duration: 0.3,
+                opacity: 0,
+                stagger: 0.1,
+            })
+            timeline10.to(document.querySelectorAll("#content-group-1 span"), {
+                duration: 0.3,
+                color: HIGHLIGHT_COLOR,
+                fontSize: "+=0.45rem",
+                ease: "power2.out"
+            }, "+=0.15")
+
+            // 4. Sub-Title 2 (FDI) Animation (Move from Left) - Delayed
+            const textSplitSubTitlePage10_2 = new SplitText("#content-page-10 h3.sub-title-2", {
+                type: "chars, lines",
+            })
+
+            timeline10.from(textSplitSubTitlePage10_2.chars, {
+                xPercent: -150,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.5,
+            }, "+=0.5"); // Start animation after Lạm phát content finishes
+
+            // 5. Content 2 Reveal (FDI)
+            const contentPage10Paragraphs_2 = new SplitText("#content-group-2", {
+                type: "lines",
+            })
+            timeline10.from(contentPage10Paragraphs_2.lines, {
+                yPercent: 100,
+                duration: 0.3,
+                opacity: 0,
+                stagger: 0.1,
+            })
+            timeline10.to(document.querySelectorAll("#content-group-2 span"), {
+                duration: 0.3,
+                color: HIGHLIGHT_COLOR,
+                fontSize: "+=0.45rem",
+                ease: "power2.out"
+            }, "+=0.15")
+
+            // ------------------------------------------------------------------- END OF PAGE 10 -------------------------------------------------------------------//
+
 
             return () => {
                 timeline1?.kill();
@@ -623,6 +776,8 @@ const ContentDisplay = () => {
                 timeline6?.kill();
                 timeline7?.kill();
                 timeline8?.kill();
+                timeline9?.kill();
+                timeline10?.kill();
             };
         }
     }, [isLoading])
@@ -887,13 +1042,13 @@ const ContentDisplay = () => {
 
                         <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
                             Ba chương trình kinh tế lớn: Đại hội VI đề ra 3 mục tiêu trọng tâm:
-                            <br/> 1. Lương thực – thực phẩm
-                            <br/> 2. Hàng tiêu dùng
-                            <br/> 3. Hàng xuất khẩu
+                            <br/> 1. <span>Lương thực – thực phẩm</span>
+                            <br/> 2. <span>Hàng tiêu dùng</span>
+                            <br/> 3. <span>Hàng xuất khẩu</span>
                         </p>
 
                         <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                            Luật pháp hóa: Ngay sau Đại hội, <span>Luật Đầu tư nước ngoài tại Việt Nam</span> (1987) đã được ban hành. <br/> Đây là văn bản pháp lý quan trọng nhất, mở đường cho dòng vốn FDI vào Việt Nam.
+                            Luật pháp hóa: Ngay sau Đại hội, <span>Luật Đầu tư nước ngoài tại Việt Nam</span> (1987) đã được ban hành. <br/> Đây là văn bản pháp lý quan trọng nhất, mở đường cho dòng vốn <span>FDI</span> vào Việt Nam.
                         </p>
 
                     </div>
@@ -986,7 +1141,7 @@ const ContentDisplay = () => {
                         <h2 className="main-title-small" style={{
                             textAlign: "center",
                             position:"absolute",
-                            top: "2rem",
+                            top: "1rem",
                             left: "50%",
                             transform: "translateX(-50%)",
                             textWrap: "nowrap",
@@ -1010,14 +1165,123 @@ const ContentDisplay = () => {
                             Thay đổi tư duy: Chuyển từ tư duy <span>đối đầu</span> (với các nước XHCN) sang <span>đối thoại.</span>
                         </p>
 
-                        <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom:"0" }}>
                             Phương châm mới: Đại hội VI đưa ra chủ trương <span style={{display:"inline-block" , textAlign:"center", width:"100%"}}>"đa phương hoá, đa dạng hoá quan hệ đối ngoại"</span> <br/> và <br/> <span style={{display:"inline-block", textAlign:"center", width:"100%"}}>"Việt Nam muốn là bạn với tất cả các nước trong cộng đồng thế giới, phấn đấu vì hòa bình, độc lập và phát triển."</span>
                         </p>
 
                     </div>
                 </div>
 
-                {/* --- END OF NEW CONTENT SECTION --- */}
+                {/* --- START OF NEW SECTION: THÀNH TỰU GIAI ĐOẠN 1986 – 1996 --- */}
+
+                {/* Content Page 9: 1. Kinh tế – Xã hội (Nông nghiệp) */}
+                <div id="content-page-9" className="content-page">
+                    <div className="board-frame">
+                        {/* Big title, center positioned before minimizing */}
+                        <h2 className="main-title-page" style={{
+                            position:"absolute",
+                            top: "calc(50%)",
+                            left: "calc(50%)",
+                            transform: "translateY(calc(-50%)) translateX(-50%)",
+                            textWrap: "nowrap",
+                            width: "auto",
+                            fontSize:"4rem",
+                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                        }}>Thành tựu giai đoạn 1986 – 1996
+                        </h2>
+                        {/* Minimized title (Top Center) - Used by subsequent page 10 */}
+                        <h2 className="main-title-small" style={{
+                            textAlign: "center",
+                            position:"absolute",
+                            top: "1rem",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            textWrap: "nowrap",
+                            width: "auto",
+                            fontSize: "2.3rem",
+                            opacity: 0, // Hidden initially, will be revealed by timeline 9 and used by timeline 10
+                        }}>Thành tựu giai đoạn 1986 – 1996
+                        </h2>
+
+                        {/* Sub-Title 1 */}
+                        <h3 className="sub-title-1" style={{
+                            position:"absolute",
+                            top: "5rem",
+                            left: "2.5rem",
+                            fontSize:"2.3rem",
+                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                        }}>1. Kinh tế – Xã hội: Nông nghiệp (Thành tựu ngoạn mục)
+                        </h3>
+
+                        <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                            Năm 1989: Chỉ 1 năm sau Khoán 10, Việt Nam từ một nước phải nhập khẩu lương thực <br/> đã sản xuất được <span>18,9 triệu tấn thóc</span>, không chỉ đủ ăn mà còn <br/> <span>xuất khẩu 1,4 triệu tấn gạo</span>, trở thành nước <span>xuất khẩu gạo thứ 3 thế giới.</span>
+                        </p>
+
+                        <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom: "0" }}>
+                            Đến 1996, sản lượng lương thực đạt <span>29,3 triệu tấn.</span>
+                        </p>
+
+                    </div>
+                </div>
+
+                {/* Content Page 10: 1. Kinh tế – Xã hội (Lạm phát & FDI) - FIXED */}
+                <div id="content-page-10" className="content-page">
+                    <div className="board-frame">
+                        {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
+                        <h2 className="main-title-small" style={{
+                            textAlign: "center",
+                            position:"absolute",
+                            top: "1rem",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            textWrap: "nowrap",
+                            width: "auto",
+                            fontSize: "2.3rem",
+                            opacity: 0,
+                        }}>Thành tựu giai đoạn 1986 – 1996
+                        </h2>
+
+                        {/* Sub-Title 1 */}
+                        <h3 className="sub-title-1" style={{
+                            position:"absolute",
+                            top: "5rem",
+                            left: "2.5rem",
+                            fontSize:"2.3rem",
+                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                        }}>Kiềm chế lạm phát (Thắng lợi vĩ đại)
+                        </h3>
+                        <div id="content-group-1">
+                            <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                                Lạm phát giảm mạnh: <br/>
+                            </p>
+
+                            <p>Từ <span>774,7% (1986)</span> Xuống còn <span>67,1% (1990)</span> Và chỉ còn <span>12,7% (1995)</span>.</p>
+
+                            <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                                Điều này có nghĩa là đồng tiền Việt Nam đã <span>ổn định trở lại</span>, tạo niềm tin cho người dân và nhà đầu tư.
+                            </p>
+                        </div>
+
+                        {/* Sub-Title 2 */}
+                        <h3 className="sub-title-2" style={{
+                            position:"absolute",
+                            top: "20rem",
+                            left: "2.5rem",
+                            fontSize:"2.3rem",
+                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                        }}>Thu hút FDI
+                        </h3>
+
+                        <div id="content-group-2">
+                            <p style={{ marginTop:"5rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom: "0" }}>
+                                Từ 1988 đến 1996, Việt Nam đã thu hút được <span>27,2 tỷ USD</span> vốn đăng ký,
+                            </p>
+                            <p style={{clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom: "0"}}>tạo ra hàng loạt khu công nghiệp (Tân Thuận, Linh Trung...) và thay đổi bộ mặt cơ sở hạ tầng.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* --- END OF NEW SECTION --- */}
 
             </div>
         </>
