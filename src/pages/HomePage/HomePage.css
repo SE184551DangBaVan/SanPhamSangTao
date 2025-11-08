@@ -913,52 +913,48 @@
     width: 24%;
     height: 700px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #222222ec;
     box-shadow: inset 0 0 50px #041808;
-    border: 10px solid #866c45;
+    border: 6px solid #866c45;
+    border-bottom: 60px solid #866c45;
     border-radius: 8px;
     overflow: hidden;
-    transition: all 2s ease-in;
+    transform-style: preserve-3d;
     animation: informative-pop-in 1s forwards;
 }
 
 .historical-figure-block.hidden {
   animation: informative-pop-out 1s forwards;
-    transition: all 0.2s ease-in;
 }
 
 @keyframes informative-pop-in {
-  0% { right: -30%; scale: 0.98;}
-  20% { right: calc(5% - 30px); scale: 0.98;}
-  80% { right: calc(5% - 40px); scale: 1;}
-  100% { right: calc(5% - 40px); scale: 1;}
+  0% { top: calc(100%);}
+  80% { top: calc(6%);}
+  90% { top: calc(7%)}
+  100% { top: calc(6%);}
 }
 
 @keyframes informative-pop-out {
-  0% { right: calc(5% - 40px); }
-  30% { right: calc(5% - 30px); }
-  80% { right: -5%; }
-  100% { right: -30%; }
-}
-
-.historical-figure {
-  width: 100%;
-  height: 100%;
+  0% { top: calc(6%); }
+  20% { top: calc(0%); }
+  80% { top: calc(100%); }
+  100% { top: calc(100%); }
 }
 
 .historical-figure1 {
     position: absolute;
-    width: 600px;
-    height: 400px;
-    left: -250px;
-    top: -200px;
+    z-index: -1;
+    width: 1000px;
+    height: 600px;
+    left: -100%;
+    top: 40px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     background-image: url('../../assets/HoChiMinhLockedIn.jpg');
-    
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -1010,14 +1006,15 @@
 .historical-texts3 {
   position: relative;
   z-index: -1;
-  width: 22vmax;
-  min-height: 500px;
+  width: 95% !important;
+  min-height: 600px;
   background-color: white;
   color: var(--secondary-color);
   font-size: 18px;
   text-align: left;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-  transition: transform 0.4s ease;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
 
 .historical-texts1::after,
@@ -1033,6 +1030,10 @@
   background-size: 100%;
 }
 
+.historical-texts1 .historical-details {
+  color: white;
+}
+
 .historical-texts1 .first-letter,
 .historical-texts2 .first-letter,
 .historical-texts3 .first-letter {
@@ -1043,15 +1044,14 @@
 }
 
 .historical-texts1 {
-  top:10px;
-  left:98%;
-  padding: 50px 30px 30px 300px;
+  top: 600px;
+  left: 0;
+  padding: 20px;
 }
 
 .historical-texts2 {
-  top: 700px;
-  left: 15%;
-  padding: 50px 300px 30px 30px;
+  left: 0;
+  padding: 20px;
 }
 
 .historical-texts3 {
@@ -1244,7 +1244,7 @@
 
 
 .book-selection-block {
-    margin-top: 300vh;
+    margin-top: 50vh;
     position: relative;
     cursor: none;
     z-index: 100;
@@ -1262,8 +1262,6 @@
     width: 100%;
     height: auto;
 }
-
-
 
 .book-selection-block::before {
   content: '';
