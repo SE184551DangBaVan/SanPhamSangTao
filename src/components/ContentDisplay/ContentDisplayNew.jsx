@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const TOGGLE_MARKERS = true;
 const HIGHLIGHT_COLOR = "#FFD700";
-const MAX_PAGE_ID = 9;
+const MAX_PAGE_ID = 10; // Cập nhật từ 9 lên 10 để bao gồm ContentPage11
 const contentPageToggleAction= "play reset play reset"
 
 // Individual Page Components
@@ -469,7 +469,63 @@ const ContentPage4 = () => {
     );
 };
 
-// Similar pattern for pages 5-10 - I'll create a few more as examples
+// Helper function for pages with main title being 'Nội dung Đổi mới trọng tâm'
+const animateTitlePage = (containerRef, pageId) => {
+    const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top top",
+                end: "bottom top",
+                pin: true,
+                markers: TOGGLE_MARKERS,
+                toggleActions: contentPageToggleAction,
+            }
+        });
+
+        // 1. Main Title Animation (Quick Fade In to Top Center)
+        tl.fromTo(`#content-page-${pageId} h2.main-title-small`, { opacity: 0 }, {
+            opacity: 1,
+            duration: 0.2,
+        }, 0); // Start immediately
+
+        // 2. Sub-Title Animation (Move from Left)
+        const textSplitSubTitle = new SplitText(`#content-page-${pageId} h3.sub-title`, {
+            type: "chars, lines",
+        })
+
+        tl.from(textSplitSubTitle.chars, {
+            xPercent: -150,
+            opacity: 0,
+            stagger: 0.05,
+            duration: 0.5,
+        }, "+=0.1");
+
+        // 3. Content Reveal (SplitText by Lines)
+        const contentParagraphs = Array.from(document.querySelectorAll(`#content-page-${pageId} p`));
+
+        contentParagraphs.forEach((p, index)=>{
+            let textSplit = SplitText.create(p, {
+                type: "lines",
+            })
+            tl.from(textSplit.lines,{
+                yPercent: 100,
+                duration: 0.3,
+                opacity: 0,
+                stagger: 0.1,
+            }, index === 0 ? "+=0.2" : "+=0.25")
+            tl.to(p.querySelectorAll("span"), {
+                duration: 0.3,
+                color: HIGHLIGHT_COLOR,
+                fontSize: "+=0.45rem",
+                ease: "power2.out"
+            }, "+=0.15")
+        })
+    }, containerRef);
+
+    return () => ctx.revert();
+};
+
 
 const ContentPage5 = () => {
     const containerRef = React.useRef(null);
@@ -580,302 +636,328 @@ const ContentPage5 = () => {
     );
 };
 
-    const ContentPage6 = () =>{
-        const containerRef = React.useRef(null);
+const ContentPage6 = () =>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 6), []);
 
-        useGSAP(() => {
-            const ctx = gsap.context(() => {
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: containerRef.current, // <--- Use the component's ID as the trigger
-                        // 'start' defines when the timeline begins playing.
-                        // 'top top' means when the top of the element hits the top of the viewport.
-                        start: "top top", // Keep this for the pinned section
-                        end: "bottom top",
-                        pin: true,
-                        markers: TOGGLE_MARKERS, // Keep markers for debugging
-                        toggleActions: contentPageToggleAction,
-                    }
-                });
-
-                // 1. Main Title Animation (Quick Fade In to Top Center)
-                tl.fromTo("#content-page-6 h2.main-title-small", { opacity: 0 }, {
-                    opacity: 1,
-                    duration: 0.2,
-                }, 0); // Start immediately
-
-                // 2. Sub-Title Animation (Move from Left)
-                const textSplitSubTitlePage6 = new SplitText("#content-page-6 h3.sub-title", {
-                    type: "chars, lines",
-                })
-
-                tl.from(textSplitSubTitlePage6.chars, {
-                    xPercent: -150,
+    return(
+        <div id="content-page-6" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
                     opacity: 0,
-                    stagger: 0.05,
-                    duration: 0.5,
-                }, "+=0.1");
+                }}>Nội dung Đổi mới trọng tâm
+                </h2>
 
-                // 3. Content Reveal (SplitText by Lines)
-                const contentPage6Paragraphs = Array.from(document.querySelectorAll("#content-page-6 p"));
+                {/* Sub-Title */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>2. Nông nghiệp
+                </h3>
 
-                contentPage6Paragraphs.forEach((p, index)=>{
-                    let textSplit = SplitText.create(p, {
-                        type: "lines",
-                    })
-                    tl.from(textSplit.lines,{
-                        yPercent: 100,
-                        duration: 0.3,
-                        opacity: 0,
-                        stagger: 0.1,
-                    }, index === 0 ? "+=0.2" : "+=0.25")
-                    tl.to(p.querySelectorAll("span"), {
-                        duration: 0.3,
-                        color: HIGHLIGHT_COLOR,
-                        fontSize: "+=0.45rem",
-                        ease: "power2.out"
-                    }, "+=0.15")
-                })
-            }, containerRef);
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    <span>Nghị quyết 10 của Bộ Chính trị (Khoán 10)</span> ban hành tháng 4/1988, <br/> là bước đi cụ thể hóa tinh thần Đại hội VI.
+                </p>
 
-            return () => ctx.revert();
-        }, []);
-        return(
-            <div id="content-page-6" className="content-page" ref={containerRef}>
-                <div className="board-frame">
-                    {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
-                    <h2 className="main-title-small" style={{
-                        textAlign: "center",
-                        position:"absolute",
-                        top: "1rem",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        textWrap: "nowrap",
-                        width: "auto",
-                        fontSize: "2.3rem",
-                        opacity: 0,
-                    }}>Nội dung Đổi mới trọng tâm
-                    </h2>
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Nội dung chính: Giao quyền sử dụng ruộng đất <span>ổn định và lâu dài</span> cho hộ gia đình. <br/> Nông dân được <span>tự chủ sản xuất</span> và <span>toàn quyền sở hữu</span>, tự do buôn bán sản phẩm dư thừa.
+                </p>
 
-                    {/* Sub-Title */}
-                    <h3 className="sub-title" style={{
-                        position:"absolute",
-                        top: "5rem",
-                        left: "2.5rem",
-                        fontSize:"2.3rem",
-                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-                    }}>2. Nông nghiệp
-                    </h3>
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Tác động: Tạo ra động lực "bung ra" cho sản xuất. <br/> Hộ nông dân trở thành <span>đơn vị kinh tế tự chủ</span>, chấm dứt tình trạng <span style={{display:"inline-block"}}>"cha chung không ai khóc"</span> <br/> của hợp tác xã kiểu cũ.
+                </p>
 
-                    <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                        <span>Nghị quyết 10 của Bộ Chính trị (Khoán 10)</span> ban hành tháng 4/1988, <br/> là bước đi cụ thể hóa tinh thần Đại hội VI.
-                    </p>
-
-                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                        Nội dung chính: Giao quyền sử dụng ruộng đất <span>ổn định và lâu dài</span> cho hộ gia đình. <br/> Nông dân được <span>tự chủ sản xuất</span> và <span>toàn quyền sở hữu</span>, tự do buôn bán sản phẩm dư thừa.
-                    </p>
-
-                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                        Tác động: Tạo ra động lực "bung ra" cho sản xuất. <br/> Hộ nông dân trở thành <span>đơn vị kinh tế tự chủ</span>, chấm dứt tình trạng <span style={{display:"inline-block"}}>"cha chung không ai khóc"</span> <br/> của hợp tác xã kiểu cũ.
-                    </p>
-
-                </div>
             </div>
-        )
-    }
+        </div>
+    )
+}
 
 
-    const ContentPage7 = ()=>{
-        const containerRef = React.useRef(null);
+const ContentPage7 = ()=>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 7), []);
 
-        useGSAP(() => {
-            const ctx = gsap.context(() => {
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: "top top",
-                        end: "bottom top",
-                        pin: true,
-                        markers: TOGGLE_MARKERS,
-                        toggleActions: contentPageToggleAction,
-                    }
-                });
-
-                tl.fromTo("#content-page-7 h2.main-title-small", { opacity: 0 }, {
-                    opacity: 1,
-                    duration: 0.2,
-                }, 0);
-
-                const textSplitSubTitlePage7 = new SplitText("#content-page-7 h3.sub-title", {
-                    type: "chars, lines",
-                })
-
-                tl.from(textSplitSubTitlePage7.chars, {
-                    xPercent: -150,
+    return(
+        <div id="content-page-7" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
                     opacity: 0,
-                    stagger: 0.05,
-                    duration: 0.5,
-                }, "+=0.1");
+                }}>Nội dung Đổi mới trọng tâm
+                </h2>
 
-                const contentPage7Paragraphs = Array.from(document.querySelectorAll("#content-page-7 p"));
+                {/* Sub-Title */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "6rem",
+                    left: "2.5rem",
+                    fontSize:"2.1rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>3. Công nghiệp và Doanh nghiệp Nhà nước
+                </h3>
 
-                contentPage7Paragraphs.forEach((p, index)=>{
-                    let textSplit = SplitText.create(p, {
-                        type: "lines",
-                    })
-                    tl.from(textSplit.lines,{
-                        yPercent: 100,
-                        duration: 0.3,
-                        opacity: 0,
-                        stagger: 0.1,
-                    }, index === 0 ? "+=0.2" : "+=0.25")
-                    tl.to(p.querySelectorAll("span"), {
-                        duration: 0.3,
-                        color: HIGHLIGHT_COLOR,
-                        fontSize: "+=0.45rem",
-                        ease: "power2.out"
-                    }, "+=0.15")
-                })
-            }, containerRef);
+                <p style={{ marginTop:"9rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Sắp xếp lại: <span>Xóa bỏ sự bao cấp</span> của nhà nước. <br/> Các DNNN phải <span>tự hạch toán kinh doanh, tự chủ tài chính.</span> <br/> Nhiều doanh nghiệp không thích nghi đã phải giải thể/sáp nhập.
+                </p>
 
-            return () => ctx.revert();
-        }, []);
-        return(
-            <div id="content-page-7" className="content-page" ref={containerRef}>
-                <div className="board-frame">
-                    {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
-                    <h2 className="main-title-small" style={{
-                        textAlign: "center",
-                        position:"absolute",
-                        top: "1rem",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        textWrap: "nowrap",
-                        width: "auto",
-                        fontSize: "2.3rem",
-                        opacity: 0,
-                    }}>Nội dung Đổi mới trọng tâm
-                    </h2>
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Khuyến khích tư nhân: Lần đầu tiên, kinh tế tư nhân, kinh tế cá thể <br/> được <span>thừa nhận là</span> một thành phần kinh tế <span>có ích</span> và được <span>khuyến khích phát triển.</span>
+                </p>
 
-                    {/* Sub-Title */}
-                    <h3 className="sub-title" style={{
-                        position:"absolute",
-                        top: "6rem",
-                        left: "2.5rem",
-                        fontSize:"2.1rem",
-                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-                    }}>3. Công nghiệp và Doanh nghiệp Nhà nước
-                    </h3>
-
-                    <p style={{ marginTop:"9rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                        Sắp xếp lại: <span>Xóa bỏ sự bao cấp</span> của nhà nước. <br/> Các DNNN phải <span>tự hạch toán kinh doanh, tự chủ tài chính.</span> <br/> Nhiều doanh nghiệp không thích nghi đã phải giải thể/sáp nhập.
-                    </p>
-
-                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                        Khuyến khích tư nhân: Lần đầu tiên, kinh tế tư nhân, kinh tế cá thể <br/> được <span>thừa nhận là</span> một thành phần kinh tế <span>có ích</span> và được <span>khuyến khích phát triển.</span>
-                    </p>
-
-                </div>
             </div>
-        )
-    }
+        </div>
+    )
+}
 
-    const ContentPage8 = () =>{
-        const containerRef = React.useRef(null);
+const ContentPage8 = () =>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 8), []);
 
-        useGSAP(() => {
-            const ctx = gsap.context(() => {
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: "top top",
-                        end: "bottom top",
-                        pin: true,
-                        markers: TOGGLE_MARKERS,
-                        toggleActions: contentPageToggleAction,
-                    }
-                });
-
-                tl.fromTo("#content-page-8 h2.main-title-small", { opacity: 0 }, {
-                    opacity: 1,
-                    duration: 0.2,
-                }, 0);
-
-                // 2. Sub-Title Animation (Move from Left)
-                const textSplitSubTitlePage8 = new SplitText("#content-page-8 h3.sub-title", {
-                    type: "chars, lines",
-                })
-
-                tl.from(textSplitSubTitlePage8.chars, {
-                    xPercent: -150,
+    return(
+        <div id="content-page-8" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
                     opacity: 0,
-                    stagger: 0.05,
-                    duration: 0.5,
-                }, "+=0.1");
+                }}>Nội dung Đổi mới trọng tâm
+                </h2>
 
-                const contentPage8Paragraphs = Array.from(document.querySelectorAll("#content-page-8 p"));
+                {/* Sub-Title */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>4. Đối ngoại
+                </h3>
 
-                contentPage8Paragraphs.forEach((p, index)=>{
-                    let textSplit = SplitText.create(p, {
-                        type: "lines",
-                    })
-                    tl.from(textSplit.lines,{
-                        yPercent: 100,
-                        duration: 0.3,
-                        opacity: 0,
-                        stagger: 0.1,
-                    }, index === 0 ? "+=0.2" : "+=0.25")
-                    tl.to(p.querySelectorAll("span"), {
-                        duration: 0.3,
-                        color: HIGHLIGHT_COLOR,
-                        fontSize: "+=0.45rem",
-                        ease: "power2.out"
-                    }, "+=0.15")
-                })
-            }, containerRef);
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Thay đổi tư duy: Chuyển từ tư duy <span>đối đầu</span> (với các nước XHCN) sang <span>đối thoại.</span>
+                </p>
 
-            return () => ctx.revert();
-        }, []);
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom:"0" }}>
+                    Phương châm mới: Đại hội VI đưa ra chủ trương <span style={{display:"inline-block" , textAlign:"center", width:"100%"}}>"đa phương hoá, đa dạng hoá quan hệ đối ngoại"</span> <br/> và <br/> <span style={{display:"inline-block", textAlign:"center", width:"100%"}}>"Việt Nam muốn là bạn với tất cả các nước trong cộng đồng thế giới, phấn đấu vì hòa bình, độc lập và phát triển."</span>
+                </p>
 
-        return(
-            <div id="content-page-8" className="content-page" ref={containerRef}>
-                <div className="board-frame">
-                    {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
-                    <h2 className="main-title-small" style={{
-                        textAlign: "center",
-                        position:"absolute",
-                        top: "1rem",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        textWrap: "nowrap",
-                        width: "auto",
-                        fontSize: "2.3rem",
-                        opacity: 0,
-                    }}>Nội dung Đổi mới trọng tâm
-                    </h2>
-
-                    {/* Sub-Title */}
-                    <h3 className="sub-title" style={{
-                        position:"absolute",
-                        top: "5rem",
-                        left: "2.5rem",
-                        fontSize:"2.3rem",
-                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-                    }}>4. Đối ngoại
-                    </h3>
-
-                    <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                        Thay đổi tư duy: Chuyển từ tư duy <span>đối đầu</span> (với các nước XHCN) sang <span>đối thoại.</span>
-                    </p>
-
-                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom:"0" }}>
-                        Phương châm mới: Đại hội VI đưa ra chủ trương <span style={{display:"inline-block" , textAlign:"center", width:"100%"}}>"đa phương hoá, đa dạng hoá quan hệ đối ngoại"</span> <br/> và <br/> <span style={{display:"inline-block", textAlign:"center", width:"100%"}}>"Việt Nam muốn là bạn với tất cả các nước trong cộng đồng thế giới, phấn đấu vì hòa bình, độc lập và phát triển."</span>
-                    </p>
-
-                </div>
             </div>
-        )
-    }
+        </div>
+    )
+}
+
+// Trang mới ContentPage9 (Index 8): 5. Lĩnh vực Chính sách Xã hội
+const ContentPage9 = () =>{
+    const containerRef = React.useRef(null);
+    // Sử dụng ID 9 trong hàm animateTitlePage để khớp với ID trong JSX
+    useGSAP(() => animateTitlePage(containerRef, 9), []);
+
+    return(
+        <div id="content-page-9" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                    opacity: 0,
+                }}>Nội dung Đổi mới trọng tâm
+                </h2>
+
+                {/* Sub-Title */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>5. Lĩnh vực Chính sách Xã hội
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Đại hội VI đề ra các chính sách xã hội quan trọng nhằm <span>ổn định và cải thiện đời sống nhân dân:</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - <span>Kế hoạch hóa dân số</span> và giải quyết việc làm.
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Thực hiện <span>công bằng xã hội</span>, đảm bảo <span>an toàn xã hội.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Chăm lo <span>giáo dục, văn hóa, sức khỏe</span> nhân dân.
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Thực hiện các chính sách <span>bảo trợ xã hội.</span>
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+// Trang mới ContentPage10 (Index 9): 6. Đổi mới sự lãnh đạo của Đảng
+const ContentPage10 = () =>{
+    const containerRef = React.useRef(null);
+    // Sử dụng ID 10 trong hàm animateTitlePage để khớp với ID trong JSX
+    useGSAP(() => animateTitlePage(containerRef, 10), []);
+
+    return(
+        <div id="content-page-10" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                    opacity: 0,
+                }}>Nội dung Đổi mới trọng tâm
+                </h2>
+
+                {/* Sub-Title */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>6. Đổi mới sự lãnh đạo của Đảng
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Đại hội VI nhấn mạnh việc đổi mới sự lãnh đạo của Đảng để <span>thực hiện công cuộc đổi mới:</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Phải <span>đổi mới tư duy</span>, trước hết là tư duy kinh tế.
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Đổi mới công tác <span>cán bộ</span> và <span>phong cách làm việc.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Giữ vững <span>nguyên tắc tổ chức</span> và <span>sinh hoạt Đảng.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Tăng cường sự <span>đoàn kết, nhất trí</span> trong Đảng.
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Thực hiện phương châm <span>"Dân biết, dân bàn, dân làm, dân kiểm tra".</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Tăng cường <span>hiệu lực quản lý của Nhà nước</span> để huy động quần chúng.
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+// Trang mới ContentPage11 (Index 10): 7. Cụ thể hóa đường lối Đại hội VI
+const ContentPage11 = () =>{
+    const containerRef = React.useRef(null);
+    // Sử dụng ID 11 trong hàm animateTitlePage để khớp với ID trong JSX
+    useGSAP(() => animateTitlePage(containerRef, 11), []);
+
+    return(
+        <div id="content-page-11" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                    opacity: 0,
+                }}>Nội dung Đổi mới trọng tâm
+                </h2>
+
+                {/* Sub-Title */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>7. Cụ thể hóa đường lối Đại hội VI
+                </h3>
+
+                <p style={{ marginTop:"7.5rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Ngay sau Đại hội, Hội nghị Trung ương 2 (tháng 4/1987) đã đề ra <span style={{display:"inline-block"}}>các giải pháp cấp bách</span> nhằm giải quyết rối ren trong phân phối, lưu thông, tập trung vào <span style={{display:"inline-block"}}>"4 giảm":</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    1. <span>Giảm bội chi ngân sách.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    2. <span>Giảm nhịp độ tăng giá.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    3. <span>Giảm lạm phát.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    4. <span>Giảm khó khăn đời sống.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Đồng thời, trao <span>quyền tự chủ cho doanh nghiệp quốc doanh</span> (tháng 11/1987) và thực hiện <span>cơ chế một giá.</span>
+                </p>
+
+            </div>
+        </div>
+    )
+}
 
 const ContentDisplayNew = () => {
 
@@ -925,8 +1007,9 @@ const ContentDisplayNew = () => {
             case 5: return <ContentPage6 />;
             case 6: return <ContentPage7 />;
             case 7: return <ContentPage8 />;
-            case 8: return <ContentPage9 />;
-            case 9: return <ContentPage10 />;
+            case 8: return <ContentPage9 />; // Trang mới (Index 8)
+            case 9: return <ContentPage10 />; // Trang mới (Index 9)
+            case 10: return <ContentPage11 />; // Trang mới (Index 10)
             default: return <ContentPage1 />;
         }
     };

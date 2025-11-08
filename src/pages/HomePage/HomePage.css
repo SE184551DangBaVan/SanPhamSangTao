@@ -1254,13 +1254,13 @@
 }
 
 .give-me-some-space {
-    /*background-color: rgba(255, 255, 255, 0.2);*/
-    margin-top: 300vh;
+    margin: 0;
     position: relative;
     cursor: none;
     z-index: 100;
     width: 100%;
     height: auto;
+    top: -86.5vh;
 }
 
 
