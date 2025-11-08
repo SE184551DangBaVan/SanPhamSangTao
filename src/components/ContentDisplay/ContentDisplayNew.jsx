@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const TOGGLE_MARKERS = true;
 const HIGHLIGHT_COLOR = "#FFD700";
-const MAX_PAGE_ID = 10; // Cập nhật từ 9 lên 10 để bao gồm ContentPage11
+const MAX_PAGE_ID = 15; // Đã cập nhật lên 15 để bao gồm ContentPage16
 const contentPageToggleAction= "play reset play reset"
 
 // Individual Page Components
@@ -402,6 +402,80 @@ const animateStandardPage = (containerRef, pageId) => {
     return () => ctx.revert();
 };
 
+// Helper function for pages with main title being 'Nội dung Đổi mới trọng tâm' or 'Đại hội VII'
+const animateTitlePage = (containerRef, pageId, isSubSection = true) => {
+    const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top top",
+                end: "bottom top",
+                pin: true,
+                markers: TOGGLE_MARKERS,
+                toggleActions: contentPageToggleAction,
+            }
+        });
+
+        const mainTitle = `#content-page-${pageId} h2.main-title-small`;
+        const subTitle = `#content-page-${pageId} h3.sub-title`;
+
+        // 1. Main Title Animation (Quick Fade In to Top Center)
+        // Check if the main-title-small exists on the current page
+        if (document.querySelector(mainTitle)) {
+            // Apply a quick animation for the minimized title when a new page loads (Pages 13, 14, 15, etc.)
+            tl.fromTo(mainTitle, {
+                opacity: 0,
+                xPercent: (isSubSection ? -50 : 0), // Adjust starting position for pages 13-15
+                y: -50,
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+            }, 0); // Start immediately
+        }
+
+        // ... (rest of the function remains the same)
+
+        // 2. Sub-Title Animation (Move from Left) - Chỉ animate sub-title nếu nó tồn tại
+        if (document.querySelector(subTitle)) {
+            const textSplitSubTitle = new SplitText(subTitle, {
+                type: "chars, lines",
+            });
+
+            tl.from(textSplitSubTitle.chars, {
+                xPercent: -150,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.5,
+            }, "+=0.1"); // Start after main title animation if it exists, or after a slight delay
+        }
+
+        // 3. Content Reveal (SplitText by Lines)
+        const contentParagraphs = Array.from(document.querySelectorAll(`#content-page-${pageId} p`));
+
+        contentParagraphs.forEach((p, index)=>{
+            let textSplit = SplitText.create(p, {
+                type: "lines",
+            })
+            tl.from(textSplit.lines,{
+                yPercent: 100,
+                duration: 0.3,
+                opacity: 0,
+                stagger: 0.1,
+            }, index === 0 ? "+=0.2" : "+=0.25")
+            tl.to(p.querySelectorAll("span"), {
+                duration: 0.3,
+                color: HIGHLIGHT_COLOR,
+                fontSize: "+=0.45rem",
+                ease: "power2.out"
+            }, "+=0.15")
+        })
+    }, containerRef);
+
+    return () => ctx.revert();
+};
+
+
 const ContentPage3 = () => {
     const containerRef = React.useRef(null);
     useGSAP(() => animateStandardPage(containerRef, 3), []);
@@ -468,64 +542,6 @@ const ContentPage4 = () => {
         </div>
     );
 };
-
-// Helper function for pages with main title being 'Nội dung Đổi mới trọng tâm'
-const animateTitlePage = (containerRef, pageId) => {
-    const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top top",
-                end: "bottom top",
-                pin: true,
-                markers: TOGGLE_MARKERS,
-                toggleActions: contentPageToggleAction,
-            }
-        });
-
-        // 1. Main Title Animation (Quick Fade In to Top Center)
-        tl.fromTo(`#content-page-${pageId} h2.main-title-small`, { opacity: 0 }, {
-            opacity: 1,
-            duration: 0.2,
-        }, 0); // Start immediately
-
-        // 2. Sub-Title Animation (Move from Left)
-        const textSplitSubTitle = new SplitText(`#content-page-${pageId} h3.sub-title`, {
-            type: "chars, lines",
-        })
-
-        tl.from(textSplitSubTitle.chars, {
-            xPercent: -150,
-            opacity: 0,
-            stagger: 0.05,
-            duration: 0.5,
-        }, "+=0.1");
-
-        // 3. Content Reveal (SplitText by Lines)
-        const contentParagraphs = Array.from(document.querySelectorAll(`#content-page-${pageId} p`));
-
-        contentParagraphs.forEach((p, index)=>{
-            let textSplit = SplitText.create(p, {
-                type: "lines",
-            })
-            tl.from(textSplit.lines,{
-                yPercent: 100,
-                duration: 0.3,
-                opacity: 0,
-                stagger: 0.1,
-            }, index === 0 ? "+=0.2" : "+=0.25")
-            tl.to(p.querySelectorAll("span"), {
-                duration: 0.3,
-                color: HIGHLIGHT_COLOR,
-                fontSize: "+=0.45rem",
-                ease: "power2.out"
-            }, "+=0.15")
-        })
-    }, containerRef);
-
-    return () => ctx.revert();
-};
-
 
 const ContentPage5 = () => {
     const containerRef = React.useRef(null);
@@ -931,7 +947,7 @@ const ContentPage11 = () =>{
                 </h3>
 
                 <p style={{ marginTop:"7.5rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                    Ngay sau Đại hội, Hội nghị Trung ương 2 (tháng 4/1987) đã đề ra <span style={{display:"inline-block"}}>các giải pháp cấp bách</span> nhằm giải quyết rối ren trong phân phối, lưu thông, tập trung vào <span style={{display:"inline-block"}}>"4 giảm":</span>
+                    Ngay sau Đại hội, Hội nghị Trung ương 2 (tháng 4/1987) đã đề ra <span style={{display:"inline-block"}}>các giải pháp cấp bách</span> nhằm <br/> giải quyết rối ren trong phân phối, lưu thông, tập trung vào <span style={{display:"inline-block"}}>"4 giảm":</span>
                 </p>
 
                 <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
@@ -958,6 +974,431 @@ const ContentPage11 = () =>{
         </div>
     )
 }
+
+const ContentPage12 = () => {
+    const containerRef = React.useRef(null);
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    markers: TOGGLE_MARKERS,
+                    toggleActions: contentPageToggleAction,
+                }
+            });
+
+            const textSplitTitle = new SplitText("#content-page-12 h2.main-title-page", {
+                type: "chars, lines",
+            });
+
+            tl.fromTo(textSplitTitle.chars, { y: "6rem", opacity: 0 }, {
+                y: 0,
+                opacity: 1,
+                stagger: { amount: 0.8, from: "left" },
+                duration: 0.4,
+            })
+
+                .to("#content-page-12 h2.main-title-page", {
+                    fontSize: "2.3rem",
+                    lineHeight: "2.3rem",
+                    top: "1rem",
+                    left: "50%",
+                    x: 0, y: 0,
+                    xPercent: -50,
+                    yPercent: 0,
+                    textAlign: "left",
+                    duration: 0.8,
+                }, "+=0.8");
+
+            gsap.set("#content-page-12 p.description", {
+                xPercent: -50,
+            })
+
+            // 3. Hiển thị mô tả
+            const tsDesc = new SplitText("#content-page-12 p.description", { type: "lines" });
+            tl.from(tsDesc.lines, {
+                yPercent: 100,
+                duration: 0.3,
+                opacity: 0,
+                stagger: 0.1,
+            }, "-=0.2")
+
+                // 4. Highlight tên Tổng Bí thư
+                .to("#content-page-12 p.description span", {
+                    duration: 0.3,
+                    color: HIGHLIGHT_COLOR,
+                    fontSize: "+=0.45rem",
+                    ease: "power2.out"
+                }, "+=0.15");
+
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <div id="content-page-12" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                <h2 className="main-title-page" style={{
+                    position:"absolute",
+                    top: "calc(50%)",
+                    left: "calc(50%)",
+                    transform: "translateY(calc(-50%)) translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize:"4rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    textAlign: "center",
+                }}>Đại hội VII (1991) và <br/> Cương lĩnh xây dựng đất nước</h2>
+
+                {/* Mô tả sau khi tiêu đề thu nhỏ */}
+                <p className="description" style={{
+                    position:"absolute",
+                    top:"8rem",
+                    left: "50%",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    width: "80%",
+                    fontSize: "1.7rem",
+                    textAlign: "center",
+                }}>
+                    Đại hội VII họp tại Hà Nội (từ 24 – 27/6/1991) đã <br/> bầu đồng chí <span>Đỗ Mười</span> làm Tổng Bí thư. <br/> Đại hội có ý nghĩa lịch sử khi thông qua <span>hai văn kiện quan trọng</span>.
+                </p>
+            </div>
+        </div>
+    );
+};
+
+const ContentPage13 = () =>{
+    const containerRef = React.useRef(null);
+    // isSubSection = false để không hiển thị 'Nội dung Đổi mới trọng tâm'
+    useGSAP(() => {
+        gsap.from("#content-page-13 .main-title-small", {
+            yPercent: -100,
+            opacity: 0,
+            duration: 0.2,
+        })
+        animateTitlePage(containerRef, 13, false)
+    }, []);
+
+
+
+    return(
+        <div id="content-page-13" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title - Giữ lại để định vị trang */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "left",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "2.5rem",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                }}>1. Cương lĩnh 1991
+                </h2>
+
+                {/* Sub-Title thay bằng nội dung chính */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>5 Bài học lớn của Cách mạng Việt Nam
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Cương lĩnh đúc kết <span>5 bài học kinh nghiệm lớn</span> của cách mạng Việt Nam:
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Nắm vững ngọn cờ <span>độc lập dân tộc và Chủ nghĩa xã hội (CNXH).</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Sự nghiệp cách mạng là <span>của dân, do dân, vì dân.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - <span>Tăng cường đoàn kết</span>, nhất trí trong Đảng và nhân dân.
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - <span>Kết hợp sức mạnh dân tộc</span> với <span>sức mạnh thời đại.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - <span>Sự lãnh đạo đúng đắn của Đảng</span> là nhân tố đảm bảo thắng lợi.
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+// NEW PAGE 14 (Index 13): Cương lĩnh 1991: 6 Đặc trưng cơ bản - KHÔNG CÓ TIÊU ĐỀ PHỤ
+const ContentPage14 = () =>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 14, false), []);
+
+    return(
+        <div id="content-page-14" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title - Giữ lại để định vị trang */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "left",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "2.5rem",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                }}>1. Cương lĩnh 1991
+                </h2>
+
+                {/* Sub-Title thay bằng nội dung chính */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>6 Đặc trưng cơ bản của xã hội XHCN
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Cương lĩnh xác định <span>6 đặc trưng cơ bản</span> của xã hội XHCN mà Việt Nam xây dựng:
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Chính trị: Do <span>nhân dân lao động làm chủ.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Kinh tế: Có <span>nền kinh tế phát triển cao.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Văn hóa: Có <span>nền văn hóa tiên tiến</span>, đậm đà bản sắc dân tộc.
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Xã hội: Con người được <span>giải phóng, ấm no, tự do.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Đoàn kết Dân tộc: Các dân tộc <span>bình đẳng, đoàn kết.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Quan hệ Quốc tế: Quan hệ <span>hữu nghị, hợp tác</span> với các nước.
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+// NEW PAGE 15 (Index 14): Cương lĩnh 1991: 7 Phương hướng
+const ContentPage15 = () =>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 15, false), []); // isSubSection = false
+
+    return(
+        <div id="content-page-15" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "left",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "2.5rem",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                }}>1. Cương lĩnh 1991
+                </h2>
+
+                {/* Sub-Title */}
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>7 Phương hướng Phát triển
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Cương lĩnh đề ra <span>7 Phương hướng Phát triển</span> cơ bản, trong đó nhấn mạnh:
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - <span>CNH gắn liền với phát triển nông nghiệp.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - <span>Phát triển nền kinh tế hàng hóa nhiều thành phần.</span>
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+// NEW PAGE 16 (Index 15): 2. Chiến lược... đến năm 2000
+const ContentPage16 = () =>{
+    const containerRef = React.useRef(null);
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    markers: TOGGLE_MARKERS,
+                    toggleActions: contentPageToggleAction,
+                }
+            });
+
+            // 1. Minimized Title
+            tl.from("#content-page-16 .main-title-small", {
+                yPercent: -100,
+                opacity: 0,
+                duration: 0.2,
+            }, 0);
+
+            // 2. Sub-Title 1: Mục tiêu tổng quát và Động lực chính
+            const subTitle1 = "#content-page-16 #sub-title-1";
+            const content1 = "#content-page-16 #content-1 p";
+            const textSplitSubTitle1 = new SplitText(subTitle1, { type: "chars" });
+
+            tl.from(textSplitSubTitle1.chars, {
+                xPercent: -150,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.5,
+            }, 0.2);
+
+            // 3. Content 1
+            const content1Paragraphs = document.querySelectorAll(content1);
+            content1Paragraphs.forEach((p, index) => {
+                let textSplit = SplitText.create(p, { type: "lines" });
+                tl.from(textSplit.lines, {
+                    yPercent: 100,
+                    duration: 0.3,
+                    opacity: 0,
+                    stagger: 0.1,
+                }, index === 0 ? "+=0.2" : "+=0.25")
+                tl.to(p.querySelectorAll("span"), {
+                    duration: 0.3,
+                    color: HIGHLIGHT_COLOR,
+                    fontSize: "+=0.45rem",
+                    ease: "power2.out"
+                }, "+=0.15")
+            });
+
+            // 4. Sub-Title 2: Cụ thể hóa đường lối Đại hội VII
+            const subTitle2 = "#content-page-16 #sub-title-2";
+            const content2 = "#content-page-16 #content-2 p";
+            const textSplitSubTitle2 = new SplitText(subTitle2, { type: "chars" });
+
+            tl.from(textSplitSubTitle2.chars, {
+                xPercent: -150,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.5,
+            }, "+=0.5"); // Thêm khoảng nghỉ trước khi chuyển sang tiêu đề phụ 2
+
+            // 5. Content 2
+            const content2Paragraphs = document.querySelectorAll(content2);
+            content2Paragraphs.forEach((p, index) => {
+                let textSplit = SplitText.create(p, { type: "lines" });
+                tl.from(textSplit.lines, {
+                    yPercent: 100,
+                    duration: 0.3,
+                    opacity: 0,
+                    stagger: 0.1,
+                }, index === 0 ? "+=0.2" : "+=0.25")
+                tl.to(p.querySelectorAll("span"), {
+                    duration: 0.3,
+                    color: HIGHLIGHT_COLOR,
+                    fontSize: "+=0.45rem",
+                    ease: "power2.out"
+                }, "+=0.15")
+            });
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return(
+        <div id="content-page-16" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                {/* Minimized title */}
+                <h2 className="main-title-small" style={{
+                    textAlign: "left",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "2.5rem",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                }}>2. Chiến lược đến năm 2000
+                </h2>
+
+                {/* Sub-Title 1: Mục tiêu tổng quát */}
+                {/* Bỏ position: absolute để các khối nội dung xếp chồng lên nhau bình thường */}
+                <h3 id="sub-title-1" className="sub-title" style={{
+                    marginTop: '5rem', // Margin top cố định để bắt đầu nội dung
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>Mục tiêu tổng quát và Động lực chính
+                </h3>
+
+                {/* Content 1 */}
+                <div id="content-1">
+                    {/* Bỏ style cố định, để p tự động margin */}
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        Mục tiêu tổng quát là đến năm 2000 <span>thoát khỏi khủng hoảng, ổn định kinh tế - xã hội</span>, <br/> và đưa <span>GDP năm 2000 gấp hai lần năm 1990.</span>
+                    </p>
+
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        Động lực chính là <span>"vì con người, do con người"</span>, giải phóng sức sản xuất.
+                    </p>
+                </div>
+
+
+                {/* Sub-Title 2: Cụ thể hóa đường lối Đại hội VII */}
+                <h3 id="sub-title-2" className="sub-title" style={{
+                    marginTop: '2rem', // Khoảng cách giữa nội dung 1 và tiêu đề phụ 2
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>Cụ thể hóa đường lối Đại hội VII
+                </h3>
+
+                {/* Content 2 */}
+                <div id="content-2">
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        <span>Hội nghị Trung ương 5 (tháng 6/1993):</span> Tiếp tục coi <span>nông nghiệp là mặt trận hàng đầu</span> <br/> và đề ra 3 mục tiêu chủ yếu để phát triển nông thôn mới, phát huy dân chủ, và giữ vững ổn định chính trị.
+                    </p>
+
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        <span>Hội nghị Trung ương 7 (tháng 7/1994):</span> Bàn về <span>phát triển công nghiệp, công nghệ</span> <br/> và xây dựng giai cấp công nhân, với mục tiêu lâu dài là cải biến nước ta thành nước <span>công nghiệp hiện đại.</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    )
+}
+
 
 const ContentDisplayNew = () => {
 
@@ -1007,9 +1448,14 @@ const ContentDisplayNew = () => {
             case 5: return <ContentPage6 />;
             case 6: return <ContentPage7 />;
             case 7: return <ContentPage8 />;
-            case 8: return <ContentPage9 />; // Trang mới (Index 8)
-            case 9: return <ContentPage10 />; // Trang mới (Index 9)
-            case 10: return <ContentPage11 />; // Trang mới (Index 10)
+            case 8: return <ContentPage9 />; // 5. Chính sách Xã hội (Index 8)
+            case 9: return <ContentPage10 />; // 6. Đổi mới Đảng (Index 9)
+            case 10: return <ContentPage11 />; // 7. Cụ thể hóa VI (Index 10)
+            case 11: return <ContentPage12 />; // Đại hội VII Title (Index 11)
+            case 12: return <ContentPage13 />; // Cương lĩnh: 5 Bài học (Index 12)
+            case 13: return <ContentPage14 />; // Cương lĩnh: 6 Đặc trưng (Index 13)
+            case 14: return <ContentPage15 />; // Cương lĩnh: 7 Phương hướng (Index 14)
+            case 15: return <ContentPage16 />; // Chiến lược đến 2000 (Index 15)
             default: return <ContentPage1 />;
         }
     };
@@ -1028,7 +1474,7 @@ const ContentDisplayNew = () => {
 
         timeline.from(".pagination-overlay",{
             opacity:0,
-            duration: 0.01,
+            duration: 0.0001,
         })
         timeline.to(".pagination-overlay",{
             opacity:0,
@@ -1042,14 +1488,15 @@ const ContentDisplayNew = () => {
             <div className="content-display">
                 <div className="pagination-overlay" style={{
                     position: 'fixed',
-                    top: '50%',
-                    right: '2%',
-                    width: "7.5%",
+                    bottom: '-2.5%',
+                    right: '4.5%',
+                    width: "20%",
                     transform: 'translateY(-50%)',
 
                     padding: '10px 10px 10px 20px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
                     backgroundColor: 'rgba(0, 0, 0, 0.4)',
                     borderRadius: '12px',
@@ -1057,27 +1504,9 @@ const ContentDisplayNew = () => {
                     color: HIGHLIGHT_COLOR,
                     fontFamily: '"Be Vietnam Pro", sans-serif'
                 }}>
-                    <div style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: '600' }}>
+                    <div style={{ fontSize: '1.2rem', fontWeight: '600' }}>
                         {currentPageId + 1} / {MAX_PAGE_ID + 1}
                     </div>
-
-                    <button
-                        onClick={() => handleArrowClick(-1)}
-                        disabled={currentPageId === 0}
-                        style={{
-                            background: 'none',
-                            border: '1px solid currentColor',
-                            color: 'currentColor',
-                            padding: '8px',
-                            margin: '5px 0',
-                            cursor: currentPageId === 0 ? 'default' : 'pointer',
-                            borderRadius: '50%',
-                            opacity: currentPageId === 0 ? 0.5 : 1,
-                            transition: 'opacity 0.3s'
-                        }}
-                    >
-                        &#9650;
-                    </button>
 
                     <button
                         onClick={() => handleArrowClick(1)}
@@ -1091,6 +1520,24 @@ const ContentDisplayNew = () => {
                             cursor: currentPageId === MAX_PAGE_ID ? 'default' : 'pointer',
                             borderRadius: '50%',
                             opacity: currentPageId === MAX_PAGE_ID ? 0.5 : 1,
+                            transition: 'opacity 0.3s'
+                        }}
+                    >
+                        &#9650;
+                    </button>
+
+                    <button
+                        onClick={() => handleArrowClick(-1)}
+                        disabled={currentPageId === 0}
+                        style={{
+                            background: 'none',
+                            border: '1px solid currentColor',
+                            color: 'currentColor',
+                            padding: '8px',
+                            margin: '5px 0',
+                            cursor: currentPageId === 0 ? 'default' : 'pointer',
+                            borderRadius: '50%',
+                            opacity: currentPageId === 0 ? 0.5 : 1,
                             transition: 'opacity 0.3s'
                         }}
                     >
