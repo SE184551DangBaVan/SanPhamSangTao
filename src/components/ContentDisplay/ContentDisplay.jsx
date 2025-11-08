@@ -3,6 +3,7 @@ import "./ContentDisplay.css"
 import gsap from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {SplitText} from "gsap/SplitText";
+import {ScrollToPlugin} from "gsap/ScrollToPlugin";
 import {useGSAP} from "@gsap/react";
 
 import boiCanhTruocDoiMoi from "../../assets/boi-canh-truoc-doi-moi.jpg";
@@ -10,7 +11,23 @@ import quanHeVietNamHoaKy from "../../assets/binh-thuong-hoa-quan-he-viet-nam-ho
 import daiHoiVI from "../../assets/dai-hoi-VI.png"
 import giaNhapAsean from "../../assets/gia-nhap-asean-1995.png"
 import nguyenVanLinh from "../../assets/nguyen-van-linh.png"
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+
+// --- NAVIGATION MAP (Hằng số) ---
+const PAGE_MAP = [
+    { id: 0, pageName: "#content-page-1" },
+    { id: 1, pageName: "#content-page-2" },
+    { id: 2, pageName: "#content-page-3" },
+    { id: 3, pageName: "#content-page-4" },
+    { id: 4, pageName: "#content-page-5" },
+    { id: 5, pageName: "#content-page-6" },
+    { id: 6, pageName: "#content-page-7" },
+    { id: 7, pageName: "#content-page-8" },
+    { id: 8, pageName: "#content-page-9" },
+    { id: 9, pageName: "#content-page-10" },
+];
+
+const MAX_PAGE_ID = PAGE_MAP.length - 1;
 
 // Optimization? what is that? :troll:
 
@@ -18,6 +35,8 @@ const ContentDisplay = () => {
 
     const HIGHLIGHT_COLOR = "#FFD700";
     const [isLoading, setIsLoading] = React.useState(true);
+    const [currentPageId, setCurrentPageId] = React.useState(0);
+    const [jumpInput, setJumpInput] = React.useState(1);
 
     document.fonts.ready.then(() => setIsLoading(false));
 
@@ -25,9 +44,60 @@ const ContentDisplay = () => {
 
     let contentPage1 = [];
 
+    // --- NAVIGATION LOGIC ---
+    const jumpToPage = (id) => {
+        const targetPage = PAGE_MAP.find(page => page.id === id);
+        if (targetPage) {
+            setCurrentPageId(id);
+            gsap.to(window, {
+                scrollTo: {
+                    y: targetPage.pageName,
+                    autoKill: false,
+                },
+                duration: 1,
+                ease: "power2.inOut"
+            });
+        }
+    };
+
+    const handleJump = () => {
+        const targetId = parseInt(jumpInput, 10) - 1;
+        if (targetId >= 0 && targetId <= MAX_PAGE_ID) {
+            jumpToPage(targetId);
+        } else {
+            console.error("Invalid page number for jump.");
+        }
+    };
+
+    const handleArrowClick = (direction) => {
+        let newId = currentPageId + direction;
+        if (newId >= 0 && newId <= MAX_PAGE_ID) {
+            jumpToPage(newId);
+        }
+    };
+
+    // --- GSAP ANIMATIONS ---
     useGSAP(() => {
         if(!isLoading){
             contentPage1 = Array.from(document.querySelectorAll("#content-page-1 p"));
+
+            // Function to create a ScrollTrigger that updates the current page state
+            const createPageScrollTrigger = (pageId, triggerElement) => {
+                ScrollTrigger.create({
+                    trigger: triggerElement,
+                    start: "top center",
+                    end: "bottom center",
+                    onToggle: self => {
+                        if (self.isActive) {
+                            setCurrentPageId(pageId);
+                        }
+                    },
+                    // markers: true,
+                });
+            };
+
+            // --- TIMELINE 1 ---
+            createPageScrollTrigger(0, "#content-page-1");
 
             const timeline1 = gsap.timeline({
                 scrollTrigger: {
@@ -35,7 +105,7 @@ const ContentDisplay = () => {
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -117,6 +187,8 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 1 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 2 ------------------------------------------------------------------//
 
+            createPageScrollTrigger(1, "#content-page-2");
+
             const tsTitlePage2Top = new SplitText("#title #top-title", {
                 type: "chars",
             })
@@ -130,7 +202,7 @@ const ContentDisplay = () => {
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -241,12 +313,12 @@ const ContentDisplay = () => {
                 })
                 .to("#dai-hoi-VI-img",{
                     maskSize: 500,
-                    duration: 2,
+                    duration: 1,
                     ease: "power2.in",
                 })
                 .to("#nguyen-van-linh-img",{
                     maskSize: 2000,
-                    duration: 2,
+                    duration: 1,
                     ease: "power2.in",
                 }, "<")
 
@@ -269,13 +341,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 2 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 3 ------------------------------------------------------------------//
 
+            createPageScrollTrigger(2, "#content-page-3");
+
             const timeline3 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-3",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -326,13 +400,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 3 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 4 ------------------------------------------------------------------//
 
+            createPageScrollTrigger(3, "#content-page-4");
+
             const timeline4 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-4",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -383,13 +459,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 4  -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 5 (Lĩnh vực Kinh tế) ------------------------------------------------------------------//
 
+            createPageScrollTrigger(4, "#content-page-5");
+
             const timeline5 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-5",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -456,13 +534,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 5 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 6 (Nông nghiệp) ------------------------------------------------------------------//
 
+            createPageScrollTrigger(5, "#content-page-6");
+
             const timeline6 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-6",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -509,13 +589,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 6 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 7 (Công nghiệp) ------------------------------------------------------------------//
 
+            createPageScrollTrigger(6, "#content-page-7");
+
             const timeline7 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-7",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -562,13 +644,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 7 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 8 (Đối ngoại) ------------------------------------------------------------------//
 
+            createPageScrollTrigger(7, "#content-page-8");
+
             const timeline8 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-8",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -615,13 +699,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 8 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 9 (Thành tựu - Nông nghiệp) ------------------------------------------------------------------//
 
+            createPageScrollTrigger(8, "#content-page-9");
+
             const timeline9 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-9",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -688,13 +774,15 @@ const ContentDisplay = () => {
             // ------------------------------------------------------------------- END OF PAGE 9 -------------------------------------------------------------------//
             // ------------------------------------------------------------------ START OF PAGE 10 (Thành tựu - Lạm phát & FDI) ------------------------------------------------------------------//
 
+            createPageScrollTrigger(9, "#content-page-10");
+
             const timeline10 = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#content-page-10",
                     start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: true,
+                    // markers: true,
                     toggleActions: contentPageToggleAction,
                 }
             })
@@ -718,7 +806,7 @@ const ContentDisplay = () => {
             }, "+=0.1");
 
             // 3. Content 1 Reveal (Lạm phát)
-            const contentPage10Paragraphs_1 = new SplitText("#content-group-1", {
+            const contentPage10Paragraphs_1 = new SplitText("#content-group-1 p", { // Target paragraphs inside the div
                 type: "lines",
             })
 
@@ -748,7 +836,7 @@ const ContentDisplay = () => {
             }, "+=0.5"); // Start animation after Lạm phát content finishes
 
             // 5. Content 2 Reveal (FDI)
-            const contentPage10Paragraphs_2 = new SplitText("#content-group-2", {
+            const contentPage10Paragraphs_2 = new SplitText("#content-group-2 p", { // Target paragraphs inside the div
                 type: "lines",
             })
             timeline10.from(contentPage10Paragraphs_2.lines, {
@@ -778,6 +866,7 @@ const ContentDisplay = () => {
                 timeline8?.kill();
                 timeline9?.kill();
                 timeline10?.kill();
+                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
             };
         }
     }, [isLoading])
@@ -785,6 +874,104 @@ const ContentDisplay = () => {
     return (
         <>
             <div className="content-display">
+
+                {/* --- PAGINATION UI (Right Center) --- */}
+                <div className="pagination-overlay" style={{
+                    position: 'fixed',
+                    top: '50%',
+                    right: '2%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 1000,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                    padding: '10px',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
+                    color: HIGHLIGHT_COLOR,
+                    fontFamily: '"Be Vietnam Pro", sans-serif'
+                }}>
+
+                    {/* Current / Max */}
+                    <div style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: '600' }}>
+                        {currentPageId + 1} / {MAX_PAGE_ID + 1}
+                    </div>
+
+                    {/* Up Arrow */}
+                    <button
+                        onClick={() => handleArrowClick(-1)}
+                        disabled={currentPageId === 0}
+                        style={{
+                            background: 'none',
+                            border: '1px solid currentColor',
+                            color: 'currentColor',
+                            padding: '8px',
+                            margin: '5px 0',
+                            cursor: currentPageId === 0 ? 'default' : 'pointer',
+                            borderRadius: '50%',
+                            opacity: currentPageId === 0 ? 0.5 : 1,
+                            transition: 'opacity 0.3s'
+                        }}
+                    >
+                        &#9650; {/* Unicode Up Arrow */}
+                    </button>
+
+                    {/* Down Arrow */}
+                    <button
+                        onClick={() => handleArrowClick(1)}
+                        disabled={currentPageId === MAX_PAGE_ID}
+                        style={{
+                            background: 'none',
+                            border: '1px solid currentColor',
+                            color: 'currentColor',
+                            padding: '8px',
+                            margin: '5px 0',
+                            cursor: currentPageId === MAX_PAGE_ID ? 'default' : 'pointer',
+                            borderRadius: '50%',
+                            opacity: currentPageId === MAX_PAGE_ID ? 0.5 : 1,
+                            transition: 'opacity 0.3s'
+                        }}
+                    >
+                        &#9660; {/* Unicode Down Arrow */}
+                    </button>
+
+                    {/* Jump To */}
+                    <input
+                        type="number"
+                        min="1"
+                        max={MAX_PAGE_ID + 1}
+                        value={jumpInput}
+                        onChange={(e) => setJumpInput(e.target.value)}
+                        placeholder="Trang"
+                        style={{
+                            width: '45px',
+                            padding: '5px',
+                            margin: '10px 0 5px',
+                            textAlign: 'center',
+                            borderRadius: '5px',
+                            border: `1px solid ${HIGHLIGHT_COLOR}`,
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: HIGHLIGHT_COLOR,
+                        }}
+                    />
+                    <button
+                        onClick={handleJump}
+                        style={{
+                            padding: '5px 10px',
+                            backgroundColor: HIGHLIGHT_COLOR,
+                            color: '#000',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        Jump
+                    </button>
+                </div>
+
+                {/* --- CONTENT PAGES --- */}
 
                 <div id="content-page-1" className="content-page">
                     <div className="board-frame">
@@ -816,7 +1003,7 @@ const ContentDisplay = () => {
 
                         <p>Quan hệ quốc tế bị <span>bao vây, cấm vận.</span></p>
 
-                        <p>Đời sống nhân dân <span>khó khăn.</span></p>
+                        <p style={{marginBottom: '0'}}>Đời sống nhân dân <span>khó khăn.</span></p>
 
                         <div className="content-visual">
                             <div className="image-container">
@@ -1250,22 +1437,24 @@ const ContentDisplay = () => {
                             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
                         }}>Kiềm chế lạm phát (Thắng lợi vĩ đại)
                         </h3>
+
                         <div id="content-group-1">
                             <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
                                 Lạm phát giảm mạnh: <br/>
                             </p>
 
-                            <p>Từ <span>774,7% (1986)</span> Xuống còn <span>67,1% (1990)</span> Và chỉ còn <span>12,7% (1995)</span>.</p>
+                            <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>Từ <span>774,7% (1986)</span> Xuống còn <span>67,1% (1990)</span> Và chỉ còn <span>12,7% (1995)</span>.</p>
 
                             <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
                                 Điều này có nghĩa là đồng tiền Việt Nam đã <span>ổn định trở lại</span>, tạo niềm tin cho người dân và nhà đầu tư.
                             </p>
                         </div>
 
+
                         {/* Sub-Title 2 */}
                         <h3 className="sub-title-2" style={{
                             position:"absolute",
-                            top: "20rem",
+                            top: "23rem",
                             left: "2.5rem",
                             fontSize:"2.3rem",
                             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
@@ -1273,11 +1462,12 @@ const ContentDisplay = () => {
                         </h3>
 
                         <div id="content-group-2">
-                            <p style={{ marginTop:"5rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom: "0" }}>
-                                Từ 1988 đến 1996, Việt Nam đã thu hút được <span>27,2 tỷ USD</span> vốn đăng ký,
+                            <p style={{ marginTop:"3rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom: "0" }}>
+                                Từ 1988 đến 1996, Việt Nam đã thu hút được <span>27,2 tỷ USD</span> vốn đăng ký, <br/>
                             </p>
                             <p style={{clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom: "0"}}>tạo ra hàng loạt khu công nghiệp (Tân Thuận, Linh Trung...) và thay đổi bộ mặt cơ sở hạ tầng.</p>
                         </div>
+
                     </div>
                 </div>
 
