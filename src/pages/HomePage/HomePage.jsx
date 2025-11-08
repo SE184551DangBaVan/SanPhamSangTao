@@ -10,6 +10,7 @@ import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 import BookSelector from "../../components/BookSelection/BookSelector.jsx";
 import Hand from '../../components/Handy/Hand.jsx';
 import { ArrowUpward, Translate } from '@mui/icons-material';
+import ContentDisplay from "../../components/ContentDisplay/ContentDisplay.jsx";
 import ScissorLift from '../../components/ExtensionJoint/ScissorLift.jsx';
 import WeirdButton from "../../components/ContentDisplay/WeirdButton/WeirdButton.jsx";
 import ContentDisplayNew from "../../components/ContentDisplay/ContentDisplayNew.jsx";
@@ -36,10 +37,10 @@ export default function HomePage() {
         setShow(true);
         setShown(true);
       }
-      else if (shown && scrollHomePageOffset<=650 && !retract) {
+      else if (shown && scrollHomePageOffset<=800 && !retract) {
         setRetract(true);
       }
-      else if (shown && scrollHomePageOffset<=600 || shown && scrollHomePageOffset===0){
+      else if (shown && scrollHomePageOffset<=800 || shown && scrollHomePageOffset===0){
         setShow(false);
       }
       else if (!show && retract && shown) {
@@ -162,8 +163,9 @@ export default function HomePage() {
             </div>
             <div className={`film-strip ${scrollHomePageOffset > 500 ? 'scroll' : ''}`}></div>
           </div>
-
-          <div id="hero" className={`hero-paragraph ${scrollHomePageOffset < 800 ? 'hidden':''}`} >
+        </div>
+      </div>
+      <div id="hero" className={`hero-paragraph ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 5000) ? '':'hidden'}`} >
             {/* <div className="stuck-grid">
               <div className="grid-item">Tư Tưởng</div>
               <div className="grid-item"></div>
@@ -262,33 +264,63 @@ export default function HomePage() {
               </ul>
             </section>
           </div>
-        </div>
-      </div>
 
-      <div className={`historical-figure-block hidden`} style={{ opacity: `0`}}>
-        <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 1100
-                                                    ? `url('${maskOne}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 1100 ? "scale(0.5) translateY(0)" : "scale(0.5) translateY(800px)"}}></div>
-                                                    <span className='historical-texts1' 
-                                                    style={{transform: scrollHomePageOffset > 1100 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">1. Văn hóa – gốc của dân tộc</span><br/>
-Văn hóa là sức sống tinh thần, phản ánh trí tuệ và tâm hồn Việt Nam.<br/>
-Khi đất nước được giải phóng, văn hóa nảy nở, trở thành nền tảng cho xã hội phát triển.<br/></span>
+      <div className={`historical-figure-block-outer ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 5000) ? '' : 'hidden'}`} ></div>
+      <div className={`historical-figure-block ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 5000) ? '' : 'hidden'}`} >
+        
+        <span className='historical-texts1'
+          style={{ transform: scrollHomePageOffset > 1400 ? `translateY(105%)` : `translateY(0)` }}>
+          <div className="historical-figure1" style={{ maskImage: scrollHomePageOffset > 800
+              ? `url('${maskOne}')` : `linear-gradient(to right, transparent, transparent)` }}>
+          </div>
+          <div className="info-card">
+            <div class="corner up left"></div>
+            <div class="corner up right"></div>
+            <div class="corner bottom left"></div>
+            <div class="corner bottom right"></div>
+          </div>
+          <span className="first-letter">1. Văn hóa – gốc của dân tộc</span><br />
+          <span className="historical-details">
+            Văn hóa là sức sống tinh thần, phản ánh trí tuệ và tâm hồn Việt Nam.<br />
+            Khi đất nước được giải phóng, văn hóa nảy nở, trở thành nền tảng cho xã hội phát triển.<br />
+          </span>
+        </span>
 
-        <div className="historical-figure2" style={{maskImage: scrollHomePageOffset > 1800
-                                                    ? `url('${maskTwo}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset >  1800 ? "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)"}}></div>
-                                                    <span className='historical-texts2'
-                                                    style={{transform: scrollHomePageOffset >  1800 ? "translateY(0)" : "translateY(400px)"}}><span className="first-letter">2. Văn hóa – sức mạnh đổi thay</span><br/>
-Văn hóa vừa là mục tiêu, vừa là động lực cách mạng.<br/>
-Nó khơi dậy lòng yêu nước, nuôi dưỡng nhân cách và khát vọng vươn lên của con người.<br/></span>
-
-        <div className="historical-figure3" style={{maskImage: scrollHomePageOffset > 2300
-                                                    ? `url('${maskThree}')`
-                                                    : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 2300 ?  "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)"}}></div>
-                                                    <span className='historical-texts3'
-                                                    style={{transform: scrollHomePageOffset > 2300 ?  "translateY(0)" : "translateY(400px)"}}><span className="first-letter">3. Xây dựng văn hóa mới</span><br/>
-Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br/>
-Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br/></span>
+        <span className='historical-texts2'
+          style={{ transform: scrollHomePageOffset > 2600 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 1600 ? `0` : `105%` }}>
+          <div className="historical-figure2" style={{
+            maskImage: scrollHomePageOffset > 1600
+              ? `url('${maskTwo}')` : `linear-gradient(to right, transparent, transparent)` }}>
+          </div>
+          <div className="info-card">
+            <div class="corner up left"></div>
+            <div class="corner up right"></div>
+            <div class="corner bottom left"></div>
+            <div class="corner bottom right"></div>
+          </div>
+          <span className="first-letter">2. Văn hóa – sức mạnh đổi thay</span><br />
+          <span className="historical-details">
+            Văn hóa vừa là mục tiêu, vừa là động lực cách mạng.<br />
+            Nó khơi dậy lòng yêu nước, nuôi dưỡng nhân cách và khát vọng vươn lên của con người.<br />
+          </span>
+        </span>
+        <span className='historical-texts3'
+          style={{ transform: scrollHomePageOffset > 4800 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 2800 ? `-95%` : `10%` }}>
+          <div className="historical-figure3" style={{
+            maskImage: scrollHomePageOffset > 2800
+              ? `url('${maskThree}')` : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 2300 ? "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)" }}>
+          </div>
+          <div className="info-card">
+            <div class="corner up left"></div>
+            <div class="corner up right"></div>
+            <div class="corner bottom left"></div>
+            <div class="corner bottom right"></div>
+          </div>
+          <span className="first-letter">3. Xây dựng văn hóa mới</span><br />
+          <span className="historical-details">
+            Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br />
+            Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br /></span>
+        </span>
 
       </div>
 

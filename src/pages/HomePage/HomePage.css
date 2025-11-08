@@ -405,6 +405,7 @@
 .film-strip {
   position: absolute;
   left: -49.5%;
+  right: 55%;
   --s: 10px;
   width: 200%;
   height: 165%;
@@ -681,7 +682,7 @@
 .side-gear {
 	position: fixed;
   z-index: -1;
-	left: calc(10% - 44px);
+	left: calc(10% - 34px);
 	bottom: 30%;
 	height: 20%;
 	width: 20%;
@@ -692,7 +693,7 @@
 .side-gear-isometric {
 	position: fixed;
   z-index: -2;
-	left: calc(10% - 48px);
+	left: calc(10% - 30px);
 	bottom: 30%;
 	height: 20%;
 	width: 20%;
@@ -787,7 +788,7 @@
 
 .hero-paragraph {
     position: fixed;
-    z-index: 5;
+    z-index: 99;
     top: 0;
     left: 0;
     width: 100%;
@@ -801,6 +802,7 @@
 
 .hero-paragraph.hidden {
     opacity: 0;
+    transition-delay: 0.4s !important;
     transition: opacity 4s ease;
 }
 
@@ -829,12 +831,14 @@
 
 .hero-paragraph .info-line {
   position: absolute;
+  right: -10%;
   top: -12%;
   animation: mechanical-pop-in 1s forwards;
 }
 
 .hero-paragraph.hidden .info-line {
-  right: -10%;
+  right: 0.5%;
+  animation-delay: 0.4s !important;
   animation: mechanical-pop-out 1s forwards;
 }
 
@@ -907,58 +911,72 @@
 
 .historical-figure-block {
     position: fixed;
-    z-index: 101;
-    top: calc(6%);
-    right: calc(5% - 40px);
+    z-index: 100;
+    top: calc(100%);
+    right: calc(5% - 35px);
     width: 24%;
-    height: 700px;
+    height: 720px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #222222ec;
     box-shadow: inset 0 0 50px #041808;
-    border: 10px solid #866c45;
+    border: 6px solid #866c45;
+    border-bottom: 80px solid #866c45;
     border-radius: 8px;
     overflow: hidden;
-    transition: all 2s ease-in;
+    animation-delay: 0.2s !important;
     animation: informative-pop-in 1s forwards;
 }
 
 .historical-figure-block.hidden {
+  top: calc(3%);
   animation: informative-pop-out 1s forwards;
-    transition: all 0.2s ease-in;
+}
+
+.historical-figure-block-outer {
+  position: fixed;
+    z-index: 98;
+    top: calc(100%);
+    right: calc(5% - 40px);
+    width: 24%;
+    height: 720px;
+    border: 6px solid rgb(119, 93, 46);
+    border-radius: 8px;
+    animation-delay: 0.2s !important;
+    animation: informative-pop-in 1s forwards;
+}
+.historical-figure-block-outer.hidden {
+  top: calc(3%);
+  animation: informative-pop-out 1s forwards;
 }
 
 @keyframes informative-pop-in {
-  0% { right: -30%; scale: 0.98;}
-  20% { right: calc(5% - 30px); scale: 0.98;}
-  80% { right: calc(5% - 40px); scale: 1;}
-  100% { right: calc(5% - 40px); scale: 1;}
+  0% { top: calc(100%);}
+  80% { top: calc(3%);}
+  90% { top: calc(5%)}
+  100% { top: calc(3%);}
 }
 
 @keyframes informative-pop-out {
-  0% { right: calc(5% - 40px); }
-  30% { right: calc(5% - 30px); }
-  80% { right: -5%; }
-  100% { right: -30%; }
-}
-
-.historical-figure {
-  width: 100%;
-  height: 100%;
+  0% { top: calc(3%); }
+  20% { top: calc(-1%); }
+  80% { top: calc(100%); }
+  100% { top: calc(100%); }
 }
 
 .historical-figure1 {
     position: absolute;
-    width: 600px;
-    height: 400px;
-    left: -250px;
-    top: -200px;
+    z-index: -2;
+    width: 800px;
+    height: 600px;
+    left: -80%;
+    top: 100px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     background-image: url('../../assets/HoChiMinhLockedIn.jpg');
-    
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -970,10 +988,11 @@
 }
 .historical-figure2 {
     position: absolute;
+    z-index: -2;
     width: 1200px;
     height: 800px;
-    left: 480px;
-    top: 500px;
+    left: -120%;
+    top: 0;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -988,10 +1007,11 @@
 }
 .historical-figure3 {
     position: absolute;
-    width: 1200px;
-    height: 800px;
-    left: -200px;
-    top: 1000px;
+    z-index: -2;
+    width: 1000px;
+    height: 600px;
+    left: -100%;
+    top: 50px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -1010,14 +1030,122 @@
 .historical-texts3 {
   position: relative;
   z-index: -1;
-  width: 22vmax;
-  min-height: 500px;
-  background-color: white;
+  width: 90% !important;
+  min-height: 600px;
+  background-color: rgba(103, 103, 103, 0.249);
   color: var(--secondary-color);
   font-size: 18px;
   text-align: left;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-  transition: transform 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.historical-texts1 .info-card,
+.historical-texts2 .info-card,
+.historical-texts3 .info-card {
+  position: absolute;
+  z-index: -1;
+  top: 0%;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  background: rgba(20, 16, 24, 0.6);
+  border: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner,
+.historical-texts2 .info-card .corner,
+.historical-texts3 .info-card .corner {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 2px solid rgb(237, 215, 171);
+  position: absolute;
+}
+
+.historical-texts1 .info-card .corner::after, .historical-texts1 .info-card .corner::before,
+.historical-texts2 .info-card .corner::after, .historical-texts2 .info-card .corner::before,
+.historical-texts3 .info-card .corner::after, .historical-texts3 .info-card .corner::before {
+  content: "";
+  position: absolute;
+}
+.historical-texts1 .info-card .corner::after,
+.historical-texts2 .info-card .corner::after,
+.historical-texts3 .info-card .corner::after {
+  width: 2rem;
+  height: calc(1rem - 1px);
+}
+.historical-texts1 .info-card .corner::before,
+.historical-texts2 .info-card .corner::before,
+.historical-texts3 .info-card .corner::before {
+  width: calc(1rem - 1px);
+  height: 2rem;
+}
+.historical-texts1 .info-card .corner.left,
+.historical-texts2 .info-card .corner.left,
+.historical-texts3 .info-card .corner.left {
+  left: -0.5rem;
+}
+.historical-texts1 .info-card .corner.left::after,
+.historical-texts2 .info-card .corner.left::after,
+.historical-texts3 .info-card .corner.left::after {
+  left: calc(-2px + 1rem);
+  border-left: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner.left::before,
+.historical-texts2 .info-card .corner.left::before,
+.historical-texts3 .info-card .corner.left::before {
+  left: -1px;
+  border-left: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner.right,
+.historical-texts2 .info-card .corner.right,
+.historical-texts3 .info-card .corner.right {
+  right: -0.5rem;
+}
+.historical-texts1 .info-card .corner.right::after,
+.historical-texts2 .info-card .corner.right::after,
+.historical-texts3 .info-card .corner.right::after {
+  right: calc(-2px + 1rem);
+  border-right: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner.right::before,
+.historical-texts2 .info-card .corner.right::before,
+.historical-texts3 .info-card .corner.right::before {
+  right: -1px;
+  border-right: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner.up,
+.historical-texts2 .info-card .corner.up,
+.historical-texts3 .info-card .corner.up {
+  top: -0.5rem;
+}
+.historical-texts1 .info-card .corner.up::after,
+.historical-texts2 .info-card .corner.up::after,
+.historical-texts3 .info-card .corner.up::after {
+  top: -1px;
+  border-top: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner.up::before,
+.historical-texts2 .info-card .corner.up::before,
+.historical-texts3 .info-card .corner.up::before {
+  top: calc(-2px + 1rem);
+  border-top: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner.bottom,
+.historical-texts2 .info-card .corner.bottom,
+.historical-texts3 .info-card .corner.bottom {
+  bottom: -0.5rem;
+}
+.historical-texts1 .info-card .corner.bottom::after,
+.historical-texts2 .info-card .corner.bottom::after,
+.historical-texts3 .info-card .corner.bottom::after {
+  bottom: -1px;
+  border-bottom: 2px solid rgb(237, 215, 171);
+}
+.historical-texts1 .info-card .corner.bottom::before,
+.historical-texts2 .info-card .corner.bottom::before,
+.historical-texts3 .info-card .corner.bottom::before {
+  bottom: calc(-2px + 1rem);
+  border-bottom: 2px solid rgb(237, 215, 171);
 }
 
 .historical-texts1::after,
@@ -1025,39 +1153,55 @@
 .historical-texts3::after {
   content: "";
   position: absolute;
-  top: 100%;
-  height: 20px;
+  z-index: -2;
   width: 100%;
-  left: 0;
-  background: url('../../assets/ripped.svg') bottom;
-  background-size: 100%;
+  height: 100%;
+  top: -30px;
+  left: -30px;
+  background-color: transparent;
+  pointer-events: none;
+  border: 30px solid rgb(20, 16, 24);
+}
+
+.historical-texts1 span,
+.historical-texts2 span,
+.historical-texts3 span {
+  z-index: 10;
+}
+
+.historical-texts1 .historical-details {
+  color: white;
+}
+.historical-texts2 .historical-details {
+  color: white;
+}
+.historical-texts3 .historical-details {
+  color: white;
 }
 
 .historical-texts1 .first-letter,
 .historical-texts2 .first-letter,
 .historical-texts3 .first-letter {
-  font-size: 46px;
+  font-size: 32px;
   width: 100%;
   margin-bottom: 20px;
   padding-left: 5px;
 }
 
 .historical-texts1 {
-  top:10px;
-  left:98%;
-  padding: 50px 30px 30px 300px;
+  top: 600px;
+  left: 0;
+  padding: 20px;
 }
 
 .historical-texts2 {
-  top: 700px;
-  left: 15%;
-  padding: 50px 300px 30px 30px;
+  left: 0;
+  padding: 20px;
 }
 
 .historical-texts3 {
-  top: 1300px;
-  left: 15%;
-  padding: 50px 30px 30px 250px;
+  left: 0;
+  padding: 20px;
 }
 
 @keyframes zoom-in {
@@ -1244,7 +1388,7 @@
 
 
 .book-selection-block {
-    margin-top: 300vh;
+    margin-top: 50vh;
     position: relative;
     cursor: none;
     z-index: 100;
@@ -1262,8 +1406,6 @@
     height: auto;
     top: -86.5vh;
 }
-
-
 
 .book-selection-block::before {
   content: '';
