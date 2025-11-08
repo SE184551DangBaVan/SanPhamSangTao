@@ -3,16 +3,20 @@ import gsap from "gsap"
 import {SplitText} from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
-
+import "./ContentDisplay.css"
 // Import images
 import boiCanhTruocDoiMoi from "../../assets/boi-canh-truoc-doi-moi.jpg";
 import quanHeVietNamHoaKy from "../../assets/binh-thuong-hoa-quan-he-viet-nam-hoa-ky.png"
 import daiHoiVI from "../../assets/dai-hoi-VI.png"
 import giaNhapAsean from "../../assets/gia-nhap-asean-1995.png"
 import nguyenVanLinh from "../../assets/nguyen-van-linh.png"
+import {ScrollToPlugin} from "gsap/ScrollToPlugin";
 
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const TOGGLE_MARKERS = true;
 const HIGHLIGHT_COLOR = "#FFD700";
-const MAX_PAGE_ID = 9; // 0-9 = 10 pages
+const MAX_PAGE_ID = 9;
 const contentPageToggleAction= "play reset play reset"
 
 // Individual Page Components
@@ -29,7 +33,7 @@ const ContentPage1 = () => {
                     start: "top top", // Keep this for the pinned section
                     end: "bottom top",
                     pin: true,
-                    markers: true, // Keep markers for debugging
+                    markers: TOGGLE_MARKERS, // Keep markers for debugging
                     toggleActions: contentPageToggleAction,
                 }
             });
@@ -147,7 +151,7 @@ const ContentPage2 = () => {
                     start: "top top", // Keep this for the pinned section
                     end: "bottom top",
                     pin: true,
-                    markers: true, // Keep markers for debugging
+                    markers: TOGGLE_MARKERS, // Keep markers for debugging
                     toggleActions: contentPageToggleAction,
                 }
             });
@@ -354,7 +358,7 @@ const animateStandardPage = (containerRef, pageId) => {
                 start: "top top", // Keep this for the pinned section
                 end: "bottom top",
                 pin: true,
-                markers: true, // Keep markers for debugging
+                markers: TOGGLE_MARKERS, // Keep markers for debugging
                 toggleActions: contentPageToggleAction,
             }
         });
@@ -480,7 +484,7 @@ const ContentPage5 = () => {
                     start: "top top", // Keep this for the pinned section
                     end: "bottom top",
                     pin: true,
-                    markers: true, // Keep markers for debugging
+                    markers: TOGGLE_MARKERS, // Keep markers for debugging
                     toggleActions: contentPageToggleAction,
                 }
             });
@@ -576,16 +580,304 @@ const ContentPage5 = () => {
     );
 };
 
-// I'll add placeholder components for pages 6-10 to keep the solution manageable
-// You can follow the same pattern as pages 3-5
+    const ContentPage6 = () =>{
+        const containerRef = React.useRef(null);
 
-const ContentPage6 = () => <div id="content-page-6" className="content-page"><div className="board-frame"><h2>Page 6 - Nông nghiệp</h2></div></div>;
-const ContentPage7 = () => <div id="content-page-7" className="content-page"><div className="board-frame"><h2>Page 7 - Công nghiệp</h2></div></div>;
-const ContentPage8 = () => <div id="content-page-8" className="content-page"><div className="board-frame"><h2>Page 8 - Đối ngoại</h2></div></div>;
-const ContentPage9 = () => <div id="content-page-9" className="content-page"><div className="board-frame"><h2>Page 9 - Thành tựu</h2></div></div>;
-const ContentPage10 = () => <div id="content-page-10" className="content-page"><div className="board-frame"><h2>Page 10 - Lạm phát & FDI</h2></div></div>;
+        useGSAP(() => {
+            const ctx = gsap.context(() => {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: containerRef.current, // <--- Use the component's ID as the trigger
+                        // 'start' defines when the timeline begins playing.
+                        // 'top top' means when the top of the element hits the top of the viewport.
+                        start: "top top", // Keep this for the pinned section
+                        end: "bottom top",
+                        pin: true,
+                        markers: TOGGLE_MARKERS, // Keep markers for debugging
+                        toggleActions: contentPageToggleAction,
+                    }
+                });
 
-const ContentDisplay = () => {
+                // 1. Main Title Animation (Quick Fade In to Top Center)
+                tl.fromTo("#content-page-6 h2.main-title-small", { opacity: 0 }, {
+                    opacity: 1,
+                    duration: 0.2,
+                }, 0); // Start immediately
+
+                // 2. Sub-Title Animation (Move from Left)
+                const textSplitSubTitlePage6 = new SplitText("#content-page-6 h3.sub-title", {
+                    type: "chars, lines",
+                })
+
+                tl.from(textSplitSubTitlePage6.chars, {
+                    xPercent: -150,
+                    opacity: 0,
+                    stagger: 0.05,
+                    duration: 0.5,
+                }, "+=0.1");
+
+                // 3. Content Reveal (SplitText by Lines)
+                const contentPage6Paragraphs = Array.from(document.querySelectorAll("#content-page-6 p"));
+
+                contentPage6Paragraphs.forEach((p, index)=>{
+                    let textSplit = SplitText.create(p, {
+                        type: "lines",
+                    })
+                    tl.from(textSplit.lines,{
+                        yPercent: 100,
+                        duration: 0.3,
+                        opacity: 0,
+                        stagger: 0.1,
+                    }, index === 0 ? "+=0.2" : "+=0.25")
+                    tl.to(p.querySelectorAll("span"), {
+                        duration: 0.3,
+                        color: HIGHLIGHT_COLOR,
+                        fontSize: "+=0.45rem",
+                        ease: "power2.out"
+                    }, "+=0.15")
+                })
+            }, containerRef);
+
+            return () => ctx.revert();
+        }, []);
+        return(
+            <div id="content-page-6" className="content-page" ref={containerRef}>
+                <div className="board-frame">
+                    {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
+                    <h2 className="main-title-small" style={{
+                        textAlign: "center",
+                        position:"absolute",
+                        top: "1rem",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        textWrap: "nowrap",
+                        width: "auto",
+                        fontSize: "2.3rem",
+                        opacity: 0,
+                    }}>Nội dung Đổi mới trọng tâm
+                    </h2>
+
+                    {/* Sub-Title */}
+                    <h3 className="sub-title" style={{
+                        position:"absolute",
+                        top: "5rem",
+                        left: "2.5rem",
+                        fontSize:"2.3rem",
+                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    }}>2. Nông nghiệp
+                    </h3>
+
+                    <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        <span>Nghị quyết 10 của Bộ Chính trị (Khoán 10)</span> ban hành tháng 4/1988, <br/> là bước đi cụ thể hóa tinh thần Đại hội VI.
+                    </p>
+
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        Nội dung chính: Giao quyền sử dụng ruộng đất <span>ổn định và lâu dài</span> cho hộ gia đình. <br/> Nông dân được <span>tự chủ sản xuất</span> và <span>toàn quyền sở hữu</span>, tự do buôn bán sản phẩm dư thừa.
+                    </p>
+
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        Tác động: Tạo ra động lực "bung ra" cho sản xuất. <br/> Hộ nông dân trở thành <span>đơn vị kinh tế tự chủ</span>, chấm dứt tình trạng <span style={{display:"inline-block"}}>"cha chung không ai khóc"</span> <br/> của hợp tác xã kiểu cũ.
+                    </p>
+
+                </div>
+            </div>
+        )
+    }
+
+
+    const ContentPage7 = ()=>{
+        const containerRef = React.useRef(null);
+
+        useGSAP(() => {
+            const ctx = gsap.context(() => {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top top",
+                        end: "bottom top",
+                        pin: true,
+                        markers: TOGGLE_MARKERS,
+                        toggleActions: contentPageToggleAction,
+                    }
+                });
+
+                tl.fromTo("#content-page-7 h2.main-title-small", { opacity: 0 }, {
+                    opacity: 1,
+                    duration: 0.2,
+                }, 0);
+
+                const textSplitSubTitlePage7 = new SplitText("#content-page-7 h3.sub-title", {
+                    type: "chars, lines",
+                })
+
+                tl.from(textSplitSubTitlePage7.chars, {
+                    xPercent: -150,
+                    opacity: 0,
+                    stagger: 0.05,
+                    duration: 0.5,
+                }, "+=0.1");
+
+                const contentPage7Paragraphs = Array.from(document.querySelectorAll("#content-page-7 p"));
+
+                contentPage7Paragraphs.forEach((p, index)=>{
+                    let textSplit = SplitText.create(p, {
+                        type: "lines",
+                    })
+                    tl.from(textSplit.lines,{
+                        yPercent: 100,
+                        duration: 0.3,
+                        opacity: 0,
+                        stagger: 0.1,
+                    }, index === 0 ? "+=0.2" : "+=0.25")
+                    tl.to(p.querySelectorAll("span"), {
+                        duration: 0.3,
+                        color: HIGHLIGHT_COLOR,
+                        fontSize: "+=0.45rem",
+                        ease: "power2.out"
+                    }, "+=0.15")
+                })
+            }, containerRef);
+
+            return () => ctx.revert();
+        }, []);
+        return(
+            <div id="content-page-7" className="content-page" ref={containerRef}>
+                <div className="board-frame">
+                    {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
+                    <h2 className="main-title-small" style={{
+                        textAlign: "center",
+                        position:"absolute",
+                        top: "1rem",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        textWrap: "nowrap",
+                        width: "auto",
+                        fontSize: "2.3rem",
+                        opacity: 0,
+                    }}>Nội dung Đổi mới trọng tâm
+                    </h2>
+
+                    {/* Sub-Title */}
+                    <h3 className="sub-title" style={{
+                        position:"absolute",
+                        top: "6rem",
+                        left: "2.5rem",
+                        fontSize:"2.1rem",
+                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    }}>3. Công nghiệp và Doanh nghiệp Nhà nước
+                    </h3>
+
+                    <p style={{ marginTop:"9rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        Sắp xếp lại: <span>Xóa bỏ sự bao cấp</span> của nhà nước. <br/> Các DNNN phải <span>tự hạch toán kinh doanh, tự chủ tài chính.</span> <br/> Nhiều doanh nghiệp không thích nghi đã phải giải thể/sáp nhập.
+                    </p>
+
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        Khuyến khích tư nhân: Lần đầu tiên, kinh tế tư nhân, kinh tế cá thể <br/> được <span>thừa nhận là</span> một thành phần kinh tế <span>có ích</span> và được <span>khuyến khích phát triển.</span>
+                    </p>
+
+                </div>
+            </div>
+        )
+    }
+
+    const ContentPage8 = () =>{
+        const containerRef = React.useRef(null);
+
+        useGSAP(() => {
+            const ctx = gsap.context(() => {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top top",
+                        end: "bottom top",
+                        pin: true,
+                        markers: TOGGLE_MARKERS,
+                        toggleActions: contentPageToggleAction,
+                    }
+                });
+
+                tl.fromTo("#content-page-8 h2.main-title-small", { opacity: 0 }, {
+                    opacity: 1,
+                    duration: 0.2,
+                }, 0);
+
+                // 2. Sub-Title Animation (Move from Left)
+                const textSplitSubTitlePage8 = new SplitText("#content-page-8 h3.sub-title", {
+                    type: "chars, lines",
+                })
+
+                tl.from(textSplitSubTitlePage8.chars, {
+                    xPercent: -150,
+                    opacity: 0,
+                    stagger: 0.05,
+                    duration: 0.5,
+                }, "+=0.1");
+
+                const contentPage8Paragraphs = Array.from(document.querySelectorAll("#content-page-8 p"));
+
+                contentPage8Paragraphs.forEach((p, index)=>{
+                    let textSplit = SplitText.create(p, {
+                        type: "lines",
+                    })
+                    tl.from(textSplit.lines,{
+                        yPercent: 100,
+                        duration: 0.3,
+                        opacity: 0,
+                        stagger: 0.1,
+                    }, index === 0 ? "+=0.2" : "+=0.25")
+                    tl.to(p.querySelectorAll("span"), {
+                        duration: 0.3,
+                        color: HIGHLIGHT_COLOR,
+                        fontSize: "+=0.45rem",
+                        ease: "power2.out"
+                    }, "+=0.15")
+                })
+            }, containerRef);
+
+            return () => ctx.revert();
+        }, []);
+
+        return(
+            <div id="content-page-8" className="content-page" ref={containerRef}>
+                <div className="board-frame">
+                    {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
+                    <h2 className="main-title-small" style={{
+                        textAlign: "center",
+                        position:"absolute",
+                        top: "1rem",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        textWrap: "nowrap",
+                        width: "auto",
+                        fontSize: "2.3rem",
+                        opacity: 0,
+                    }}>Nội dung Đổi mới trọng tâm
+                    </h2>
+
+                    {/* Sub-Title */}
+                    <h3 className="sub-title" style={{
+                        position:"absolute",
+                        top: "5rem",
+                        left: "2.5rem",
+                        fontSize:"2.3rem",
+                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    }}>4. Đối ngoại
+                    </h3>
+
+                    <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        Thay đổi tư duy: Chuyển từ tư duy <span>đối đầu</span> (với các nước XHCN) sang <span>đối thoại.</span>
+                    </p>
+
+                    <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", marginBottom:"0" }}>
+                        Phương châm mới: Đại hội VI đưa ra chủ trương <span style={{display:"inline-block" , textAlign:"center", width:"100%"}}>"đa phương hoá, đa dạng hoá quan hệ đối ngoại"</span> <br/> và <br/> <span style={{display:"inline-block", textAlign:"center", width:"100%"}}>"Việt Nam muốn là bạn với tất cả các nước trong cộng đồng thế giới, phấn đấu vì hòa bình, độc lập và phát triển."</span>
+                    </p>
+
+                </div>
+            </div>
+        )
+    }
+
+const ContentDisplayNew = () => {
 
     const [currentPageId, setCurrentPageId] = useState(0);
     const [jumpInput, setJumpInput] = useState(1);
@@ -639,8 +931,6 @@ const ContentDisplay = () => {
         }
     };
 
-    const endValue = firstChanged ? "100% top" : "50% top";
-
     useGSAP(()=>{
         const timeline = gsap.timeline({
             scrollTrigger: {
@@ -649,7 +939,7 @@ const ContentDisplay = () => {
                 scrub: true,
                 start: "top top",
                 end: "top+=754",
-                markers: true,
+                markers: TOGGLE_MARKERS,
             }
         });
 
@@ -675,8 +965,6 @@ const ContentDisplay = () => {
                     transform: 'translateY(-50%)',
 
                     padding: '10px 10px 10px 20px',
-                    zIndex: 1000,
-
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -767,4 +1055,4 @@ const ContentDisplay = () => {
     );
 };
 
-export default ContentDisplay;
+export default ContentDisplayNew;

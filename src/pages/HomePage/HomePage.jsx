@@ -10,7 +10,6 @@ import PhotoGallery from '../../components/TimelineCarousel/PhotoGallery.jsx';
 import BookSelector from "../../components/BookSelection/BookSelector.jsx";
 import Hand from '../../components/Handy/Hand.jsx';
 import { ArrowUpward, Translate } from '@mui/icons-material';
-import ContentDisplay from "../../components/ContentDisplay/ContentDisplay.jsx";
 import ScissorLift from '../../components/ExtensionJoint/ScissorLift.jsx';
 import WeirdButton from "../../components/ContentDisplay/WeirdButton/WeirdButton.jsx";
 import ContentDisplayNew from "../../components/ContentDisplay/ContentDisplayNew.jsx";
@@ -266,7 +265,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className={`historical-figure-block ${scrollHomePageOffset < 800 ? 'hidden':''}`} style={{ opacity: `${show ? '1' : '0'}`}}>
+      <div className={`historical-figure-block hidden`} style={{ opacity: `0`}}>
         <div className="historical-figure1" style={{maskImage: scrollHomePageOffset > 1100
                                                     ? `url('${maskOne}')`
                                                     : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 1100 ? "scale(0.5) translateY(0)" : "scale(0.5) translateY(800px)"}}></div>
