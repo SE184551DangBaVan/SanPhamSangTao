@@ -13,6 +13,7 @@ import { ArrowUpward, Translate } from '@mui/icons-material';
 import ContentDisplay from "../../components/ContentDisplay/ContentDisplay.jsx";
 import ScissorLift from '../../components/ExtensionJoint/ScissorLift.jsx';
 import WeirdButton from "../../components/ContentDisplay/WeirdButton/WeirdButton.jsx";
+import ContentDisplayNew from "../../components/ContentDisplay/ContentDisplayNew.jsx";
 
 export default function HomePage() {
   const [scrollHomePageOffset, setScrollHomePageOffset] = useState(0);
@@ -201,7 +202,7 @@ Hướng tới con người toàn diện – có đức, có tài, yêu nước 
       </div>
 
         <div className="give-me-some-space">
-            <ContentDisplay/>
+            <ContentDisplayNew/>
         </div>
 
       <div className="book-selection-block" onMouseEnter={() => setHandsOff(true)} onMouseLeave={() => setHandsOff(false)}>
