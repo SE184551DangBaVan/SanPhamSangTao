@@ -101,15 +101,15 @@ export default function Navbar({selectVal}) {
       
       <div className="menu-border"></div>
       <div className="nav-button-container">
-        <button class={`nav-button ${selected === "f" ? 'selected' : ''}`} onClick={() => {handleSelect("f"); navigate("/"); window.scrollTo({ top: 0, left: 0, behavior: "smooth" });}}> <HomeRounded /> </button>
-        <button class={`nav-button ${selected === "fo" ? 'selected' : ''}`} onClick={() => {handleSelect("fo"); navigate("/"); /*handleScrollTo(1200);*/}}><TimelineRounded /></button>
-        <button class={`nav-button`}><YouTube /></button>
-        <button class={`nav-button ${selected === "s" ? 'selected' : ''}`} onClick={() => {handleSelect("s"); handleScrollTo(3900);}}><TvRounded /></button>
-        <button class={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}}><SportsEsportsRounded/></button>
+        <button className={`nav-button ${selected === "f" ? 'selected' : ''}`} onClick={() => {handleSelect("f"); navigate("/"); window.scrollTo({ top: 0, left: 0, behavior: "smooth" });}}> <HomeRounded /> </button>
+        <button className={`nav-button ${selected === "fo" ? 'selected' : ''}`} onClick={() => {handleSelect("fo"); navigate("/"); /*handleScrollTo(1200);*/}}><TimelineRounded /></button>
+        <button className={`nav-button`}><YouTube /></button>
+        <button className={`nav-button ${selected === "s" ? 'selected' : ''}`} onClick={() => {handleSelect("s"); handleScrollTo(3900);}}><TvRounded /></button>
+        <button className={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}}><SportsEsportsRounded/></button>
       </div>
-      <div class="top" />
-      <div class="front" />
-      <div class="shadow" />
+      <div className="top" />
+      <div className="front" />
+      <div className="shadow" />
     </div>
   );
 }
