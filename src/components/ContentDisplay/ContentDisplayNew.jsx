@@ -1748,7 +1748,7 @@ const ContentPage21 = () =>{
                 </p>
 
                 <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                    Đây là kết quả của nỗ lực <span>ngoại giao bền bỉ</span> (đặc biệt là trong vấn đề MIA - tìm kiếm quân nhân mất tích) <br/> và là cánh cửa quyết định để Việt Nam <span>bình thường hóa quan hệ</span> với các tổ chức tài chính quốc tế br <span>(WB, IMF)</span> <br/> và sau đó là với chính Hoa Kỳ.
+                    Đây là kết quả của nỗ lực <span>ngoại giao bền bỉ</span> (đặc biệt là trong vấn đề MIA - tìm kiếm quân nhân mất tích) <br/> và là cánh cửa quyết định để Việt Nam <span>bình thường hóa quan hệ</span> với các tổ chức tài chính quốc tế <br/> <span>(WB, IMF)</span> <br/> và sau đó là với chính Hoa Kỳ.
                 </p>
 
                 <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
