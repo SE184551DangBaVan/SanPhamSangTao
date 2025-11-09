@@ -11,18 +11,21 @@ const Cinema = ({filmTitle, movie, transcript}) => {
   const videoRef = useRef(null);
   const playButtonRef = useRef(null);
   const stopButtonRef = useRef(null);
+  const homeButtonRef = useRef(null);
 
   useEffect(() => {
     const cine = cineRef.current;
     const video = videoRef.current;
     const playBtn = playButtonRef.current;
     const stopBtn = stopButtonRef.current;
+    const homeBtn = homeButtonRef.current;
     const root = document.documentElement;
     const body = document.body;
 
     const playMovie = () => {
       playBtn.disabled = true;
       cine.classList.add("is-full");
+      homeBtn.disabled = true;
 
       gsap.delayedCall(4, () => {
         stopBtn.disabled = false;
@@ -43,6 +46,7 @@ const Cinema = ({filmTitle, movie, transcript}) => {
 
       gsap.delayedCall(3, () => {
         cine.classList.remove("is-full");
+        homeBtn.disabled = false;
         playBtn.disabled = false;
         root.style.setProperty("--yl", "#FAFDBA");
         root.style.setProperty("--yd", "#d5d799");
@@ -207,16 +211,16 @@ const Cinema = ({filmTitle, movie, transcript}) => {
 
       <div className="cinema-buttons">
         <button className="button" id="play" ref={playButtonRef}>
-          Start movie{" "}
+          Phát Phim{" "}
           <PlayArrowRounded className="button__icon"/>
         </button>
         <button className="button" id="stop" ref={stopButtonRef} disabled>
-          Stop movie{" "}
+          Ngừng Phim{" "}
           <PauseCircleFilledOutlined className="button__icon"/>
         </button>
       </div>
 
-      <button className='home-button cinema' onClick={() => navigate("/")}>
+      <button className='home-button cinema' ref={homeButtonRef} onClick={() => navigate("/")}>
         <HomeFilled className='home-button-icons'/>
           <span className='home-button-text'>
             Trang chủ
