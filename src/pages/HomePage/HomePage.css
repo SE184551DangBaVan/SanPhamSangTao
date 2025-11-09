@@ -408,7 +408,7 @@
   right: 55%;
   --s: 10px;
   width: 200%;
-  height: 165%;
+  height: 172%;
   rotate: 90deg;
   mask-image: linear-gradient(0deg, black 2%, transparent 4%, transparent 96%, black 98%);
   aspect-ratio: 1;
@@ -1388,7 +1388,7 @@
 
 
 .book-selection-block {
-    margin-top: 50vh;
+    margin-top: 200vh;
     position: relative;
     cursor: none;
     z-index: 100;

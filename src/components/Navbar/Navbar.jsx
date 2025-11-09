@@ -22,7 +22,7 @@ export default function Navbar({selectVal}) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollAtTop < 200 && selected!="f" && selected!="fi" && selected!="s") {
+      if (scrollAtTop > 0 && scrollAtTop < 4000 && selected!="f") {
         setSelected("f");
       }
 
@@ -64,7 +64,7 @@ export default function Navbar({selectVal}) {
         checked={selected === "fo"}
         onChange={() => { handleSelect("fo"); }}
       />
-      <label htmlFor="fo">Tư tưởng Về VH</label>
+      <label htmlFor="fo">Bối Cảnh Đổi Mới</label>
 
       <input
         type="radio"
@@ -87,7 +87,7 @@ export default function Navbar({selectVal}) {
         checked={selected === "s"}
         onChange={() => {handleSelect("s"); handleScrollTo(3900); }}
       />
-      <label htmlFor="s">Sách</label>
+      <label htmlFor="s">Phim Tài Liệu</label>
 
       <input
         type="radio"
@@ -104,7 +104,7 @@ export default function Navbar({selectVal}) {
         <button className={`nav-button ${selected === "f" ? 'selected' : ''}`} onClick={() => {handleSelect("f"); navigate("/"); window.scrollTo({ top: 0, left: 0, behavior: "smooth" });}}> <HomeRounded /> </button>
         <button className={`nav-button ${selected === "fo" ? 'selected' : ''}`} onClick={() => {handleSelect("fo"); navigate("/"); /*handleScrollTo(1200);*/}}><TimelineRounded /></button>
         <button className={`nav-button`}><YouTube /></button>
-        <button className={`nav-button ${selected === "s" ? 'selected' : ''}`} onClick={() => {handleSelect("s"); handleScrollTo(3900);}}><TvRounded /></button>
+        <button className={`nav-button ${selected === "s" ? 'selected' : ''}`} onClick={() => {handleSelect("s"); handleScrollTo(5000);}}><TvRounded /></button>
         <button className={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}}><SportsEsportsRounded/></button>
       </div>
       <div className="top" />

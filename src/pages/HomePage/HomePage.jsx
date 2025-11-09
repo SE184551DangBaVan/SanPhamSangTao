@@ -165,7 +165,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div id="hero" className={`hero-paragraph ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 5000) ? '':'hidden'}`} >
+      <div id="hero" className={`hero-paragraph ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 4000) ? '':'hidden'}`} >
             {/* <div className="stuck-grid">
               <div className="grid-item">Tư Tưởng</div>
               <div className="grid-item"></div>
@@ -265,8 +265,8 @@ export default function HomePage() {
             </section>
           </div>
 
-      <div className={`historical-figure-block-outer ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 5000) ? '' : 'hidden'}`} ></div>
-      <div className={`historical-figure-block ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 5000) ? '' : 'hidden'}`} >
+      <div className={`historical-figure-block-outer ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 4000) ? '' : 'hidden'}`} ></div>
+      <div className={`historical-figure-block ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 4000) ? '' : 'hidden'}`} >
         
         <span className='historical-texts1'
           style={{ transform: scrollHomePageOffset > 1400 ? `translateY(105%)` : `translateY(0)` }}>
