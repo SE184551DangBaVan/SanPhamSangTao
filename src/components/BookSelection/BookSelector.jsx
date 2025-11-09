@@ -5,7 +5,7 @@ import BeigeWall from "../../assets/minhbox/beige wall.png"
 import { allBooks } from "../../data/books.jsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import { PanToolAlt } from "@mui/icons-material";
+import { PanToolAlt, PlayArrowRounded } from "@mui/icons-material";
 
 const BookSelector = ()=>{
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const BookSelector = ()=>{
 
         if (selectedBook && selectedBookIndex !== null) {
             console.log("Navigating to book:", selectedBookIndex + 1, "with index:", selectedBookIndex);
-            navigate(`/book/${selectedBookIndex + 1}`, { state: { bookIndex: selectedBookIndex } });
+            navigate(`/xem-phim/${selectedBookIndex + 1}`, { state: { bookIndex: selectedBookIndex } });
         } else {
             console.log("No book selected or missing index");
             console.log("selectedBook:", selectedBook);
@@ -53,13 +53,13 @@ const BookSelector = ()=>{
                         <button className="read-button"
                             onClick={handleReadClick}
                             >
-                            Đọc
+                            <PlayArrowRounded />
                         </button>
                     </>)
                     :
                     (
                         <>
-                        <p>Chọn một cuốn sách <PanToolAlt style={{rotate: '60deg'}} /> </p>
+                        <p>Chọn Một Cuộn Phim <PanToolAlt style={{rotate: '60deg'}} /> </p>
                         </>
                     )}
 
@@ -86,9 +86,7 @@ const BookSelector = ()=>{
                                     title={book.title}
                                     data-index={index}
                                     onClick={()=> bookClick(index)}
-                                >
-                                    {book.title}
-                                </div>
+                                ><div className="film-title">{book.title}</div></div>
                             )
                         }
                     )}
