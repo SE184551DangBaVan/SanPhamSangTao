@@ -4,22 +4,22 @@ import {SplitText} from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
 import "./ContentDisplay.css"
-// Import images
+
 import boiCanhTruocDoiMoi from "../../assets/boi-canh-truoc-doi-moi.jpg";
 import quanHeVietNamHoaKy from "../../assets/binh-thuong-hoa-quan-he-viet-nam-hoa-ky.png"
 import daiHoiVI from "../../assets/dai-hoi-VI.png"
 import giaNhapAsean from "../../assets/gia-nhap-asean-1995.png"
 import nguyenVanLinh from "../../assets/nguyen-van-linh.png"
-import {ScrollToPlugin} from "gsap/ScrollToPlugin";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const TOGGLE_MARKERS = true;
+const TOGGLE_MARKERS = false;
 const HIGHLIGHT_COLOR = "#FFD700";
-const MAX_PAGE_ID = 15; // Đã cập nhật lên 15 để bao gồm ContentPage16
+const MAX_PAGE_ID = 21; // UPDATED: Changed from 20 to 21 to include the new page
 const contentPageToggleAction= "play reset play reset"
 
-// Individual Page Components
+// I really did optimize it
+
 const ContentPage1 = () => {
     const containerRef = React.useRef(null);
 
@@ -27,13 +27,11 @@ const ContentPage1 = () => {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: containerRef.current, // <--- Use the component's ID as the trigger
-                    // 'start' defines when the timeline begins playing.
-                    // 'top top' means when the top of the element hits the top of the viewport.
-                    start: "top top", // Keep this for the pinned section
+                    trigger: containerRef.current,
+                    start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: TOGGLE_MARKERS, // Keep markers for debugging
+                    markers: TOGGLE_MARKERS,
                     toggleActions: contentPageToggleAction,
                 }
             });
@@ -145,13 +143,11 @@ const ContentPage2 = () => {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: containerRef.current, // <--- Use the component's ID as the trigger
-                    // 'start' defines when the timeline begins playing.
-                    // 'top top' means when the top of the element hits the top of the viewport.
-                    start: "top top", // Keep this for the pinned section
+                    trigger: containerRef.current,
+                    start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: TOGGLE_MARKERS, // Keep markers for debugging
+                    markers: TOGGLE_MARKERS,
                     toggleActions: contentPageToggleAction,
                 }
             });
@@ -347,18 +343,16 @@ const ContentPage2 = () => {
     );
 };
 
-// Helper function for standard page animations (pages 3-4 and others with similar structure)
+
 const animateStandardPage = (containerRef, pageId) => {
     const ctx = gsap.context(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: containerRef.current, // <--- Use the component's ID as the trigger
-                // 'start' defines when the timeline begins playing.
-                // 'top top' means when the top of the element hits the top of the viewport.
-                start: "top top", // Keep this for the pinned section
+                trigger: containerRef.current,
+                start: "top top",
                 end: "bottom top",
                 pin: true,
-                markers: TOGGLE_MARKERS, // Keep markers for debugging
+                markers: TOGGLE_MARKERS,
                 toggleActions: contentPageToggleAction,
             }
         });
@@ -402,7 +396,6 @@ const animateStandardPage = (containerRef, pageId) => {
     return () => ctx.revert();
 };
 
-// Helper function for pages with main title being 'Nội dung Đổi mới trọng tâm' or 'Đại hội VII'
 const animateTitlePage = (containerRef, pageId, isSubSection = true) => {
     const ctx = gsap.context(() => {
         const tl = gsap.timeline({
@@ -419,24 +412,19 @@ const animateTitlePage = (containerRef, pageId, isSubSection = true) => {
         const mainTitle = `#content-page-${pageId} h2.main-title-small`;
         const subTitle = `#content-page-${pageId} h3.sub-title`;
 
-        // 1. Main Title Animation (Quick Fade In to Top Center)
-        // Check if the main-title-small exists on the current page
         if (document.querySelector(mainTitle)) {
-            // Apply a quick animation for the minimized title when a new page loads (Pages 13, 14, 15, etc.)
             tl.fromTo(mainTitle, {
                 opacity: 0,
-                xPercent: (isSubSection ? -50 : 0), // Adjust starting position for pages 13-15
+                xPercent: (isSubSection ? -50 : 0),
                 y: -50,
             }, {
                 opacity: 1,
                 y: 0,
                 duration: 0.3,
-            }, 0); // Start immediately
+            }, 0);
         }
 
-        // ... (rest of the function remains the same)
 
-        // 2. Sub-Title Animation (Move from Left) - Chỉ animate sub-title nếu nó tồn tại
         if (document.querySelector(subTitle)) {
             const textSplitSubTitle = new SplitText(subTitle, {
                 type: "chars, lines",
@@ -447,10 +435,9 @@ const animateTitlePage = (containerRef, pageId, isSubSection = true) => {
                 opacity: 0,
                 stagger: 0.05,
                 duration: 0.5,
-            }, "+=0.1"); // Start after main title animation if it exists, or after a slight delay
+            }, "+=0.1");
         }
 
-        // 3. Content Reveal (SplitText by Lines)
         const contentParagraphs = Array.from(document.querySelectorAll(`#content-page-${pageId} p`));
 
         contentParagraphs.forEach((p, index)=>{
@@ -550,13 +537,11 @@ const ContentPage5 = () => {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: containerRef.current, // <--- Use the component's ID as the trigger
-                    // 'start' defines when the timeline begins playing.
-                    // 'top top' means when the top of the element hits the top of the viewport.
-                    start: "top top", // Keep this for the pinned section
+                    trigger: containerRef.current,
+                    start: "top top",
                     end: "bottom top",
                     pin: true,
-                    markers: TOGGLE_MARKERS, // Keep markers for debugging
+                    markers: TOGGLE_MARKERS,
                     toggleActions: contentPageToggleAction,
                 }
             });
@@ -659,7 +644,6 @@ const ContentPage6 = () =>{
     return(
         <div id="content-page-6" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
                 <h2 className="main-title-small" style={{
                     textAlign: "center",
                     position:"absolute",
@@ -708,7 +692,6 @@ const ContentPage7 = ()=>{
     return(
         <div id="content-page-7" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
                 <h2 className="main-title-small" style={{
                     textAlign: "center",
                     position:"absolute",
@@ -722,7 +705,6 @@ const ContentPage7 = ()=>{
                 }}>Nội dung Đổi mới trọng tâm
                 </h2>
 
-                {/* Sub-Title */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "6rem",
@@ -752,7 +734,6 @@ const ContentPage8 = () =>{
     return(
         <div id="content-page-8" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title (Top Center, must be present for GSAP fade-in) */}
                 <h2 className="main-title-small" style={{
                     textAlign: "center",
                     position:"absolute",
@@ -766,7 +747,6 @@ const ContentPage8 = () =>{
                 }}>Nội dung Đổi mới trọng tâm
                 </h2>
 
-                {/* Sub-Title */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "5rem",
@@ -789,16 +769,13 @@ const ContentPage8 = () =>{
     )
 }
 
-// Trang mới ContentPage9 (Index 8): 5. Lĩnh vực Chính sách Xã hội
 const ContentPage9 = () =>{
     const containerRef = React.useRef(null);
-    // Sử dụng ID 9 trong hàm animateTitlePage để khớp với ID trong JSX
     useGSAP(() => animateTitlePage(containerRef, 9), []);
 
     return(
         <div id="content-page-9" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title */}
                 <h2 className="main-title-small" style={{
                     textAlign: "center",
                     position:"absolute",
@@ -812,7 +789,6 @@ const ContentPage9 = () =>{
                 }}>Nội dung Đổi mới trọng tâm
                 </h2>
 
-                {/* Sub-Title */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "5rem",
@@ -847,16 +823,13 @@ const ContentPage9 = () =>{
     )
 }
 
-// Trang mới ContentPage10 (Index 9): 6. Đổi mới sự lãnh đạo của Đảng
 const ContentPage10 = () =>{
     const containerRef = React.useRef(null);
-    // Sử dụng ID 10 trong hàm animateTitlePage để khớp với ID trong JSX
     useGSAP(() => animateTitlePage(containerRef, 10), []);
 
     return(
         <div id="content-page-10" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title */}
                 <h2 className="main-title-small" style={{
                     textAlign: "center",
                     position:"absolute",
@@ -870,7 +843,6 @@ const ContentPage10 = () =>{
                 }}>Nội dung Đổi mới trọng tâm
                 </h2>
 
-                {/* Sub-Title */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "5rem",
@@ -913,10 +885,8 @@ const ContentPage10 = () =>{
     )
 }
 
-// Trang mới ContentPage11 (Index 10): 7. Cụ thể hóa đường lối Đại hội VI
 const ContentPage11 = () =>{
     const containerRef = React.useRef(null);
-    // Sử dụng ID 11 trong hàm animateTitlePage để khớp với ID trong JSX
     useGSAP(() => animateTitlePage(containerRef, 11), []);
 
     return(
@@ -936,7 +906,6 @@ const ContentPage11 = () =>{
                 }}>Nội dung Đổi mới trọng tâm
                 </h2>
 
-                {/* Sub-Title */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "5rem",
@@ -1018,7 +987,6 @@ const ContentPage12 = () => {
                 xPercent: -50,
             })
 
-            // 3. Hiển thị mô tả
             const tsDesc = new SplitText("#content-page-12 p.description", { type: "lines" });
             tl.from(tsDesc.lines, {
                 yPercent: 100,
@@ -1027,7 +995,6 @@ const ContentPage12 = () => {
                 stagger: 0.1,
             }, "-=0.2")
 
-                // 4. Highlight tên Tổng Bí thư
                 .to("#content-page-12 p.description span", {
                     duration: 0.3,
                     color: HIGHLIGHT_COLOR,
@@ -1055,7 +1022,6 @@ const ContentPage12 = () => {
                     textAlign: "center",
                 }}>Đại hội VII (1991) và <br/> Cương lĩnh xây dựng đất nước</h2>
 
-                {/* Mô tả sau khi tiêu đề thu nhỏ */}
                 <p className="description" style={{
                     position:"absolute",
                     top:"8rem",
@@ -1074,7 +1040,6 @@ const ContentPage12 = () => {
 
 const ContentPage13 = () =>{
     const containerRef = React.useRef(null);
-    // isSubSection = false để không hiển thị 'Nội dung Đổi mới trọng tâm'
     useGSAP(() => {
         gsap.from("#content-page-13 .main-title-small", {
             yPercent: -100,
@@ -1089,7 +1054,6 @@ const ContentPage13 = () =>{
     return(
         <div id="content-page-13" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title - Giữ lại để định vị trang */}
                 <h2 className="main-title-small" style={{
                     textAlign: "left",
                     position:"absolute",
@@ -1101,7 +1065,6 @@ const ContentPage13 = () =>{
                 }}>1. Cương lĩnh 1991
                 </h2>
 
-                {/* Sub-Title thay bằng nội dung chính */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "5rem",
@@ -1140,7 +1103,6 @@ const ContentPage13 = () =>{
     )
 }
 
-// NEW PAGE 14 (Index 13): Cương lĩnh 1991: 6 Đặc trưng cơ bản - KHÔNG CÓ TIÊU ĐỀ PHỤ
 const ContentPage14 = () =>{
     const containerRef = React.useRef(null);
     useGSAP(() => animateTitlePage(containerRef, 14, false), []);
@@ -1160,7 +1122,6 @@ const ContentPage14 = () =>{
                 }}>1. Cương lĩnh 1991
                 </h2>
 
-                {/* Sub-Title thay bằng nội dung chính */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "5rem",
@@ -1203,7 +1164,6 @@ const ContentPage14 = () =>{
     )
 }
 
-// NEW PAGE 15 (Index 14): Cương lĩnh 1991: 7 Phương hướng
 const ContentPage15 = () =>{
     const containerRef = React.useRef(null);
     useGSAP(() => animateTitlePage(containerRef, 15, false), []); // isSubSection = false
@@ -1211,7 +1171,6 @@ const ContentPage15 = () =>{
     return(
         <div id="content-page-15" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title */}
                 <h2 className="main-title-small" style={{
                     textAlign: "left",
                     position:"absolute",
@@ -1223,7 +1182,6 @@ const ContentPage15 = () =>{
                 }}>1. Cương lĩnh 1991
                 </h2>
 
-                {/* Sub-Title */}
                 <h3 className="sub-title" style={{
                     position:"absolute",
                     top: "5rem",
@@ -1250,7 +1208,6 @@ const ContentPage15 = () =>{
     )
 }
 
-// NEW PAGE 16 (Index 15): 2. Chiến lược... đến năm 2000
 const ContentPage16 = () =>{
     const containerRef = React.useRef(null);
 
@@ -1267,14 +1224,12 @@ const ContentPage16 = () =>{
                 }
             });
 
-            // 1. Minimized Title
             tl.from("#content-page-16 .main-title-small", {
                 yPercent: -100,
                 opacity: 0,
                 duration: 0.2,
             }, 0);
 
-            // 2. Sub-Title 1: Mục tiêu tổng quát và Động lực chính
             const subTitle1 = "#content-page-16 #sub-title-1";
             const content1 = "#content-page-16 #content-1 p";
             const textSplitSubTitle1 = new SplitText(subTitle1, { type: "chars" });
@@ -1286,7 +1241,6 @@ const ContentPage16 = () =>{
                 duration: 0.5,
             }, 0.2);
 
-            // 3. Content 1
             const content1Paragraphs = document.querySelectorAll(content1);
             content1Paragraphs.forEach((p, index) => {
                 let textSplit = SplitText.create(p, { type: "lines" });
@@ -1304,7 +1258,6 @@ const ContentPage16 = () =>{
                 }, "+=0.15")
             });
 
-            // 4. Sub-Title 2: Cụ thể hóa đường lối Đại hội VII
             const subTitle2 = "#content-page-16 #sub-title-2";
             const content2 = "#content-page-16 #content-2 p";
             const textSplitSubTitle2 = new SplitText(subTitle2, { type: "chars" });
@@ -1314,9 +1267,8 @@ const ContentPage16 = () =>{
                 opacity: 0,
                 stagger: 0.05,
                 duration: 0.5,
-            }, "+=0.5"); // Thêm khoảng nghỉ trước khi chuyển sang tiêu đề phụ 2
+            }, "+=0.5");
 
-            // 5. Content 2
             const content2Paragraphs = document.querySelectorAll(content2);
             content2Paragraphs.forEach((p, index) => {
                 let textSplit = SplitText.create(p, { type: "lines" });
@@ -1341,7 +1293,6 @@ const ContentPage16 = () =>{
     return(
         <div id="content-page-16" className="content-page" ref={containerRef}>
             <div className="board-frame">
-                {/* Minimized title */}
                 <h2 className="main-title-small" style={{
                     textAlign: "left",
                     position:"absolute",
@@ -1353,18 +1304,14 @@ const ContentPage16 = () =>{
                 }}>2. Chiến lược đến năm 2000
                 </h2>
 
-                {/* Sub-Title 1: Mục tiêu tổng quát */}
-                {/* Bỏ position: absolute để các khối nội dung xếp chồng lên nhau bình thường */}
                 <h3 id="sub-title-1" className="sub-title" style={{
-                    marginTop: '5rem', // Margin top cố định để bắt đầu nội dung
+                    marginTop: '5rem',
                     fontSize:"2.3rem",
                     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
                 }}>Mục tiêu tổng quát và Động lực chính
                 </h3>
 
-                {/* Content 1 */}
                 <div id="content-1">
-                    {/* Bỏ style cố định, để p tự động margin */}
                     <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
                         Mục tiêu tổng quát là đến năm 2000 <span>thoát khỏi khủng hoảng, ổn định kinh tế - xã hội</span>, <br/> và đưa <span>GDP năm 2000 gấp hai lần năm 1990.</span>
                     </p>
@@ -1375,15 +1322,13 @@ const ContentPage16 = () =>{
                 </div>
 
 
-                {/* Sub-Title 2: Cụ thể hóa đường lối Đại hội VII */}
                 <h3 id="sub-title-2" className="sub-title" style={{
-                    marginTop: '2rem', // Khoảng cách giữa nội dung 1 và tiêu đề phụ 2
+                    marginTop: '2rem',
                     fontSize:"2.3rem",
                     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
                 }}>Cụ thể hóa đường lối Đại hội VII
                 </h3>
 
-                {/* Content 2 */}
                 <div id="content-2">
                     <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
                         <span>Hội nghị Trung ương 5 (tháng 6/1993):</span> Tiếp tục coi <span>nông nghiệp là mặt trận hàng đầu</span> <br/> và đề ra 3 mục tiêu chủ yếu để phát triển nông thôn mới, phát huy dân chủ, và giữ vững ổn định chính trị.
@@ -1398,6 +1343,518 @@ const ContentPage16 = () =>{
         </div>
     )
 }
+
+
+const ContentPage17 = () => {
+    const containerRef = React.useRef(null);
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    markers: TOGGLE_MARKERS,
+                    toggleActions: contentPageToggleAction,
+                }
+            });
+
+            // Big Title Animation
+            const textSplitTitle = new SplitText("#content-page-17 h2.main-title-page", {
+                type: "chars, lines",
+            });
+
+            tl.fromTo(textSplitTitle.chars, { yPercent: 300, }, {
+                yPercent: 0,
+                stagger: { amount: 0.8, from: "left" },
+                duration: 0.8,
+            })
+                .to("#content-page-17 h2.main-title-page", {
+                    fontSize: "2.3rem",
+                    lineHeight: "2.6rem",
+                    top: "1rem",
+                    left: "50%",
+                    x: 0, y: 0,
+                    xPercent: -50,
+                    yPercent: 0,
+                    textAlign: "center",
+                    duration: 0.8,
+                    textWrap: "nowrap",
+                }, "+=0.8")
+                .to("#content-page-17 h2.main-title-page br", { display: "none", duration: 0.8 }, "<");
+
+
+            const textSplitSubTitle = new SplitText("#content-page-17 h3.sub-title", {
+                type: "chars, lines",
+            });
+
+            tl.from(textSplitSubTitle.chars, {
+                xPercent: -150,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.5,
+            }, "-=0.2");
+
+            const paragraphs = containerRef.current.querySelectorAll("p");
+            paragraphs.forEach((p, index) => {
+                let textSplit = SplitText.create(p, { type: "lines" });
+                tl.from(textSplit.lines, {
+                    yPercent: 100,
+                    duration: 0.3,
+                    opacity: 0,
+                    stagger: 0.1,
+                }, index === 0 ? "+=0.2" : "+=0.25")
+                    .to(p.querySelectorAll("span"), {
+                        duration: 0.3,
+                        color: HIGHLIGHT_COLOR,
+                        fontSize: "+=0.45rem",
+                        ease: "power2.out"
+                    }, "+=0.15");
+            });
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <div id="content-page-17" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                <h2 className="main-title-page" style={{
+                    position:"absolute",
+                    top: "calc(50%)",
+                    left: "calc(50%)",
+                    transform: "translateY(calc(-50%)) translateX(-50%)",
+                    textWrap: "wrap",
+                    width: "80%",
+                    fontSize:"4rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    textAlign: "center",
+                }}>
+                    Thành tựu giai đoạn 1986 – 1996 <br/> (Thập kỷ "Lột xác")
+                </h2>
+
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "7rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>1. Kinh tế – Xã hội
+                </h3>
+
+                <p style={{ marginTop:"10rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    <span>Nông nghiệp (Thành tựu ngoạn mục):</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Năm 1989: Chỉ 1 năm sau Khoán 10, Việt Nam từ một nước phải nhập khẩu lương thực <br/> đã sản xuất được <span>18,9 triệu tấn thóc</span>, không chỉ đủ ăn mà còn <span>xuất khẩu 1,4 triệu tấn gạo</span>, <br/> trở thành <span>nước xuất khẩu gạo thứ 3 thế giới.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Đến 1996, sản lượng lương thực đạt <span>29,3 triệu tấn.</span>
+                </p>
+
+            </div>
+        </div>
+    );
+};
+
+const ContentPage18 = () =>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 18), []);
+
+    return(
+        <div id="content-page-18" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                    opacity: 0,
+                }}>Thành tựu giai đoạn 1986 – 1996
+                </h2>
+
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>1. Kinh tế – Xã hội
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    <span>Kiềm chế lạm phát (Thắng lợi vĩ đại):</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Từ <span>774,7% (1986)</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Xuống còn <span>67,1% (1990)</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    - Và chỉ còn <span>12,7% (1995).</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Điều này có nghĩa là đồng tiền Việt Nam đã <span>ổn định trở lại</span>, <br/> tạo <span>niềm tin</span> cho người dân và nhà đầu tư.
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+const ContentPage19 = () =>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 19), []);
+
+    return(
+        <div id="content-page-19" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                    opacity: 0,
+                }}>Thành tựu giai đoạn 1986 – 1996
+                </h2>
+
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>1. Kinh tế – Xã hội
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    <span>Thu hút FDI:</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Từ 1988 (sau Luật Đầu tư) đến 1996, Việt Nam đã thu hút được <span>27,2 tỷ USD vốn đăng ký</span>, <br/> tạo ra hàng loạt <span>khu công nghiệp, khu chế xuất</span> (Tân Thuận, Linh Trung...) <br/> và <span>thay đổi bộ mặt cơ sở hạ tầng.</span>
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+const ContentPage20 = () =>{
+    const containerRef = React.useRef(null);
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    markers: TOGGLE_MARKERS,
+                    toggleActions: contentPageToggleAction,
+                }
+            });
+
+            tl.from("#content-page-20 .main-title-small",{
+                yPercent: -200,
+                opacity: 0,
+                duration: 0.4,
+            })
+
+            tl.from("#content-page-20 .sub-title p",{
+                yPercent: 200,
+                duration: 0.4,
+            })
+
+            tl.from("#page-20-first-image .image-container",{
+                y: -200,
+                x: -300,
+                rotate: -360,
+                opacity: 0,
+                duration: 0.5,
+            }, "+=0.5")
+            tl.from("#page-20-second-image .image-container",{
+                y: -500,
+                x: 600,
+                rotate: 500,
+                opacity: 0,
+                duration: 0.5,
+            })
+
+            tl.to("#page-20-first-image .image-container",{
+                maskSize: "400%",
+                duration: 1,
+                ease: "power2.in",
+            }, "+=0.5")
+            tl.to("#page-20-second-image .image-container",{
+                maskSize: "400%",
+                duration: 1,
+                ease: "power2.in",
+            }, "<")
+
+            tl.from("#page-20-first-image .image-description p",{
+                yPercent: 200,
+                duration: 0.3,
+            }, "+=0.5")
+            tl.from("#page-20-second-image .image-description p",{
+                yPercent: 200,
+                duration: 0.3,
+            })
+        }, containerRef);
+        return () => ctx.revert();
+    }, []);
+
+    return(
+        <div id="content-page-20" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                    opacity: 1,
+                }}>Thành tựu giai đoạn 1986 – 1996
+                </h2>
+
+                <div className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}> <p style={{fontSize:"2.3rem", margin: 0, padding: 0,}}>2. Đối ngoại – Hội nhập</p>
+                </div>
+
+                <div className="content-visual" id={"page-20-first-image"} style={{
+                    position: "absolute",
+                    top: "9rem",
+                    left: "3%",
+                    width: "45%",
+                    height: "65%",
+                }}>
+                    <div className="image-container"
+                         style={{
+                             maskImage: "url(\"/star-mask.png\")",
+                             maskPosition: "center",
+                             maskSize: "50%",
+                             maskRepeat: "no-repeat",
+                             width: "100%",
+                             height: "90%",
+                         }}>
+                        <img src={giaNhapAsean} alt="gia-nhap-asean-1995" style={{
+                            width: "auto",
+                            height: "100%",
+                        }}/>
+                    </div>
+                    <div className="image-description" style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        position: "relative",
+                        flexDirection: "column",
+                        textAlign: "center",
+                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    }}>
+                        <p>Gia nhập ASEAN 1995</p>
+                    </div>
+                </div>
+
+                <div className="content-visual" id={"page-20-second-image"}
+                     style={{
+                         position: "absolute",
+                         top: "9rem",
+                         right: "5%",
+                     }}>
+                    <div className="image-container"
+                         style={{
+                             maskImage: "url(\"/star-mask.png\")",
+                             maskPosition: "center",
+                             maskSize: "50%",
+                             maskRepeat: "no-repeat",
+                             width: "100%",
+                             height: "90%",
+                         }}>
+                        <img src={quanHeVietNamHoaKy} alt="quan-he-viet-nam-hoa-ky" style={{
+                            width: "90%",
+                            height: "auto",
+                        }}/>
+                    </div>
+                    <div className="image-description" style={{
+                        position: "relative",
+                        textAlign: "center",
+                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                    }}>
+                        <p>Bình thường hóa quan hệ Việt Nam – Hoa Kỳ (1995)</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    )
+}
+
+const ContentPage21 = () =>{
+    const containerRef = React.useRef(null);
+    useGSAP(() => animateTitlePage(containerRef, 21), []);
+
+    return(
+        <div id="content-page-21" className="content-page" ref={containerRef}>
+            <div className="board-frame">
+                <h2 className="main-title-small" style={{
+                    textAlign: "center",
+                    position:"absolute",
+                    top: "1rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    textWrap: "nowrap",
+                    width: "auto",
+                    fontSize: "2.3rem",
+                    opacity: 0,
+                }}>Thành tựu giai đoạn 1986 – 1996
+                </h2>
+
+                <h3 className="sub-title" style={{
+                    position:"absolute",
+                    top: "5rem",
+                    left: "2.5rem",
+                    fontSize:"2.3rem",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>2. Đối ngoại – Hội nhập
+                </h3>
+
+                <p style={{ marginTop:"8rem", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Tháng 2/1994: <span>Hoa Kỳ dỡ bỏ lệnh cấm vận kinh tế.</span>
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Đây là kết quả của nỗ lực <span>ngoại giao bền bỉ</span> (đặc biệt là trong vấn đề MIA - tìm kiếm quân nhân mất tích) <br/> và là cánh cửa quyết định để Việt Nam <span>bình thường hóa quan hệ</span> với các tổ chức tài chính quốc tế br <span>(WB, IMF)</span> <br/> và sau đó là với chính Hoa Kỳ.
+                </p>
+
+                <p style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                    Ý nghĩa: Trong 10 năm, Việt Nam đã <span>phá vỡ hoàn toàn thế bị bao vây, cô lập</span> <br/> về chính trị và cấm vận về kinh tế, tạo ra một <span>môi trường quốc tế thuận lợi</span> chưa từng có cho phát triển.
+                </p>
+
+            </div>
+        </div>
+    )
+}
+
+const ContentPage22 = () => {
+    const containerRef = React.useRef(null);
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    markers: TOGGLE_MARKERS,
+                    toggleActions: contentPageToggleAction,
+                }
+            });
+
+            const textSplitTitle = new SplitText("#content-page-22 h2", {
+                type: "chars, lines",
+            });
+
+            tl.fromTo(textSplitTitle.chars, {
+                y: "6rem",
+                opacity: 0,
+                scale: 0.5,
+                rotationX: -90,
+            }, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                rotationX: 0,
+                stagger: { amount: 1, from: "left" },
+                duration: 0.8,
+                ease: "back.out(1.4)"
+            });
+
+            tl.to("#content-page-22 h2", {
+                textShadow: `0 0 30px ${HIGHLIGHT_COLOR}80, 0 0 60px ${HIGHLIGHT_COLOR}40`,
+                duration: 1,
+                ease: "power2.inOut",
+                yoyo: true,
+                repeat: 1
+            });
+
+            const textSplitSubTitle = new SplitText("#content-page-22 h3", {
+                type: "chars, words",
+            });
+
+            tl.from(textSplitSubTitle.chars, {
+                y: 80,
+                opacity: 0,
+                scale: 0.8,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: "back.out(1.2)"
+            }, "-=1.5");
+
+            tl.to(".board-frame", {
+                scale: 1.15,
+                duration: 0.6,
+                ease: "power2.inOut",
+                yoyo: true,
+                repeat: 1
+            }, "+=0.3");
+
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <div id="content-page-22" className="content-page" ref={containerRef}>
+            <div className="board-frame" style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center"
+            }}>
+                <h2 style={{
+                    fontSize: "6rem",
+                    color: HIGHLIGHT_COLOR,
+                    paddingBottom: "2rem",
+                    textWrap: "nowrap",
+                    clipPath: "polygon(0 -25%, 100% -25%, 100% 100%, 0% 100%)",
+                }}>Cảm Ơn</h2>
+                <h3 style={{
+                    fontSize: "3rem",
+                    color: "#fff",
+                    textWrap: "nowrap",
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                }}>Đã theo dõi!</h3>
+            </div>
+        </div>
+    );
+};
 
 
 const ContentDisplayNew = () => {
@@ -1437,7 +1894,6 @@ const ContentDisplayNew = () => {
         }
     };
 
-    // Render current page only
     const renderCurrentPage = () => {
         switch(currentPageId) {
             case 0: return <ContentPage1 />;
@@ -1448,14 +1904,20 @@ const ContentDisplayNew = () => {
             case 5: return <ContentPage6 />;
             case 6: return <ContentPage7 />;
             case 7: return <ContentPage8 />;
-            case 8: return <ContentPage9 />; // 5. Chính sách Xã hội (Index 8)
-            case 9: return <ContentPage10 />; // 6. Đổi mới Đảng (Index 9)
-            case 10: return <ContentPage11 />; // 7. Cụ thể hóa VI (Index 10)
-            case 11: return <ContentPage12 />; // Đại hội VII Title (Index 11)
-            case 12: return <ContentPage13 />; // Cương lĩnh: 5 Bài học (Index 12)
-            case 13: return <ContentPage14 />; // Cương lĩnh: 6 Đặc trưng (Index 13)
-            case 14: return <ContentPage15 />; // Cương lĩnh: 7 Phương hướng (Index 14)
-            case 15: return <ContentPage16 />; // Chiến lược đến 2000 (Index 15)
+            case 8: return <ContentPage9 />;
+            case 9: return <ContentPage10 />;
+            case 10: return <ContentPage11 />;
+            case 11: return <ContentPage12 />;
+            case 12: return <ContentPage13 />;
+            case 13: return <ContentPage14 />;
+            case 14: return <ContentPage15 />;
+            case 15: return <ContentPage16 />;
+            case 16: return <ContentPage17 />;
+            case 17: return <ContentPage18 />;
+            case 18: return <ContentPage19 />;
+            case 19: return <ContentPage20 />;
+            case 20: return <ContentPage21 />;
+            case 21: return <ContentPage22 />; // NEW CASE
             default: return <ContentPage1 />;
         }
     };
@@ -1578,7 +2040,6 @@ const ContentDisplayNew = () => {
                     </button>
                 </div>
 
-                {/* Render only current page */}
                 {renderCurrentPage()}
             </div>
         </>

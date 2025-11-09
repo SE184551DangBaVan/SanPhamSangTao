@@ -61,7 +61,7 @@ export default function HomePage() {
     <div className='homePage-container'>
 
         {/*dont mind me just planting this here*/}
-        <WeirdButton />
+        {/*<WeirdButton />*/}
 
       <DynamicBackground pageScroll={scrollHomePageOffset}/>
       <div className="hero-container">
