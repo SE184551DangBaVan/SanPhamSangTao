@@ -46,7 +46,7 @@ function App() {
                 }
             />
             <Route
-                path="/memory-card-quiz"
+                path="/memory-card-game"
                 element={
                   <>
                     <MinhPage />

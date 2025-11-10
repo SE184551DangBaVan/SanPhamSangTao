@@ -21,7 +21,7 @@ const MemoGame = ({ pictures }) => {
     const SHOW_CARD_TIME = 3000;
     const STREAK_MULTIPLIER = 1;
     const QUIZ_ADD_MOVE = 10;
-    const QUIZ_INITIAL_MOVES = 10;
+    const QUIZ_INITIAL_MOVES = 99999;
     const QUIZ_CLOSE_DELAY = 3000;
 
     const [streak, setStreak] = useState(0);
@@ -422,17 +422,17 @@ const MemoGame = ({ pictures }) => {
                     <div>Tổng số lật: {moves}</div>
                     <div>Thời gian: {timer}</div>
                     <div>Chuỗi: {streak}</div>
-                    <div className={`available-moves ${isFlashing ? 'flash-red' : ''}`}>Lượt còn lại: {availableMoves}</div>
-                    <motion.button
-                        whileHover={{scale: 1.08}}
-                        whileTap={{scale: 0.95}}
-                        transition={{type: "spring", stiffness: 300}}
+                    {/*<div className={`available-moves ${isFlashing ? 'flash-red' : ''}`}>Lượt còn lại: {availableMoves}</div>*/}
+                    {/*<motion.button*/}
+                    {/*    whileHover={{scale: 1.08}}*/}
+                    {/*    whileTap={{scale: 0.95}}*/}
+                    {/*    transition={{type: "spring", stiffness: 300}}*/}
 
-                        onClick={openQuizModal}  className="quiz-btn"
-                        disabled={!firstMoveMade}
-                    >
-                        Quiz
-                    </motion.button>
+                    {/*    onClick={openQuizModal}  className="quiz-btn"*/}
+                    {/*    disabled={!firstMoveMade}*/}
+                    {/*>*/}
+                    {/*    Quiz*/}
+                    {/*</motion.button>*/}
                     <motion.button
                         whileHover={{scale: 1.08}}
                         whileTap={{scale: 0.95}}
