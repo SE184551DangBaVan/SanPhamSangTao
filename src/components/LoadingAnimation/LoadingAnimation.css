@@ -1,6 +1,7 @@
 .loading-mask {
     cursor: progress;
     position: fixed;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +14,10 @@
 }
 
 .loading-mask .loading-container {
+  position: absolute;
+  right: 20px;
+  bottom: -80px;
+    scale: 0.8;
     width: 500px;
     height: 300px;
     display: flex;

@@ -165,7 +165,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div id="hero" className={`hero-paragraph ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 4000) ? '':'hidden'}`} >
+      <div id="hero" className={`hero-paragraph ${(scrollHomePageOffset > 200 && scrollHomePageOffset < 4000) ? '':'hidden'}`} >
             {/* <div className="stuck-grid">
               <div className="grid-item">Tư Tưởng</div>
               <div className="grid-item"></div>
@@ -264,13 +264,38 @@ export default function HomePage() {
               </ul>
             </section>
           </div>
-
-      <div className={`historical-figure-block-outer ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 4000) ? '' : 'hidden'}`} ></div>
-      <div className={`historical-figure-block ${(scrollHomePageOffset > 800 && scrollHomePageOffset < 4000) ? '' : 'hidden'}`} >
+      <div class={`radio-type-button-container-side ${(scrollHomePageOffset > 400 && scrollHomePageOffset < 1700) ? '' : 'hidden'}`}/>
+      <div class={`radio-type-button-container ${(scrollHomePageOffset > 400 && scrollHomePageOffset < 1700) ? '' : 'hidden'}`} aria-label="Braun radio illustration">
+        <div class="custom-radio-group">
+          <form>
+            <label class="radio-label">
+              <input
+                type="radio"
+                name="band"
+                value="am"
+                checked=""
+                class="radio-input"
+              />
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="band" value="fm" class="radio-input" />
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="band" value="sw" class="radio-input" />
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="band" value="mw" class="radio-input" />
+            </label>
+          </form>
+          <div className="radio-type-button-monitor screen"></div>
+        </div>
+      </div>
+      <div className={`historical-figure-block-outer ${(scrollHomePageOffset > 1600 && scrollHomePageOffset < 3800) ? '' : 'hidden'}`} ></div>
+      <div className={`historical-figure-block ${(scrollHomePageOffset > 1600 && scrollHomePageOffset < 3800) ? '' : 'hidden'}`} >
         
         <span className='historical-texts1'
-          style={{ transform: scrollHomePageOffset > 1400 ? `translateY(105%)` : `translateY(0)` }}>
-          <div className="historical-figure1" style={{ maskImage: scrollHomePageOffset > 800
+          style={{ transform: scrollHomePageOffset > 2800 ? `translateY(110%)` : `translateY(0)` }}>
+          <div className="historical-figure1" style={{ maskImage: scrollHomePageOffset > 1600
               ? `url('${maskOne}')` : `linear-gradient(to right, transparent, transparent)` }}>
           </div>
           <div className="info-card">
@@ -279,17 +304,20 @@ export default function HomePage() {
             <div class="corner bottom left"></div>
             <div class="corner bottom right"></div>
           </div>
-          <span className="first-letter">1. Văn hóa – gốc của dân tộc</span><br />
+          <span className="first-letter">Hạn chế và Thách thức</span><br />
           <span className="historical-details">
-            Văn hóa là sức sống tinh thần, phản ánh trí tuệ và tâm hồn Việt Nam.<br />
-            Khi đất nước được giải phóng, văn hóa nảy nở, trở thành nền tảng cho xã hội phát triển.<br />
+            Những hạn chế bạn nêu là hoàn toàn chính xác. Tại Hội nghị Đại biểu toàn quốc giữa nhiệm kỳ (tháng 1/1994), Đảng đã chính thức xác định "4 nguy cơ" (Bốn thách thức lớn):<br /><br />
+            <span className='highlighter'>1.</span> Nguy cơ tụt hậu xa hơn về kinh tế: So với nhiều nước trong khu vực và trên thế giới.<br />
+            <span className='highlighter'>2.</span> Nguy cơ chệch hướng xã hội chủ nghĩa: Nếu không giữ vững vai trò lãnh đạo của Đảng và sự quản lý của Nhà nước.<br />
+            <span className='highlighter'>3.</span> Nguy cơ tham nhũng và quan liêu: Đây là "quốc nạn", phát sinh từ mặt trái của cơ chế thị trường và sự tha hóa quyền lực.<br />
+            <span className='highlighter'>4.</span> Âm mưu "diễn biến hoà bình" của các thế lực thù địch: Lợi dụng "dân chủ", "nhân quyền" để can thiệp vào công việc nội bộ.<br />
           </span>
         </span>
 
         <span className='historical-texts2'
-          style={{ transform: scrollHomePageOffset > 2600 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 1600 ? `0` : `105%` }}>
+          style={{ transform: scrollHomePageOffset > 3600 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 2800 ? `0` : `105%` }}>
           <div className="historical-figure2" style={{
-            maskImage: scrollHomePageOffset > 1600
+            maskImage: scrollHomePageOffset > 2800
               ? `url('${maskTwo}')` : `linear-gradient(to right, transparent, transparent)` }}>
           </div>
           <div className="info-card">
@@ -298,17 +326,19 @@ export default function HomePage() {
             <div class="corner bottom left"></div>
             <div class="corner bottom right"></div>
           </div>
-          <span className="first-letter">2. Văn hóa – sức mạnh đổi thay</span><br />
+          <span className="first-letter">Bài học Kinh nghiệm Quan trọng</span><br />
           <span className="historical-details">
-            Văn hóa vừa là mục tiêu, vừa là động lực cách mạng.<br />
-            Nó khơi dậy lòng yêu nước, nuôi dưỡng nhân cách và khát vọng vươn lên của con người.<br />
+            <span className='highlighter'>•</span> Lấy dân làm gốc: Bài học từ "khoán chui" cho thấy mọi chủ trương phải xuất phát từ lợi ích và nguyện vọng của nhân dân mới thành công.<br />
+            <span className='highlighter'>•</span> Tôn trọng quy luật khách quan: Đây là bài học đắt giá nhất, là sự từ bỏ "bệnh chủ quan, duy ý chí". Phải chấp nhận quy luật của kinh tế thị trường (cung - cầu, cạnh tranh), không thể dùng mệnh lệnh hành chính để thay thế.<br />
+            <span className='highlighter'>•</span> Kết hợp sức mạnh dân tộc và sức mạnh thời đại: Không thể tự cô lập mình. Phải hội nhập quốc tế (sức mạnh thời đại) để phát huy nội lực (sức mạnh dân tộc).<br />
+            <span className='highlighter'>•</span> Xây dựng Đảng: Phải đổi mới chính bản thân Đảng, từ tư duy lãnh đạo kinh tế đến công tác cán bộ, để theo kịp thực tiễn.<br />
           </span>
         </span>
         <span className='historical-texts3'
-          style={{ transform: scrollHomePageOffset > 4800 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 2800 ? `-95%` : `10%` }}>
+          style={{ transform: scrollHomePageOffset > 4800 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 3600 ? `-95%` : `10%` }}>
           <div className="historical-figure3" style={{
-            maskImage: scrollHomePageOffset > 2800
-              ? `url('${maskThree}')` : `linear-gradient(to right, transparent, transparent)`, transform: scrollHomePageOffset > 2300 ? "scale(0.8) translateY(0)" : "scale(0.8) translateY(800px)" }}>
+            maskImage: scrollHomePageOffset > 3600
+              ? `url('${maskThree}')` : `linear-gradient(to right, transparent, transparent)`}}>
           </div>
           <div className="info-card">
             <div class="corner up left"></div>
@@ -316,10 +346,13 @@ export default function HomePage() {
             <div class="corner bottom left"></div>
             <div class="corner bottom right"></div>
           </div>
-          <span className="first-letter">3. Xây dựng văn hóa mới</span><br />
+          <span className="first-letter">Ý nghĩa to lớn của thời kỳ 1986 – 1996</span><br />
           <span className="historical-details">
-            Nền văn hóa Việt phải vừa dân tộc, vừa hiện đại, nhân văn.<br />
-            Hướng tới con người toàn diện – có đức, có tài, yêu nước và tự cường.<br /></span>
+            Đây thật là thập kỷ "lột xác" của Việt Nam.<br />
+            <span className='highlighter'>1.</span> Cứu vãn và Ổn định: Quan trọng nhất, Đổi Mới đã đưa đất nước thoát khỏi khủng hoảng kinh tế - xã hội nghiêm trọng, ổn định đời sống nhân dân.<br />
+            <span className='highlighter'>2.</span> Tạo lập nền tảng: Giai đoạn này đã xây dựng được khung khổ thể chế (luật pháp, cơ chế) cho nền kinh tế thị trường định hướng XHCN.<br />
+            <span className='highlighter'>3.</span> Khẳng định vai trò lãnh đạo của Đảng: Đổi Mới không làm suy yếu, mà ngược lại, đã củng cố và khẳng định vai trò lãnh đạo của Đảng. Đảng đã dám tự phê bình và sửa sai, gắn bó với thực tiễn, do đó lấy lại được niềm tin của nhân dân.<br />
+            <span className='highlighter'>4.</span> Mở ra thời kỳ phát triển mới: Tạo tiền đề vững chắc cho giai đoạn công nghiệp hóa, hiện đại hóa tiếp theo (sau 1996), đưa vị thế Việt Nam lên tầm cao mới trên trường quốc tế.<br /></span>
         </span>
 
       </div>
