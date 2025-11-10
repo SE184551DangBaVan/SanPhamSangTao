@@ -368,6 +368,5 @@ export const book4Data = {
 export const allBooks = [
   book1Data,
   book2Data,
-  book3Data,
-  book4Data
+  book3Data
 ];

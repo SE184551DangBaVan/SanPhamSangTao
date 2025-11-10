@@ -1000,7 +1000,7 @@ body.is-black .transcript-container .movie-three {
   animation: transcript-scroll 221s;
 }
 body.is-black .transcript-container .movie-four {
-  animation: transcript-scroll 140s;
+  animation: transcript-scroll 160s;
 }
 
 @keyframes transcript-scroll {
