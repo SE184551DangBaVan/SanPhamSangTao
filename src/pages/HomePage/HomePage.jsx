@@ -20,6 +20,8 @@ export default function HomePage() {
   const [show, setShow] = useState(false);
   const [shown, setShown] = useState(false);
   const [retract, setRetract] = useState(true);
+  const [enable, setEnable] = useState(false);
+  const [radioSelect, setRadioSelect] = useState(1);
   const { scrollY, scrollYProgress } = useScroll();
   
   const [handsOff, setHandsOff] = useState(false);
@@ -36,6 +38,9 @@ export default function HomePage() {
       if (!shown && scrollHomePageOffset>100 && scrollHomePageOffset<1600) {
         setShow(true);
         setShown(true);
+      }
+      if (scrollHomePageOffset>500 && scrollHomePageOffset<2000) {
+        setEnable(true);
       }
       else if (shown && scrollHomePageOffset<=800 && !retract) {
         setRetract(true);
@@ -58,7 +63,7 @@ export default function HomePage() {
   }, [scrollHomePageOffset]);
 
   return (
-    <div className='homePage-container'>
+    <div className="homePage-container">
 
         {/*dont mind me just planting this here*/}
         {/*<WeirdButton />*/}
@@ -163,6 +168,16 @@ export default function HomePage() {
             </div>
             <div className={`film-strip ${scrollHomePageOffset > 500 ? 'scroll' : ''}`}></div>
           </div>
+
+          <div className="historical-figure1 outer" style={{ maskImage: scrollHomePageOffset > 1600
+            ? `url('${maskOne}')` : `linear-gradient(to right, transparent, transparent)` }}>
+          </div>
+          <div className="historical-figure2 outer" style={{ maskImage: scrollHomePageOffset > 2600
+            ? `url('${maskTwo}')` : `linear-gradient(to right, transparent, transparent)` }}>
+          </div>
+          <div className="historical-figure3 outer" style={{ maskImage: scrollHomePageOffset > 3600
+            ? `url('${maskThree}')` : `linear-gradient(to right, transparent, transparent)` }}>
+          </div>
         </div>
       </div>
       <div id="hero" className={`hero-paragraph ${(scrollHomePageOffset > 200 && scrollHomePageOffset < 4000) ? '':'hidden'}`} >
@@ -264,34 +279,36 @@ export default function HomePage() {
               </ul>
             </section>
           </div>
-      <div class={`radio-type-button-container-side ${(scrollHomePageOffset > 400 && scrollHomePageOffset < 1700) ? '' : 'hidden'}`}/>
-      <div class={`radio-type-button-container ${(scrollHomePageOffset > 400 && scrollHomePageOffset < 1700) ? '' : 'hidden'}`} aria-label="Braun radio illustration">
-        <div class="custom-radio-group">
+      <div className={`radio-type-button-container-side ${(scrollHomePageOffset > 400 && scrollHomePageOffset < 1700) ? '' : 'hidden'}`} style={{transform: `translateX(${enable ? '0' : '200%'})`}}/>
+      <div className={`radio-type-button-container ${(scrollHomePageOffset > 400 && scrollHomePageOffset < 1700) ? '' : 'hidden'}`} aria-label="Braun radio illustration" style={{transform: `translateX(${enable ? '0' : '200%'})`}}>
+        <div className="custom-radio-group">
           <form>
-            <label class="radio-label">
+            <label className={`radio-label ${radioSelect}`}>
               <input
                 type="radio"
                 name="band"
                 value="am"
-                checked=""
-                class="radio-input"
+                checked={radioSelect==1 ? true : false}
+                className="radio-input"
+                onClick={() => setRadioSelect(1)}
               />
             </label>
-            <label class="radio-label">
-              <input type="radio" name="band" value="fm" class="radio-input" />
+            <label className="radio-label">
+              <input type="radio" name="band" value="fm" checked={radioSelect==2 ? true : false} className="radio-input" onClick={() => setRadioSelect(2)}/>
             </label>
-            <label class="radio-label">
-              <input type="radio" name="band" value="sw" class="radio-input" />
+            <label className="radio-label">
+              <input type="radio" name="band" value="sw" checked={radioSelect==3 ? true : false} className="radio-input" onClick={() => setRadioSelect(3)}/>
             </label>
-            <label class="radio-label">
-              <input type="radio" name="band" value="mw" class="radio-input" />
+            <label className="radio-label">
+              <input type="radio" name="band" value="mw" checked={radioSelect==4 ? true : false} className="radio-input" onClick={() => setRadioSelect(4)}/>
             </label>
           </form>
           <div className="radio-type-button-monitor screen"></div>
         </div>
       </div>
-      <div className={`historical-figure-block-outer ${(scrollHomePageOffset > 1600 && scrollHomePageOffset < 3800) ? '' : 'hidden'}`} ></div>
-      <div className={`historical-figure-block ${(scrollHomePageOffset > 1600 && scrollHomePageOffset < 3800) ? '' : 'hidden'}`} >
+
+      <div className={`historical-figure-block-outer ${(scrollHomePageOffset > 1600 && scrollHomePageOffset < 3800) ? '' : 'hidden'}`} style={{transform: `translateX(${enable ? '0' : '200%'})`}}></div>
+      <div className={`historical-figure-block ${(scrollHomePageOffset > 1600 && scrollHomePageOffset < 3800) ? '' : 'hidden'}`} style={{transform: `translateX(${enable ? '0' : '200%'})`}}>
         
         <span className='historical-texts1'
           style={{ transform: scrollHomePageOffset > 2800 ? `translateY(110%)` : `translateY(0)` }}>
@@ -299,10 +316,10 @@ export default function HomePage() {
               ? `url('${maskOne}')` : `linear-gradient(to right, transparent, transparent)` }}>
           </div>
           <div className="info-card">
-            <div class="corner up left"></div>
-            <div class="corner up right"></div>
-            <div class="corner bottom left"></div>
-            <div class="corner bottom right"></div>
+            <div className="corner up left"></div>
+            <div className="corner up right"></div>
+            <div className="corner bottom left"></div>
+            <div className="corner bottom right"></div>
           </div>
           <span className="first-letter">Hạn chế và Thách thức</span><br />
           <span className="historical-details">
@@ -321,10 +338,10 @@ export default function HomePage() {
               ? `url('${maskTwo}')` : `linear-gradient(to right, transparent, transparent)` }}>
           </div>
           <div className="info-card">
-            <div class="corner up left"></div>
-            <div class="corner up right"></div>
-            <div class="corner bottom left"></div>
-            <div class="corner bottom right"></div>
+            <div className="corner up left"></div>
+            <div className="corner up right"></div>
+            <div className="corner bottom left"></div>
+            <div className="corner bottom right"></div>
           </div>
           <span className="first-letter">Bài học Kinh nghiệm Quan trọng</span><br />
           <span className="historical-details">
@@ -341,10 +358,10 @@ export default function HomePage() {
               ? `url('${maskThree}')` : `linear-gradient(to right, transparent, transparent)`}}>
           </div>
           <div className="info-card">
-            <div class="corner up left"></div>
-            <div class="corner up right"></div>
-            <div class="corner bottom left"></div>
-            <div class="corner bottom right"></div>
+            <div className="corner up left"></div>
+            <div className="corner up right"></div>
+            <div className="corner bottom left"></div>
+            <div className="corner bottom right"></div>
           </div>
           <span className="first-letter">Ý nghĩa to lớn của thời kỳ 1986 – 1996</span><br />
           <span className="historical-details">

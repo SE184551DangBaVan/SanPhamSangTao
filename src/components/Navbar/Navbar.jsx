@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import {useNavigate} from "react-router-dom";
-import { HomeRounded, SportsEsportsRounded, TimelineRounded, TvRounded, YouTube } from "@mui/icons-material";
+import { HomeRounded, InfoOutlineRounded, SportsEsportsRounded, TimelineRounded, TvRounded, YouTube } from "@mui/icons-material";
 
 export default function Navbar({selectVal}) {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ export default function Navbar({selectVal}) {
                     window.location.href = "https://www.youtube.com/watch?v=8E940gAAxpo";
                 }}
       />
-      <label htmlFor="t">Hồ Chí Minh</label>
+      <label htmlFor="t">Kinh tế Việt Nam</label>
 
       <input
         className={`${selected === "fi" && 'disabled'}`}
@@ -103,9 +103,9 @@ export default function Navbar({selectVal}) {
       <div className="nav-button-container">
         <button className={`nav-button ${selected === "f" ? 'selected' : ''}`} onClick={() => {handleSelect("f"); navigate("/"); window.scrollTo({ top: 0, left: 0, behavior: "smooth" });}}> <HomeRounded /> </button>
         <button className={`nav-button ${selected === "fo" ? 'selected' : ''}`} onClick={() => {handleSelect("fo"); navigate("/"); /*handleScrollTo(1200);*/}}><TimelineRounded /></button>
-        <button className={`nav-button`}><YouTube /></button>
+        <button className={`nav-button ${selected === "t" ? 'selected' : ''}`} onClick={() => {handleSelect("t"); window.open("https://vi.wikipedia.org/wiki/Kinh_t%E1%BA%BF_Vi%E1%BB%87t_Nam,_1976%E2%80%931986", '_blank', 'noopener,noreferrer')} }><InfoOutlineRounded /></button>
         <button className={`nav-button ${selected === "s" ? 'selected' : ''}`} onClick={() => {handleSelect("s"); handleScrollTo(5500);}}><TvRounded /></button>
-        <button className={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}}><SportsEsportsRounded/></button>
+        <button className={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}} disabled><SportsEsportsRounded/></button>
       </div>
       <div className="top" />
       <div className="front" />
