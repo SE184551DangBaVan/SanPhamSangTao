@@ -14,7 +14,7 @@ export default function GameSelectionPage() {
                 <h2>Chọn Một Trò Chơi</h2>
                 <button className="submit" onClick={(e) => {
                     e.preventDefault();
-                    navigate("/memory-card-quiz")}}>Thẻ Nhớ</button>
+                    navigate("/memory-card-game")}}>Thẻ Nhớ</button>
                 <button className="submit back" onClick={(e) => {
                     e.preventDefault();
                     navigate("/");
