@@ -1,8 +1,8 @@
 // All HCM Book Data consolidated into single file
-import Movie1 from '../../public/Đại hội Đại biểu toàn quốc lần thứ VI của Đảng – Mở ra thời kỳ đổi mới đất nước  VOV - Truyền hình Đài Tiếng nói Việt Nam - VOVTV (1080p, h264).mp4';
-import Movie2 from '../../public/Đại hội VII Đổi mới toàn diện, đưa đất nước tiến lên con đường XHCN - Báo Nhân Dân (1080p, h264).mp4';
-import Movie3 from '../../public/Khoảnh khắc và sự kiện. Ngày 28_7_1995 Việt Nam chính thức gia nhập ASEAN - VNEWS - VNAMEDIA - TRUNG TÂM NỘI DUNG SỐ VÀ TRUYỀN THÔNG (1080p, h264).mp4';
-import Movie4 from '../../public/Cirno Fumo vibing to Scarlet Police Ghetto Patrol - Name Under Construction (720p, h264).mp4';
+import Movie1 from '/public/Đại hội Đại biểu toàn quốc lần thứ VI của Đảng – Mở ra thời kỳ đổi mới đất nước  VOV - Truyền hình Đài Tiếng nói Việt Nam - VOVTV (1080p, h264).mp4';
+import Movie2 from '/public/Đại hội VII Đổi mới toàn diện, đưa đất nước tiến lên con đường XHCN - Báo Nhân Dân (1080p, h264).mp4';
+import Movie3 from '/public/Khoảnh khắc và sự kiện. Ngày 28_7_1995 Việt Nam chính thức gia nhập ASEAN - VNEWS - VNAMEDIA - TRUNG TÂM NỘI DUNG SỐ VÀ TRUYỀN THÔNG (1080p, h264).mp4';
+import Movie4 from '/public/Cirno Fumo vibing to Scarlet Police Ghetto Patrol - Name Under Construction (720p, h264).mp4';
 
 //Book-cover images
 import Cover1 from '../assets/dai hoi dai bieu toan quoc lan thu 4.jpg';
