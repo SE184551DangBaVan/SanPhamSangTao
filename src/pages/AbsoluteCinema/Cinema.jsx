@@ -190,7 +190,12 @@ const Cinema = ({filmTitle, movie, transcript}) => {
           <div className="wall-r flex">
             <div className="wall-r__front face flex">
               <div className="cinema-screen flex">
-                <video ref={videoRef} width="100%">
+                <video ref={videoRef} width="100%"
+                  preload="auto"
+                  controls={false}
+                  disablePictureInPicture
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  onSeeked={(e) => { e.target.currentTime = 0; }}>
                   <source
                     src={movie}
                     type="video/mp4"
