@@ -68,9 +68,9 @@
 }
 
 @keyframes load-mask {
-  0% {background-color: #907862;}
-  70% { background-color: #907862; }
-  90% { background-color: #90786256;}
+  0% {background-color: #404040;}
+  70% { background-color: #4040406c; }
+  90% { background-color: #4040406e;}
   95% { opacity: 1; pointer-events: all;  }
   100% { opacity: 0; pointer-events: none; }
 }

@@ -227,7 +227,7 @@ const Cinema = ({filmTitle, movie, transcript}) => {
           </span>
         <DirectionsRun className='home-button-icons'/>
       </button>
-      <div className="home-button cinema lower-layer" />
+      <div className="home-button cinema lower-layer" title="Ngừng phim để trở về trang chủ" />
 
       <div className="credit-block">
         Cinema design Credits:
