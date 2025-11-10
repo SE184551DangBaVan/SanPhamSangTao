@@ -11,6 +11,7 @@ import LoadingAnimation from './components/LoadingAnimation/LoadingAnimation.jsx
 import GameSelectionPage from './pages/GameSelectionPage/GameSelectionPage.jsx';
 import { allBooks } from './data/books.jsx';
 import Cinema from './pages/AbsoluteCinema/Cinema.jsx';
+import GalleryDisplay from './pages/GalleryDisplay/GalleryDisplay.jsx';
 
 function App() {
 
@@ -24,6 +25,14 @@ function App() {
             <>
               <Navbar selectVal={"f"}/>
               <HomePage />
+            </>
+          }
+        />
+        <Route
+          path="/gallery"
+          element={
+            <>
+              <GalleryDisplay />
             </>
           }
         />

@@ -9,6 +9,11 @@
   margin: 10px 0 0;
 }
 
+.submit.back {
+  max-width: 200px;
+  margin-left: 37%;
+}
+
 .submit::before {
   margin-left: auto;
 }
@@ -18,7 +23,7 @@
   content: "";
   width: 0%;
   height: 2px;
-  background: #d62828; /* vivid Vietnamese red */
+  background: #d62828;
   display: block;
   transition: 0.5s;
 }

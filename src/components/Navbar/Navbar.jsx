@@ -102,10 +102,10 @@ export default function Navbar({selectVal}) {
       <div className="menu-border"></div>
       <div className="nav-button-container">
         <button className={`nav-button ${selected === "f" ? 'selected' : ''}`} onClick={() => {handleSelect("f"); navigate("/"); window.scrollTo({ top: 0, left: 0, behavior: "smooth" });}}> <HomeRounded /> </button>
-        <button className={`nav-button ${selected === "fo" ? 'selected' : ''}`} onClick={() => {handleSelect("fo"); navigate("/"); /*handleScrollTo(1200);*/}}><TimelineRounded /></button>
+        <button className={`nav-button ${selected === "fo" ? 'selected' : ''}`} onClick={() => {handleSelect("fo"); navigate("/gallery"); /*handleScrollTo(1200);*/}}><TimelineRounded /></button>
         <button className={`nav-button ${selected === "t" ? 'selected' : ''}`} onClick={() => {handleSelect("t"); window.open("https://vi.wikipedia.org/wiki/Kinh_t%E1%BA%BF_Vi%E1%BB%87t_Nam,_1976%E2%80%931986", '_blank', 'noopener,noreferrer')} }><InfoOutlineRounded /></button>
         <button className={`nav-button ${selected === "s" ? 'selected' : ''}`} onClick={() => {handleSelect("s"); handleScrollTo(5500);}}><TvRounded /></button>
-        <button className={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}} disabled><SportsEsportsRounded/></button>
+        <button className={`nav-button ${selected === "fi" ? 'selected' : ''}`} onClick={() => {handleSelect("fi"); navigate("/game-selection");}} ><SportsEsportsRounded/></button>
       </div>
       <div className="top" />
       <div className="front" />
