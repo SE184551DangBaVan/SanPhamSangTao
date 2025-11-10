@@ -94,6 +94,10 @@
     transform: translateY(0) scale(1) rotate3d(0, 0, 0, 0deg) translateX(20px);
 }
 
+.book-selection .book:nth-child(4) {
+    display: none;
+}
+
 /* .book-selection .book::after {
     content: '';
     position: absolute;

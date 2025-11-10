@@ -352,7 +352,7 @@ export default function HomePage() {
           </span>
         </span>
         <span className='historical-texts3'
-          style={{ transform: scrollHomePageOffset > 4800 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 3600 ? `-95%` : `10%` }}>
+          style={{ transform: scrollHomePageOffset > 5000 ? `translateY(105%)` : `translateY(0)`, top: scrollHomePageOffset > 3600 ? `-95%` : `10%` }}>
           <div className="historical-figure3" style={{
             maskImage: scrollHomePageOffset > 3600
               ? `url('${maskThree}')` : `linear-gradient(to right, transparent, transparent)`}}>
