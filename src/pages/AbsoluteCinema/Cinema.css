@@ -895,7 +895,7 @@ iframe {
 
 :disabled {
   cursor: no-drop;
-  background-image: linear-gradient(to right, #c8c6c8 70%, #bbbabb 70%);
+  opacity: 0.4;
 }
 
 @keyframes line {
